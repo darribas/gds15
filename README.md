@@ -1,4 +1,7 @@
-# GDS'15
+# Spatial Data, Analysis, and Regression - A mini-course
 
-Geographic Data Science - Autumn 2015
+* [Dani Arribas-Bel](http://darribas.org)
+
+Self-contained course. Work in progress.
+
 

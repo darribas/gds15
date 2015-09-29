@@ -1,0 +1,17 @@
+_site/*
+*/_site/*
+*/.DS_Store
+.DS_Store
+revealjs/*
+*/revealjs/*
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+*.swp
+*/*.swp
+*/.vagrant/
+.vagrant/
+site/content/infrastructure/notebooks/
+*.*~
+*/*.*~
+.Rhistory
+*/.Rhistory
