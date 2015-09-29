@@ -14,3 +14,10 @@ la02:
 	cd content/labs && jupyter nbconvert --to html lab_02.ipynb --output lab_02.html
 	cd content/labs && jupyter nbconvert --to latex lab_02.ipynb --output lab_02.tex && texbuild lab_02.tex && rm lab_02.tex && rm -R lab_02_files/
 
+website:
+	jekyll build
+	git checkout gh-pages
+	cp -r _site/* ./
+	git add .
+	git commit -am "Building website"
+	git checkout master
