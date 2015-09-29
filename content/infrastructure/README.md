@@ -9,17 +9,17 @@ install them in different platforms.
 
 ## Complementary material to this guide
 
-This guide assumes you have the following additional files, included in the same
-`infrastructure` folder where you have found this guide:
+This guide assumes you have the following additional files, available to
+download by clicking:
 
-* `install_gds_stack.sh`
-* `check_gds_stack.ipynb`
+* [`install_gds_stack.sh`](content/infrastructure/install_gds_stack.sh)
+* [`check_gds_stack.ipynb`](content/infrastructure/check_gds_stack.ipynb)
 
 [Required for the Vagrant option only]
 
-* `Vagrantfile`
-* `bootstrap.sh`
-* `launchenv.sh`
+* [`Vagrantfile`](content/infrastructure/Vagrantfile)
+* [`bootstrap.sh`](content/infrastructure/bootstrap.sh)
+* [`launchenv.sh`](content/infrastructure/launchenv.sh)
 
 ## Dependencies
 
