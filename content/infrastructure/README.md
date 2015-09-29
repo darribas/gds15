@@ -12,7 +12,8 @@ install them in different platforms.
 This guide assumes you have the following additional files, available to
 download by clicking:
 
-* [`install_gds_stack.sh`](content/infrastructure/install_gds_stack.sh)
+* `install_gds_stack.sh`([Windows](content/infrastructure/install_gds_stack_win.sh), 
+[Mac/Linux](content/infrastructure/install_gds_stack_unix.sh))
 * [`check_gds_stack.ipynb`](content/infrastructure/check_gds_stack.ipynb)
 
 [Required for the Vagrant option only]

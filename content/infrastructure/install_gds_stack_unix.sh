@@ -1,5 +1,9 @@
 #!/bin/bash
 
+                    ########
+                    # Unix #
+                    ########
+
 # The following script assumes you have Anaconda installed
 
 ##  Update the package manager:
@@ -26,10 +30,9 @@ pip install -U pysal
 pip install -U clusterpy
 
 conda install -n gds -y fiona six
-# IOOS supports win-32/64 and linux-64
-conda install -n gds -c https://conda.binstar.org/ioos psycopg2
-# SciTools supports win-32 and other platforms
-conda install -n gds -y -c scitools shapely
+conda install -n gds psycopg2
+conda install -n gds -y shapely
+conda install -n gds -y pyproj
 pip install -U geopy
 pip install -U descartes
 pip install --no-deps geopandas
