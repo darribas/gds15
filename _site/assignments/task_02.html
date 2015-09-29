@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Dani Arribas-Bel">
+  <meta name="description" content="An introduction to Data Science for spatial data">
+
+  <title>gds15 &mdash; Assignment 2</title>
+
+  <link href="/gds15/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/gds15/assets/css/course-site-custom.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+    <script src="/gds15/assets/js/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+  <!-- Static navbar -->
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/gds15/index.html">gds15</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/gds15/index.html">Home</a></li>
+          <li><a href="/gds15/syllabus.html">Syllabus</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown">Lectures <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              
+              
+              <li><a href="/gds15/notes/Class_01.html">Week 1 - Introduction</a></li>
+              
+              <li><a href="/gds15/notes/Class_02.html">Week 2 - Geo-Data</a></li>
+              
+              <li><a href="/gds15/notes/Class_03.html">Week 3 - (Geo)Visualization</a></li>
+              
+              <li><a href="/gds15/notes/Class_04.html">Week 4 - Choropleth mapping</a></li>
+              
+              <li><a href="/gds15/notes/Class_05.html">Week 5 - Spatial Weights</a></li>
+              
+              <li><a href="/gds15/notes/Class_06.html">Week 6 - ESDA</a></li>
+              
+              <li><a href="/gds15/notes/Class_07.html">Week 7 - Clustering</a></li>
+              
+              <li><a href="/gds15/notes/Class_08.html">Week 8 - Points (I)</a></li>
+              
+              <li><a href="/gds15/notes/Class_09.html">Week 9 - Spatial Interaction</a></li>
+              
+              <li><a href="/gds15/notes/Class_10.html">Week 10 - Causal Inference</a></li>
+              
+              <li><a href="/gds15/notes/Class_11.html">Week 11 - Spatial regression</a></li>
+              
+              
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Labs <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              
+              
+              <li><a href="/gds15/labs/Lab_01.html">Week 1 - Tools</a></li>
+              
+              <li><a href="/gds15/labs/Lab_02.html">Week 2 - Tidy Data</a></li>
+              
+              <li><a href="/gds15/labs/Lab_03.html">Week 3 - (Geo)Visualization</a></li>
+              
+              <li><a href="/gds15/labs/Lab_04.html">Week 4 - Automated choropleths</a></li>
+              
+              <li><a href="/gds15/labs/Lab_05.html">Week 5 - Spatial Weights</a></li>
+              
+              <li><a href="/gds15/labs/Lab_06.html">Week 6 - ESDA</a></li>
+              
+              <li><a href="/gds15/labs/Lab_07.html">Week 7 - Clustering</a></li>
+              
+              <li><a href="/gds15/labs/Lab_08.html">Week 8 - Points (I)</a></li>
+              
+              <li><a href="/gds15/labs/Lab_09.html">Week 9 - Spatial Interaction</a></li>
+              
+              <li><a href="/gds15/labs/Lab_10.html">Week 10 - Spatial Regression</a></li>
+              
+              <li><a href="/gds15/labs/Lab_11.html">Week 11 - Team work on projects</a></li>
+              
+              
+            </ul>
+          </li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              
+              
+              <li><a href="/gds15/assignments/task_01.html">Assignment 1</a></li>
+              
+              <li><a href="/gds15/assignments/task_02.html">Assignment 2</a></li>
+              
+              
+            </ul>
+          </li>
+          <li><a href="/gds15/bibliography.html">Bibliography</a></li>
+          <li><a href="/gds15/datasets.html">Datasets</a></li>
+          <li><a href="/gds15/software.html">Software</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div class="container" id="body">
+    
+<h2>Assignment 2</h2>
+
+
+<h3 id="targetting-areas"><em>Targetting areas</em></h3>
+
+<ul>
+  <li>Type: <code>Coursework</code></li>
+  <li>[Equivalent to 2,500 words] Three maps/tables, code and 750 words.</li>
+  <li>Released on Week 9</li>
+  <li>50% of the final mark</li>
+  <li>Chance to be reassessed</li>
+  <li>Final Assessment</li>
+</ul>
+
+<p>In this assignment, you will take the role of a real-world data scientist
+tasked to identify areas to direct investments. Choose one of the two
+scenarios suggested below (or create one of your own).
+Choose one of the given questions, develop a data
+strategy, deploy it, and present the results in a rigorous but intuitive
+fashion, together with the code.</p>
+
+<p><strong>NOTE</strong>: if you are thinking on taking a different scenario of your own,
+please consult with the module lead, Dani Arribas-Bel.</p>
+
+<p><strong>Minimum requirements</strong> (complete <em>all</em>)</p>
+
+<ul>
+  <li>Combine <em>at least two</em> datasets, potentially among those used in the course.</li>
+  <li>Employ <em>at least two</em> techniques from the set of analytics covered in the
+course.</li>
+  <li>Provide a clear final answer to the question that guided your analysis.</li>
+  <li>Include documented code and data that allow the replication of the analysis
+presented.</li>
+</ul>
+
+<p><strong>Scenarios suggested</strong> (select <em>only one</em>)</p>
+
+<ul>
+  <li>You are consulting for the Birmingham City Council on a program to target
+investments towards particularly disadvantaged areas that are nevertheless
+popular or have the potential to become. The Economic Development division
+knows that only five local super output areas (LSOAs) will be funded but
+would like to know which ones.</li>
+  <li>A large foreign coffee retailer is looking to create a presence in
+Oxford by building a series of coffee-shops that cater to commuters. Since
+they do not have much of an idea of the commuting reality in Bristol, they
+require a report that identifies the top three residential and workplace
+areas (LSOA, in particular) in town as well as whether there exist any
+relevant cluster of either of these. In addition, they require the main 
+factors behind such flows, asking for at least five relevant predictors
+of commuting between two areas.</li>
+</ul>
+
+<p><strong>Data</strong></p>
+
+<p>This assignment can use any of the <a href="/gds15/datasets.html">datasets</a>
+employed in the course, and/or any other datasets you consider useful. If you are 
+thinking of including additional datasets, or have ideas in this respect,
+please get in touch with the module lead 
+(<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#097;&#110;&#105;&#101;&#108;&#046;&#097;&#114;&#114;&#105;&#098;&#097;&#115;&#046;&#098;&#101;&#108;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Dani Arribas-Bel</a>).</p>
+
+
+
+  </div>
+
+  <div id="footer">
+    <div class="container text-muted small">
+      Content by <a href="http://darribas.org">Dani Arribas-Bel</a>.
+
+
+  Content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0</a>.
+
+
+Created with <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://getbootstrap.com/">Bootstrap</a>.
+
+
+
+    </div>
+  </div>
+
+<!--jQuery & Twitter Bootstrap JavaScript-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/gds15/assets/js/bootstrap.min.js"></script>
+
+</body>
+</html>
