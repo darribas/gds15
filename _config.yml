@@ -4,6 +4,7 @@
 
 #baseurl: "/gds15"  # Replace with name of repo
 baseurl: "."  # Replace with name of repo
+subbaseurl: ".."
 
 markdown: kramdown
 
