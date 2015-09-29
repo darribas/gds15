@@ -11,6 +11,6 @@ export PATH=/home/vagrant/miniconda/bin:$PATH
 echo "export PATH=/home/vagrant/miniconda/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
-chmod +x /vagrant/install_gds_stack.sh
-/vagrant/install_gds_stack.sh
+chmod +x /vagrant/install_gds_stack_unix.sh
+/vagrant/install_gds_stack_unix.sh
 

@@ -15,6 +15,7 @@ Liverpool.
 The timetable for the course is:
 
 * **Lectures**: Thursdays - 12:30/13:30, `MATH-029`.
+* **Computer Labs**: Thursdays - 15:00/17:00, `
 
 ### Locations
 
