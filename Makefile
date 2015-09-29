@@ -20,4 +20,5 @@ website:
 	cp -r _site/* ./
 	git add .
 	git commit -am "Building website"
+	git push origin gh-pages
 	git checkout master
