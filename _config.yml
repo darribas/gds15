@@ -48,8 +48,8 @@ scholar:
     style: assets/bibliography/my_apa.csl
     locale: en
     
-    sort_by: year
-    order: descending
+    sort_by: author
+    order: ascending
     
     source: content/bibliography
     bibliography: bibliography.bib
