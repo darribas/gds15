@@ -12,7 +12,7 @@ install them in different platforms.
 This guide assumes you have the following additional files, available to
 download by clicking:
 
-* `install_gds_stack.sh`([Windows](content/infrastructure/install_gds_stack_win.sh), 
+* `install_gds_stack`([Windows](content/infrastructure/install_gds_stack_win.bat), 
 [Mac/Linux](content/infrastructure/install_gds_stack_unix.sh))
 * [`check_gds_stack.ipynb`](content/infrastructure/check_gds_stack.ipynb)
 
@@ -54,8 +54,12 @@ instructions provided in the link for installation.
 
 Once you have a fully working Anaconda distribution installed in your
 computer, you can setup an isolated environment that contains all the required
-libraries by simply running the install script `install_gds_stack.sh` provided
-with this guide. To do so, open up a terminal (OSX and Linux) or  Powershell
+libraries by simply running the install script `install_gds_stack_X.sh` provided
+with this guide. These scripts vary depending on the platform you are on. 
+
+#### Mac OSX/Linux
+
+Open up a terminal (OSX and Linux) or  Powershell/cmd prompt
 (Windows) and run the following commands:
 
 * Navigate to the folder where this file is:
@@ -77,6 +81,21 @@ with this guide. To do so, open up a terminal (OSX and Linux) or  Powershell
     ```
 
 Once this has run, you should be able to activate the environment:
+
+#### Windows
+
+Simply double-click on the `install_gds_stack_win.bat` file, this will set in
+motion the installation.
+
+**NOTE**: this assumes your Anaconda installation is placed under
+`C:\Anaconda`. If this is not the case, you will have to open the file with a
+text editor and replace the path in line 8, where it says:
+
+```
+set ANACONDA_DIR=C:\Anaconda
+```
+
+By the path to your Anaconda installation.
 
 ### Virtual Machine with Vagrant
 
@@ -105,10 +124,21 @@ native OS. To install a virtual machine, follow these steps:
 
 ## Check
 
-To check things have installed correctly, an additional file is included, `check_gds_stack.ipynb`. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type:
+To check things have installed correctly, an additional file is included, `check_gds_stack.ipynb`. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type the following in Mac/Linux:
 
 ```
 source activate gds
+```
+
+Or the following for Windows:
+
+```
+source activate gds
+```
+
+And then:
+
+```
 jupyter notebook
 ```
 
