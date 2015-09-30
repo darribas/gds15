@@ -56,8 +56,10 @@ This week there will not be a lecture or a computer lab.
 
 ##### Week 8: Clustering
 
+<!---
 [**ASSIGNMENT 1**](assignments/task_01.html) due at Noon on Monday, January
 16th-2015.
+-->
 
 * Before class
     * Add link here
@@ -95,6 +97,8 @@ This week there will not be a lecture or a computer lab.
 * Lecture: [Spatial causal inference](notes/Class_12.html).
 * Tutorial: [Team work on projects](labs/Lab_12.html).
 
+<!---
 ##### Week 13
 
 [**ASSIGNMENT 2**](assignments/task_02.html) due at Noon on Monday, January 11th-2016.
+-->
