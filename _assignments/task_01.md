@@ -12,6 +12,7 @@ assignment is officially announced]
 * Released on Week 5
 * 50% of the final mark
 * Chance to be reassessed
+* Due at Noon on Monday, January 16th-2015.
 
 In this assignment, you will take the role of the data editor of a local
 newspaper that wants to write about the geography of deprivation. In order

@@ -13,6 +13,7 @@ assignment is officially announced]
 * 50% of the final mark
 * Chance to be reassessed
 * Final Assessment
+* Due at Noon on Monday, January 11th-2016.
 
 In this assignment, you will take the role of a real-world data scientist
 tasked to identify areas to direct investments. 
