@@ -134,7 +134,8 @@ install them in different platforms.</p>
 download by clicking:</p>
 
 <ul>
-  <li><a href="content/infrastructure/install_gds_stack.sh"><code>install_gds_stack.sh</code></a></li>
+  <li><code>install_gds_stack</code>(<a href="content/infrastructure/install_gds_stack_win.bat">Windows</a>, 
+<a href="content/infrastructure/install_gds_stack_unix.sh">Mac/Linux</a>)</li>
   <li><a href="content/infrastructure/check_gds_stack.ipynb"><code>check_gds_stack.ipynb</code></a></li>
 </ul>
 
@@ -183,8 +184,12 @@ instructions provided in the link for installation.</p>
 
 <p>Once you have a fully working Anaconda distribution installed in your
 computer, you can setup an isolated environment that contains all the required
-libraries by simply running the install script <code>install_gds_stack.sh</code> provided
-with this guide. To do so, open up a terminal (OSX and Linux) or  Powershell
+libraries by simply running the install script <code>install_gds_stack_X.sh</code> provided
+with this guide. These scripts vary depending on the platform you are on.</p>
+
+<h4 id="mac-osxlinux">Mac OSX/Linux</h4>
+
+<p>Open up a terminal (OSX and Linux) or  Powershell/cmd prompt
 (Windows) and run the following commands:</p>
 
 <ul>
@@ -212,6 +217,21 @@ with this guide. To do so, open up a terminal (OSX and Linux) or  Powershell
 </ul>
 
 <p>Once this has run, you should be able to activate the environment:</p>
+
+<h4 id="windows">Windows</h4>
+
+<p>Simply double-click on the <code>install_gds_stack_win.bat</code> file, this will set in
+motion the installation.</p>
+
+<p><strong>NOTE</strong>: this assumes your Anaconda installation is placed under
+<code>C:\Anaconda</code>. If this is not the case, you will have to open the file with a
+text editor and replace the path in line 8, where it says:</p>
+
+<p><code>
+set ANACONDA_DIR=C:\Anaconda
+</code></p>
+
+<p>By the path to your Anaconda installation.</p>
 
 <h3 id="virtual-machine-with-vagrant">Virtual Machine with Vagrant</h3>
 
@@ -248,10 +268,21 @@ Subsequent times, it is much faster:</p>
 
 <h2 id="check">Check</h2>
 
-<p>To check things have installed correctly, an additional file is included, <code>check_gds_stack.ipynb</code>. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type:</p>
+<p>To check things have installed correctly, an additional file is included, <code>check_gds_stack.ipynb</code>. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type the following in Mac/Linux:</p>
 
 <p><code>
 source activate gds
+</code></p>
+
+<p>Or the following for Windows:</p>
+
+<p><code>
+source activate gds
+</code></p>
+
+<p>And then:</p>
+
+<p><code>
 jupyter notebook
 </code></p>
 
