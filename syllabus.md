@@ -52,14 +52,18 @@ layout: default
 
 -----
 
-##### Week 7: Clustering
+##### Week 7: No class
+
+This week there will not be a lecture or a computer lab.
+
+##### Week 8: Clustering
 
 * Before class
     * Add link here
 * Lecture: [Clustering](notes/Class_07.html).
 * Tutorial: [Geodemographic analysis](labs/Lab_07.html).
 
-##### Week 8: Point Data
+##### Week 9: Point Data
 
 * Before class
     * Add link here
@@ -68,7 +72,7 @@ layout: default
 
 -----
 
-##### Week 9: Spatial interaction models
+##### Week 10: Spatial interaction models
 
 * Before class
     * Add link here
@@ -77,14 +81,14 @@ layout: default
 
 [**ASSIGNMENT 2**](assignments/task_02.html)
 
-##### Week 10: Spatial regression
+##### Week 11: Spatial regression
 
 * Before class
     * Add link here
 * Lecture: [Spatial regression](notes/Class_11.html).
 * Tutorial: [Spatial regression](labs/Lab_11.html).
 
-##### Week 11: (Spatial) causal inference
+##### Week 12: (Spatial) causal inference
 
 * Before class
     * Add link here
