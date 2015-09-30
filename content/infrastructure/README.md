@@ -99,6 +99,8 @@ By the path to your Anaconda installation.
 
 ### Virtual Machine with Vagrant
 
+[**NOTE**: this is an alternative to the option above]
+
 A fully automated and reproducible approach, albeit less "native" to the local
 machine, is to install a virtual machine using Vagrant. This takes some of the
 complexities away, but requires an extra layer of computation on top of the
