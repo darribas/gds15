@@ -32,8 +32,6 @@ layout: default
 * Lecture: [Choropleth mapping](notes/Class_04.html).
 * Tutorial: [Mapping deprivation](labs/Lab_04.html).
 
-[**ASSIGNMENT 1**](assignments/task_01.html)
-
 -----
 
 ##### Week 5: Spatial Weights
@@ -50,13 +48,16 @@ layout: default
 * Lecture: [Exploratory Spatial Data Analysis (ESDA)](notes/Class_06.html).
 * Tutorial: [Clustering and clusters in XIXth. century London](labs/Lab_06.html).
 
------
-
 ##### Week 7: No class
 
-This week there will not be a lecture or a computer lab.
+This week there will not be a lecture or a computer lab. 
+
+-----
 
 ##### Week 8: Clustering
+
+[**ASSIGNMENT 1**](assignments/task_01.html) due at Noon on Monday, January
+16th-2015.
 
 * Before class
     * Add link here
@@ -79,7 +80,6 @@ This week there will not be a lecture or a computer lab.
 * Lecture: [Spatial interaction models](notes/Class_10.html).
 * Tutorial: [*Where do I put my coffee shop?*](labs/Lab_10.html).
 
-[**ASSIGNMENT 2**](assignments/task_02.html)
 
 ##### Week 11: Spatial regression
 
@@ -95,4 +95,6 @@ This week there will not be a lecture or a computer lab.
 * Lecture: [Spatial causal inference](notes/Class_12.html).
 * Tutorial: [Team work on projects](labs/Lab_12.html).
 
+##### Week 13
 
+[**ASSIGNMENT 2**](assignments/task_02.html) due at Noon on Monday, January 11th-2016.
