@@ -12,6 +12,13 @@
 
 ## This course
 
+## Quiz
+
+* Have you ever heard the terms **"Big Data"** and **"Data Science"**?
+* Have you ever written a line of computer code?
+* How would you define in one sentence "Data Science"?
+* Do you think **"Geographic Data Science"** is closer to GIS or Statistics?
+
 ## 
 
 <div text-align="center" markdown="1">
@@ -35,6 +42,15 @@ way!*
   (highly *employable*)
 - **Further readings**: how to go beyond the minimum
 
+**IMPORTANT**: Week 7 has no class! [Labs are booked so I recommend you spend
+the lab time working on your first assignment]
+
+## Website
+
+[http://darribas.org/gds15](http://darribas.org/gds15)
+
+<iframe src="http://darribas.org/gds15" width=600 height=400 ></iframe>
+
 ## Philosophy
 
 - (Lots of) **methods** and techniques
@@ -47,17 +63,14 @@ way!*
 
 ## Assignments
 
-- Mark based on two assignments:
+- Mark based on two assignments, due:
 
-     1. Week 5 (50%)
-     1. Week 9 (50%)
+     1. Week 8 (50%)
+     1. Week 13 (50%)
 
 - Coursework
 
 - **Equivalent** to 2,500: report with **code**, **figures** (e.g. maps), and **text**
-
-- Suggested applications, **BUT** feel free to pick your own (and talk to me)!
-
 
 #
 
@@ -84,12 +97,17 @@ The world is being **"datafied"**...
 
 Examples: credit transactions, public transit, tweets, facebook likes, spotify songs, etc. 
 
+## "Datafication"
+
 Many implications: 
 
-* Opportunities for optimization of systems
-* **window** into human **behaviour** (this course)
-* issues with **intentionality** and **privacy**
+* Opportunities for optimization of systems (Industrial IoT, planning
+  systems...)
+* **Window** into human **behaviour** (this course)
+* Issues with **intentionality** and **privacy**
 * ...
+
+## *Why now?*
 
 ## *Why now?*
 
@@ -152,7 +170,7 @@ Advances in:
 The confluence of the three (computing, communication and geospatial) is
 creating large amounts of data.
 
-Now, data in itself is not very valuable:
+Now, **data in itself is not very valuable**:
 
 - Data --> Information --> Knowledge --> Action
 
@@ -188,9 +206,9 @@ Statistics is a *very* important part of DS...
 
 ... but not the only one:
 
-* Computational tools --> Programming (hence this course's tutorials!)
-* Comunication skills --> "Story telling" (hence this course's assignments)
-* Domain expertise --> Theories about why the data are the way they are (hence
+* **Computational tools** --> Programming (hence this course's tutorials!)
+* **Comunication skills** --> "Story telling" (hence this course's assignments)
+* **Domain expertise** --> Theories about why the data are the way they are (hence
   the rest of your degree)
 
 ## Data Science
@@ -213,6 +231,8 @@ Some examples...
 
 ## Uber {data-background=../content/lectures/figs/l01_uber.png}
 
+#
+## **Geo**-Data Science
 ## **Geo**-Data Science
 
 * A (very) large portion of all these new data are inherently **geographic** or can be traced back to some location over space.
