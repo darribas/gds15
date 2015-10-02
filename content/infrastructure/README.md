@@ -71,13 +71,13 @@ Open up a terminal (OSX and Linux) or  Powershell/cmd prompt
 * Make the script executable:
 
     ```
-    chmod +x install_gds_stack.sh
+    chmod +x install_gds_stack_unix.sh
     ```
 
 * Execute the script:
 
     ```
-    ./install_gds_stack.sh
+    ./install_gds_stack_unix.sh
     ```
 
 Once this has run, you should be able to activate the environment:

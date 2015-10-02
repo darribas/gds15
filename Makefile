@@ -1,10 +1,10 @@
 lectures: le01 le02
 le01:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_01.md -o slides/lecture_01.html
-	wkhtmltopdf -O Landscape file://$(shell pwd)/slides/lecture_01.html?print-pdf slides/lecture_01.pdf
+	decktape automatic -s 1280x960 slides/lecture_01.html slides/lecture_01.pdf
 le02:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_02.md -o slides/lecture_02.html
-	wkhtmltopdf -O Landscape file://$(shell pwd)/slides/lecture_02.html?print-pdf slides/lecture_02.pdf
+	decktape automatic -s 1280x960 slides/lecture_02.html slides/lecture_02.pdf
 
 labs: la01 la02
 la01:
