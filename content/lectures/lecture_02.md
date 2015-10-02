@@ -7,26 +7,41 @@
 
 - Introduced the (geo-)data revolution
     
-    * *What is it?*
+    * What is it?
     * Why now?
 
 - The *need* of **(geo-)data science** to make sense of it all
 
 ## Today
 
-- Spatial data: (quick) refresher
-- New sources of (spatial) data
+- Spatial data: refresher
+- New sources of spatial data
 - Challenges
 - (Cool) examples
 
 # 
 
-## (Good old) spatial data
+## *Good old* spatial data
 
-## (Good old) spatial data
+## *Good old* spatial data
+
+<iframe width="660" height="415" src="https://www.youtube.com/embed/RY2J8ETZzLo" frameborder="0" allowfullscreen></iframe>
+
+## *Good old* spatial data
+
+Traditionally, datasets used in the (social) sciences were:
+
+* Collected for the purpose --> carefully designed
+*   
+
+Examples: Decenial census, longitudinal surveys, economic indicators...
 
 * Types
 * Characteristics (+ and -)
+## {data-background=../content/lectures/figs/l01_uber.png}
+
+## Uber {data-background=../content/lectures/figs/l01_uber.png}
+
 
 #
 ## New sources of (spatial) data
