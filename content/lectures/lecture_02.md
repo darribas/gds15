@@ -7,7 +7,7 @@
 
 - Introduced the (geo-)data revolution
     
-    * What is it?
+    * *What is it?*
     * Why now?
 
 - The *need* of **(geo-)data science** to make sense of it all
