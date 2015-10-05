@@ -9,10 +9,9 @@ assignment is officially announced]
 
 * Type: `Coursework`
 * [Equivalent to 2,500 words] Maps, code and 500 words.
-* Released on Week 5
+* Due on Wednesday, November 18th-2015 (**Week 8**).
 * 50% of the final mark
 * Chance to be reassessed
-* Due at Noon on Monday, January 16th-2015.
 
 In this assignment, you will take the role of the data editor of a local
 newspaper that wants to write about the geography of deprivation. In order
@@ -22,7 +21,7 @@ In addition, in order to convince your most skeptical and data-savvy readers, yo
 will have to provide the code and data used to create the visualization in
 a way that allows complete reproducibility.
 
-Using data from the Multiple Index of Deprivation, as well as from the Census, 
+Using data from the Index of Multiple Deprivation, as well as from the Census, 
 create at least three and no more than five maps to display different angles 
 and interesting patterns related to multiple deprivation in a British town
 other than Liverpool.
