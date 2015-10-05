@@ -35,6 +35,7 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li{% if page.category == "home" %} class="active"{% endif %}><a href="{{ site.baseurl }}/index.html">Home</a></li>
+          <li{% if page.category == "overview" %} class="active"{% endif %}><a href="{{ site.baseurl }}/overview.html">Overview</a></li>
           <li{% if page.category == "syllabus" %} class="active"{% endif %}><a href="{{ site.baseurl }}/syllabus.html">Syllabus</a></li>
           <li class="dropdown{% if page.category == "note" %} active{% endif %}">
             <a href="#" class="dropdown-toggle"
