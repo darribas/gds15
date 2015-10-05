@@ -22,3 +22,8 @@ website:
 	git commit -am "Building website"
 	git push origin gh-pages
 	git checkout master
+
+handbook:
+	cat content/handbook/head.md content/website_data/index.md content/website_data/overview.md content/website_data/syllabus.md > handbook.md
+	pandoc --toc -s -S -H content/handbook/include.tex handbook.md -o content/handbook/handbook.pdf
+	rm handbook.md
