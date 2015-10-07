@@ -186,7 +186,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Real world datasets are messy. There is no way around it: datasets have "holes" (missing data), the amount of formats in which data can be stored is endless, and the best structure to share data is not always the optimum to analyze them, hence the need to <a href="http://dictionary.reference.com/browse/munge">munge</a> them. As has been correctly pointed out in many outlets (<a href="http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0">e.g.</a>), much of the time <a href="https://twitter.com/BigDataBorat/status/306596352991830016">spent</a> in what is called (Geo-)Data Science is related not only to sophisticated modeling and insight, but has to do with much more basic and less exotic tasks such as obtaining data, processing,and turning them into a shape and form that makes analysis possible.</p>
 <p>For how labor intensive and relevant this aspect is, there is surprisingly very little published on patterns, techniques, and best practices for quick and efficient data cleaning, manipulation, and transformation. In this session, you will use a few real world datasets and learn how to process them into Python so they can be transformed and manipulated, if necessary, and analyzed. For this, we will introduce some of the bread and butter of data analysis and scientific computing in Python. These are fundamental tools that are constantly used in almost any task relating to data analysis.</p>
-<p>The first part shows how to get data in and out of Python, so you can work on it and export it when ready; then the main part of the session discusses several patterns to clean and structure data properly, including tidying, subsetting, and aggregating; and we finish with some basic visualization.</p>
+<p>The first part shows how to quickly get data in and out of Python, so you can work on it and export it when ready; then the main part of the session discusses several patterns to clean and structure data properly, including tidying, subsetting, and aggregating; and we finish with some basic visualization. An additional extension presents more advanced tricks to manipulate tabular data.</p>
 
 </div>
 </div>
@@ -242,14 +242,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Important! You need to specify the path to the data in *your* machine</span>
 <span class="c"># If you have placed the data folder in the same directory as this notebook,</span>
 <span class="c"># you would do:</span>
 <span class="c"># path = &#39;Liverpool/&#39;</span>
-<span class="n">path</span> <span class="o">=</span> <span class="s">&#39;../../../../../data/Liverpool/&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s">&#39;../../../../data/Liverpool/&#39;</span>
 </pre></div>
 
 </div>
@@ -281,17 +281,28 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The folder contains data at different scales. We will be using the Local Super Output Area (LSOAs). The folder is structured in the following way:</p>
+<p>We will begin jumping straight into the analysis of population in Liverpool, organized by country of birth, at the Local Super Output Area (LSOA) level. Because the Census Data Pack contains a lot of data and very many different tables, you will have to bear with us and trust that what we are extracting is exactly the data of interest. This will speed up the process to walk through the reading, processing and manipulating of a dataset. Once you are familiar with these skills, the final section goes into how to explore the entire pack with more detail.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To read a "comma separated values" (<code>.csv</code>) file, we can run:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">&#39;tables/QS203EW_lsoa11.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;GeographyCode&#39;</span><span class="p">)</span>
+<span class="n">lsoa_orig</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -302,105 +313,190 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&apos;readme.txt&apos;,
- &apos;metadata.xml&apos;,
- &apos;variables_description.csv&apos;,
- &apos;datasets_description.csv&apos;,
- &apos;tables&apos;,
- &apos;shapefiles&apos;]</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>QS203EW0001</th>
+      <th>QS203EW0002</th>
+      <th>QS203EW0003</th>
+      <th>QS203EW0004</th>
+      <th>QS203EW0005</th>
+      <th>QS203EW0006</th>
+      <th>QS203EW0007</th>
+      <th>QS203EW0008</th>
+      <th>QS203EW0009</th>
+      <th>QS203EW0010</th>
+      <th>...</th>
+      <th>QS203EW0069</th>
+      <th>QS203EW0070</th>
+      <th>QS203EW0071</th>
+      <th>QS203EW0072</th>
+      <th>QS203EW0073</th>
+      <th>QS203EW0074</th>
+      <th>QS203EW0075</th>
+      <th>QS203EW0076</th>
+      <th>QS203EW0077</th>
+      <th>QS203EW0078</th>
+    </tr>
+    <tr>
+      <th>GeographyCode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>E01006512</th>
+      <td>1880</td>
+      <td>910</td>
+      <td>766</td>
+      <td>699</td>
+      <td>26</td>
+      <td>21</td>
+      <td>20</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>5</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>E01006513</th>
+      <td>2941</td>
+      <td>2225</td>
+      <td>2033</td>
+      <td>1806</td>
+      <td>98</td>
+      <td>28</td>
+      <td>101</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>5</td>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+      <td>0</td>
+      <td>7</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>E01006514</th>
+      <td>2108</td>
+      <td>1786</td>
+      <td>1632</td>
+      <td>1503</td>
+      <td>44</td>
+      <td>18</td>
+      <td>67</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>19</td>
+      <td>2</td>
+      <td>17</td>
+      <td>5</td>
+      <td>0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>E01006515</th>
+      <td>1208</td>
+      <td>974</td>
+      <td>910</td>
+      <td>877</td>
+      <td>16</td>
+      <td>5</td>
+      <td>12</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>4</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>E01006518</th>
+      <td>1696</td>
+      <td>1531</td>
+      <td>1468</td>
+      <td>1446</td>
+      <td>7</td>
+      <td>6</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 78 columns</p>
+</div>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For now, we will ignore the spatial information contained in the folder <code>shapefiles</code> and focus on the <code>tables</code> one. If you have a peek at the folder, it contains many files. You can get their names into a Python list with the following command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">csvs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s">&#39;tables&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>And count them using the core fuction <code>len</code>, which returns the length of a list:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>303</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>That is right, 303 files! Luckily, to navigate that sea of seemingly non-sensical letters, there is a codebook that explains things a bit. You can open it with a text editor or a spreadsheet program but, since it is a <code>csv</code> file (short for "comma-separated value"), we can also ingest it with Python:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s">&#39;datasets_description.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-</div>
 </div>
 </div>
 
@@ -421,11 +517,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Yours might look different if `path` is pointing somewhere else</span>
-<span class="n">path</span> <span class="o">+</span> <span class="s">&#39;datasets_description.csv&#39;</span>
+<span class="n">path</span> <span class="o">+</span> <span class="s">&#39;tables/QS203EW_lsoa11.csv&#39;</span>
 </pre></div>
 
 </div>
@@ -436,11 +532,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&apos;../../../../../data/Liverpool/datasets_description.csv&apos;</pre>
+<pre>&apos;../../../../data/Liverpool/tables/QS203EW_lsoa11.csv&apos;</pre>
 </div>
 
 </div>
@@ -464,7 +560,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># This bit of code includes some more advanced tricks, not required for this session :-)</span>
@@ -479,7 +575,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -524,79 +620,6 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we have read the file, we can inspect it. For example, to show the first lines of the table:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>DatasetTitle</th>
-    </tr>
-    <tr>
-      <th>DatasetId</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>CT0010</th>
-      <td>Ethnic group write-ins</td>
-    </tr>
-    <tr>
-      <th>KS101EW</th>
-      <td>Usual resident population</td>
-    </tr>
-    <tr>
-      <th>KS102EW</th>
-      <td>Age structure</td>
-    </tr>
-    <tr>
-      <th>KS103EW</th>
-      <td>Marital and civil partnership status</td>
-    </tr>
-    <tr>
-      <th>KS104EW</th>
-      <td>Living arrangements</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>Before we continue with the data, let us have a look at the object <code>codebook</code>. It is a different "animal" than we have seen so far:</p>
 
 </div>
@@ -604,10 +627,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="nb">type</span><span class="p">(</span><span class="n">codebook</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="nb">type</span><span class="p">(</span><span class="n">lsoa_orig</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -618,7 +641,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -646,749 +669,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Data,-sliced-and-diced">Data, sliced and diced<a class="anchor-link" href="#Data,-sliced-and-diced">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can use the index chosen to query rows. For example, if we want to see what dataset code <code>QS203EW</code> corresponds to:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;QS203EW&#39;</span><span class="p">,</span> <span class="s">&#39;DatasetTitle&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;Country of birth (detailed)&apos;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note how we use the operator <code>loc</code> (for locator) on the dataframe, followed by squared brackets and, inside it, two strings: one for the name of the row and one for the column.</p>
-<p>If we want to see what that dataset contains, there is another file in the folder called <code>variables_description.csv</code> that has further information. We can bring it in the same way we did before and, again, we will index it using the first column of the table, the ID of the dataset where the variable belongs to:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">variables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">&#39;variables_description.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To have a sense of how large it is, we can call its <code>shape</code> property, which returns the number of rows and columns, respectively:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">variables</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(2563, 3)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>2,563 different variables!!! Let us see what the structure of the table is:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">variables</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ColumnVariableCode</th>
-      <th>ColumnVariableMeasurementUnit</th>
-      <th>ColumnVariableDescription</th>
-    </tr>
-    <tr>
-      <th>DatasetId</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>CT0010</th>
-      <td>CT00100001</td>
-      <td>Count</td>
-      <td>All categories: Ethnic group</td>
-    </tr>
-    <tr>
-      <th>CT0010</th>
-      <td>CT00100002</td>
-      <td>Count</td>
-      <td>English/Welsh/Scottish/Northern Irish/British</td>
-    </tr>
-    <tr>
-      <th>CT0010</th>
-      <td>CT00100003</td>
-      <td>Count</td>
-      <td>Irish</td>
-    </tr>
-    <tr>
-      <th>CT0010</th>
-      <td>CT00100004</td>
-      <td>Count</td>
-      <td>Gypsy or Irish Traveller</td>
-    </tr>
-    <tr>
-      <th>CT0010</th>
-      <td>CT00100005</td>
-      <td>Count</td>
-      <td>Other White</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we are interested in exploring the country of birth (code <code>QS203EW</code>), we can subset the table using <code>loc</code> in a similar way as before. The only difference is that now we do not want to restrict the column to only one, so we use the colon <code>:</code> instead of a particular name, including thus <em>all</em> the columns. Let us also save the subset by assigning it to a new object, <code>birth_orig</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">birth_orig</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;QS203EW&#39;</span><span class="p">,</span> <span class="p">:]</span>
-<span class="n">birth_orig</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(78, 3)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To be clear, the table above contains all the variables that the dataset <code>QS203EW</code> is comprised of. This means that, for every row in this table, there is a column in the actual dataset which, for the LSOAs, is on the file <code>QS203EW_lsoa11.csv</code>, in the <code>tables</code> folder.</p>
-<p>This is still a lot. Arguably, to get a first sense of the data and start exploring it, we do not need every single disaggregation available. Let us look at the names and codes of the first 25 variables to see if we can spot any pattern that helps us simplify (note how we now use <code>:</code> first to indicate we want <em>all</em> the rows):</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">birth_orig</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s">&#39;ColumnVariableCode&#39;</span><span class="p">,</span> <span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ColumnVariableCode</th>
-      <th>ColumnVariableDescription</th>
-    </tr>
-    <tr>
-      <th>DatasetId</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0001</td>
-      <td>All categories: Country of birth</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0002</td>
-      <td>Europe: Total</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0003</td>
-      <td>Europe: United Kingdom: Total</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0004</td>
-      <td>Europe: United Kingdom: England</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0005</td>
-      <td>Europe: United Kingdom: Northern Ireland</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0006</td>
-      <td>Europe: United Kingdom: Scotland</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0007</td>
-      <td>Europe: United Kingdom: Wales</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0008</td>
-      <td>Europe: Great Britain not otherwise specified</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0009</td>
-      <td>Europe: United Kingdom not otherwise specified</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0010</td>
-      <td>Europe: Guernsey</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0011</td>
-      <td>Europe: Jersey</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0012</td>
-      <td>Europe: Channel Islands not otherwise specified</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0013</td>
-      <td>Europe: Isle of Man</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0014</td>
-      <td>Europe: Ireland</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0015</td>
-      <td>Europe: Other Europe: Total</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0016</td>
-      <td>Europe: Other Europe: EU Countries: Total</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0017</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0018</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0019</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0020</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0021</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0022</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0023</td>
-      <td>Europe: Other Europe: EU countries: Member cou...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0024</td>
-      <td>Europe: Other Europe: EU countries: Accession ...</td>
-    </tr>
-    <tr>
-      <th>QS203EW</th>
-      <td>QS203EW0025</td>
-      <td>Europe: Other Europe: EU countries: Accession ...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note how we have been able to pass a list of variables we wanted to select as columns, and <code>pandas</code> has returned the dataframe "sliced" with only those, cutting off the rest.</p>
-<p>It looks like the variable name follows a hierarchical pattern that dissaggregates by regions of the world. A sensible first approach might be to start considering only the largest regions. To do that, we need a list of the variable name for those aggregates since, once we have it, subsetting the dataframe will be straightforward. There are several ways we can go about it:</p>
-<ul>
-<li>Since there are not that many regions, we can hardcode them into a list:</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">region_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;QS203EW0002&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0032&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0045&#39;</span><span class="p">,</span> \
-                <span class="s">&#39;QS203EW0063&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0072&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><strong>[Advanced extension. Optional]</strong></p>
-<ul>
-<li>However, this approach would not get us very far if the list was longer. For that, a much more useful way is to write a loop that builds the list for us. To do this, we can remember some of the tricks learnt in the previous session about writing <code>for</code> loops and <code>if</code> statements and combine them with new ones about working with strings.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">birth_orig</span><span class="p">[</span><span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">]:</span>
-    <span class="c"># Split the name of the variable in pieces by &#39;: &#39;</span>
-    <span class="n">pieces</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;: &#39;</span><span class="p">)</span>
-    <span class="c"># Keep the first one (top hierarchy) and append &#39;: Total&#39;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">pieces</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;: Total&#39;</span>
-    <span class="c"># If the name create matches the variable (exists in the original list), </span>
-    <span class="c"># add the name to the list</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">var</span><span class="p">:</span>
-        <span class="n">regions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="n">regions</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&apos;Europe: Total&apos;,
- &apos;Africa: Total&apos;,
- &apos;Middle East and Asia: Total&apos;,
- &apos;The Americas and the Caribbean: Total&apos;,
- &apos;Antarctica and Oceania: Total&apos;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let us work slowly by each step of this loop:</p>
-<ul>
-<li>We first create an empty list where we will store the names of the regions.</li>
-<li>We begin a loop over every single row the column containing the names (<code>ColumnVariableDescription</code>).</li>
-<li>For each name, which is a string, we split it in pieces using <code>': '</code> as the points in the string where we want to break it, obtaining a list with the resulting pieces. For instance if we have <code>Europe: Total</code>, we essentially do:</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="s">&#39;Europe: Total&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;: &#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&apos;Europe&apos;, &apos;Total&apos;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>We keep the first element, as it contains the name we want to keep.</li>
-<li>In order to build the actual name of the variable, we join it to <code>': Total'</code>, obtaining the string we want to keep:</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="s">&#39;Europe&#39;</span> <span class="o">+</span> <span class="s">&#39;: Total&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;Europe: Total&apos;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>We then check that the string we have built is the same as the variable we began with. If so, we save it on the list we created in the beginning. This step is a bit counter-intuitive, but is done to ensure a) that the name of the variable exists, and b) that it is saved only once.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we have the names, we need to convert them into the codes. There are several ways to go about it, but here we will show one that relies on the indexing capabilities of <code>pandas</code>. Essentially we take <code>birth_orig</code> and index it on the names of the variables, to then subset it, keeping only those in our list (the variables we want to retain).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">subset</span> <span class="o">=</span> <span class="n">birth_orig</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span>
-<span class="n">subset</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ColumnVariableCode</th>
-      <th>ColumnVariableMeasurementUnit</th>
-    </tr>
-    <tr>
-      <th>ColumnVariableDescription</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Europe: Total</th>
-      <td>QS203EW0002</td>
-      <td>Count</td>
-    </tr>
-    <tr>
-      <th>Africa: Total</th>
-      <td>QS203EW0032</td>
-      <td>Count</td>
-    </tr>
-    <tr>
-      <th>Middle East and Asia: Total</th>
-      <td>QS203EW0045</td>
-      <td>Count</td>
-    </tr>
-    <tr>
-      <th>The Americas and the Caribbean: Total</th>
-      <td>QS203EW0063</td>
-      <td>Count</td>
-    </tr>
-    <tr>
-      <th>Antarctica and Oceania: Total</th>
-      <td>QS203EW0072</td>
-      <td>Count</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Once this is done, all left to do is to retrieve the codes:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">region_codes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">ColumnVariableCode</span><span class="p">)</span>
-<span class="n">region_codes</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&apos;QS203EW0002&apos;, &apos;QS203EW0032&apos;, &apos;QS203EW0045&apos;, &apos;QS203EW0063&apos;, &apos;QS203EW0072&apos;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Interrogating-the-country-of-birth-dataset">Interrogating the country of birth dataset<a class="anchor-link" href="#Interrogating-the-country-of-birth-dataset">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>With the codes in hand, we can easily subset the variables and keep them into a neat, more compact table. First, we need to load up the data file, which can be found in the <code>tables</code> folder with the code of the dataset:</p>
+<p>Now we have read the file, we can inspect it. For example, to show the first lines of the table:</p>
 
 </div>
 </div>
@@ -1398,8 +679,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">&#39;tables/QS203EW_lsoa11.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;GeographyCode&#39;</span><span class="p">)</span>
-<span class="n">lsoa_orig</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -1598,9 +878,19 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us also quickly check the dimensions of the table:</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig</span><span class="o">.</span><span class="n">shape</span>
@@ -1614,7 +904,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1632,14 +922,38 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The full table, as we have seen above, contains 78 columns and 298 rows. To keep <em>only</em> the columns we are interested in, we can simply slice the table as we learnt before:</p>
+<p>This implies 298 rows by 78 columns. That is a lot of columns, all named under obscure codes. For now, just trust that the columns we want are:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">region_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;QS203EW0002&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0032&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0045&#39;</span><span class="p">,</span> \
+                <span class="s">&#39;QS203EW0063&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0072&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To keep only those with us, we can <em>slice</em> the table using the <code>loc</code> operator:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig_sub</span> <span class="o">=</span> <span class="n">lsoa_orig</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">region_codes</span><span class="p">]</span>
@@ -1654,7 +968,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -1734,6 +1048,20 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how we use the operator <code>loc</code> (for locator) on the dataframe, followed by squared brackets and, inside it, two alternatives:</p>
+<ul>
+<li>We can use <code>:</code> to keep <em>all</em> the elements (rows in this case).</li>
+<li>And we can use a list of strings (or simply one would work too) with the names what we want to select.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We can further inspect the dataset with an additional command called <code>info</code>, that lists the names of the columns and how many non-null elements each contains:</p>
 
 </div>
@@ -1741,7 +1069,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig_sub</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -1781,7 +1109,8 @@ memory usage: 14.0+ KB
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional extension: renaming columns]</strong></p>
+<p><strong>[Renaming columns]</strong></p>
+<p><strong>NOTE</strong>: some of the elemnts in this part are more advanced hence optional. If you want to move quickly through the lab, simply run the code cells without paying much attention to what it does. Once you have become more familiar with the rest of the tutorial, return here and work through the logic.</p>
 <p>The table we have compiled contains exactly what we wanted. However, the names of the columns are a bit unintuitive, to say the least. It would be much handier if we could rename the columns into something more human readable. The easiest way to do that in <code>pandas</code> is by creating a dictionary that maps the original name into the desired one, and then applying it to the <code>DataFrame</code> with the command <code>rename</code>. Let us walk through the steps necessary, one by one:</p>
 
 </div>
@@ -1793,15 +1122,29 @@ memory usage: 14.0+ KB
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Create a dictionary that maps the codes to the names. For this, we can use the list we have created before, and what we have learnt about querying tables, combined with a small <code>for</code> loop:</li>
+<li>Create a dictionary that maps the codes to the names. For this, we can use the list we have created before (<code>region_variables</code>), and what we have learnt about querying tables, combined with a small <code>for</code> loop.</li>
 </ul>
+<p>First we need to bring up the variable names into a separate table (see the final section for more detail):</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">variables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">&#39;variables_description.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">code2name</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1819,7 +1162,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1842,7 +1185,7 @@ memory usage: 14.0+ KB
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>[Optional] Because we know that each of these variables are totals for each group, we can further declutter the names by removing the piece of the string <code>': Total'</code>. A simple loop can help us:</li>
+<li>Because we know that each of these variables are totals for each group, we can further declutter the names by removing the piece of the string <code>": Total"</code>. A simple loop can help us:</li>
 </ul>
 
 </div>
@@ -1850,7 +1193,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">code2name</span><span class="p">:</span>
@@ -1866,7 +1209,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1897,7 +1240,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoa_orig_sub</span> <span class="o">=</span> <span class="n">lsoa_orig_sub</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">code2name</span><span class="p">)</span>
@@ -1912,7 +1255,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2005,6 +1348,15 @@ memory usage: 14.0+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data,-sliced-and-diced">Data, sliced and diced<a class="anchor-link" href="#Data,-sliced-and-diced">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we are ready to start playing and interrogating the dataset! What we have at our fingertips is a table that summarizes, for each of the 238 LSOAs in Liverpool, how many people live in each, by the region of the world where they were born. To make what follows easier on your typing, let us rename the table to something shorter:</p>
 
 </div>
@@ -2012,7 +1364,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span> <span class="o">=</span> <span class="n">lsoa_orig_sub</span>
@@ -2047,7 +1399,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -2061,7 +1413,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2138,7 +1490,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -2152,7 +1504,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2241,7 +1593,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -2289,7 +1641,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -2303,7 +1655,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2407,7 +1759,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
@@ -2421,7 +1773,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2520,7 +1872,7 @@ memory usage: 14.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -2534,7 +1886,7 @@ memory usage: 14.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2554,7 +1906,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="p">[</span><span class="s">&#39;Europe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
@@ -2568,7 +1920,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2594,7 +1946,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;E01006512&#39;</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
@@ -2608,7 +1960,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2635,7 +1987,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Longer, hardcoded</span>
@@ -2652,7 +2004,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2673,7 +2025,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># One shot</span>
@@ -2689,7 +2041,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2721,7 +2073,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total</span>
@@ -2736,7 +2088,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2846,7 +2198,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># New variable with all ones</span>
@@ -2862,7 +2214,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2963,7 +2315,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;E01006512&#39;</span><span class="p">,</span> <span class="s">&#39;ones&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
@@ -2978,7 +2330,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3081,7 +2433,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">del</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;ones&#39;</span><span class="p">]</span>
@@ -3096,7 +2448,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3193,7 +2545,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">eu_tot_first4</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s">&#39;E01006512&#39;</span><span class="p">,</span> <span class="s">&#39;E01006513&#39;</span><span class="p">,</span> <span class="s">&#39;E01006514&#39;</span><span class="p">,</span> <span class="s">&#39;E01006515&#39;</span><span class="p">],</span> \
@@ -3209,7 +2561,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3274,7 +2626,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">m5k</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2500</span><span class="p">,</span> <span class="p">:]</span>
@@ -3289,7 +2641,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3365,7 +2717,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">nm5ke</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Europe&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">750</span><span class="p">,</span> <span class="p">:]</span>
@@ -3380,7 +2732,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3438,7 +2790,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">oneOA</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Antarctica and Oceania&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span><span class="p">,</span> <span class="p">:]</span>
@@ -3453,7 +2805,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3511,7 +2863,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">eu_lth</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Europe&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100.</span> <span class="o">/</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">,</span> <span class="p">:]</span>
@@ -3526,7 +2878,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3587,7 +2939,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">ac25_l500</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;The Americas and the Caribbean&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">)</span> <span class="o">&amp;</span> \
@@ -3603,7 +2955,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3709,7 +3061,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db_pop_sorted</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;Total&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -3724,7 +3076,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3874,7 +3226,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -4038,7 +3390,7 @@ AAAMRaQBADAUkQYAwFBEGgAAQxFpAAAM9f8BHP/NYIreMZEAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">rug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -4214,7 +3566,7 @@ RK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -4517,7 +3869,7 @@ RESkAgx8IiIiFWDgExERqQADn4iISAX+f/3fjXSxswUiAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -4841,7 +4193,7 @@ ERGLUkiLiIhYlEJaRETEohTSIiIiFvX/AU5BlzAQkVJeAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
@@ -5530,7 +4882,7 @@ EX8AbU40wkuAlH8AAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">_</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s">&#39;Total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">order</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">&#39;barh&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
@@ -7659,7 +7011,7 @@ variables and types.</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -7673,7 +7025,7 @@ variables and types.</em></p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -7770,7 +7122,7 @@ variables and types.</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">db_totals</span> <span class="o">=</span> <span class="n">db</span><span class="p">[[</span><span class="s">&#39;Total&#39;</span><span class="p">]]</span>
@@ -7785,7 +7137,7 @@ variables and types.</em></p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -7834,7 +7186,7 @@ variables and types.</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Note we use `drop` to exclude &quot;Total&quot;, but we could also use a list with the names</span>
@@ -7851,7 +7203,7 @@ variables and types.</em></p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -7940,7 +7292,7 @@ variables and types.</em></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">tidy_subgroups</span> <span class="o">=</span> <span class="n">db_subgroups</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
@@ -7955,7 +7307,7 @@ variables and types.</em></p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -7986,7 +7338,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="nb">type</span><span class="p">(</span><span class="n">tidy_subgroups</span><span class="p">)</span>
@@ -8000,7 +7352,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[62]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[57]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -8025,7 +7377,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">tidy_subgroupsDF</span> <span class="o">=</span> <span class="n">tidy_subgroups</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -8040,7 +7392,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -8107,7 +7459,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">tidy_subgroupsDF</span> <span class="o">=</span> <span class="n">tidy_subgroupsDF</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;level_1&#39;</span><span class="p">:</span> <span class="s">&#39;Subgroup&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s">&#39;Freq&#39;</span><span class="p">})</span>
@@ -8122,7 +7474,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -8214,7 +7566,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">pop_grouped</span> <span class="o">=</span> <span class="n">tidy_subgroupsDF</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;Subgroup&#39;</span><span class="p">)</span>
@@ -8229,11 +7581,11 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;pandas.core.groupby.DataFrameGroupBy object at 0x7fab16483b10&gt;</pre>
+<pre>&lt;pandas.core.groupby.DataFrameGroupBy object at 0x103973e50&gt;</pre>
 </div>
 
 </div>
@@ -8254,7 +7606,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">pop_grouped</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -8268,7 +7620,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -8327,7 +7679,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">pop_grouped</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -8341,7 +7693,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -8547,7 +7899,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">pop_grouped</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
@@ -8561,7 +7913,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -8688,7 +8040,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
@@ -8704,7 +8056,7 @@ dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
@@ -8737,6 +8089,951 @@ dtype: int64</pre>
 <li>Examine its level of tidiness and turn it into a fully tidy dataset.</li>
 <li>Obtain a monthly total count of casualties and create a line or a bar plot of them.</li>
 </ul>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Delving-deeper-into-the-Census-Data-Pack">Delving deeper into the Census Data Pack<a class="anchor-link" href="#Delving-deeper-into-the-Census-Data-Pack">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We started this notebook assuming we already knew what variables in particular we wanted, out of the hundreds available on the Liverpool Census Data Pack. Unfortunately, that is not always the case, and sometimes  you have to explore an entire dataset by yourself to find what you are looking for. To dip your toes into the sea of the Census Data Pack, in this section we will walk through how to systematically identify a variable and extract it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The folder contains data at different scales. We will be using the Local Super Output Area (LSOAs). The folder is structured in the following way:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;datasets_description.csv&apos;,
+ &apos;metadata.xml&apos;,
+ &apos;readme.txt&apos;,
+ &apos;shapefiles&apos;,
+ &apos;tables&apos;,
+ &apos;variables_description.csv&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For now, we will ignore the spatial information contained in the folder <code>shapefiles</code> and focus on the <code>tables</code> one. If you have a peek at the folder, it contains many files. You can get their names into a Python list with the following command:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">csvs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s">&#39;tables&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And count them using the core fuction <code>len</code>, which returns the length of a list:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">len</span><span class="p">(</span><span class="n">csvs</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>303</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That is right, 303 files! Luckily, to navigate that sea of seemingly non-sensical letters, there is a codebook that explains things a bit. You can open it with a text editor or a spreadsheet program but, since it is a <code>csv</code> file, we can also ingest it with Python:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s">&#39;datasets_description.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have read the file, we can inspect it. For example, to show the first lines of the table:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[71]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DatasetTitle</th>
+    </tr>
+    <tr>
+      <th>DatasetId</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CT0010</th>
+      <td>Ethnic group write-ins</td>
+    </tr>
+    <tr>
+      <th>KS101EW</th>
+      <td>Usual resident population</td>
+    </tr>
+    <tr>
+      <th>KS102EW</th>
+      <td>Age structure</td>
+    </tr>
+    <tr>
+      <th>KS103EW</th>
+      <td>Marital and civil partnership status</td>
+    </tr>
+    <tr>
+      <th>KS104EW</th>
+      <td>Living arrangements</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can use the index chosen to query rows. For example, if we want to see what dataset code <code>QS203EW</code> corresponds to:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">codebook</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;QS203EW&#39;</span><span class="p">,</span> <span class="s">&#39;DatasetTitle&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;Country of birth (detailed)&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to see what that dataset contains, there is another file in the folder called <code>variables_description.csv</code> that has further information. We can bring it in the same way we did before and, again, we will index it using the first column of the table, the ID of the dataset where the variable belongs to:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">variables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s">&#39;variables_description.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To have a sense of how large it is, we can call its <code>shape</code> property, which returns the number of rows and columns, respectively:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">variables</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[76]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(2563, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2,563 different variables!!! Let us see what the structure of the table is:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">variables</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ColumnVariableCode</th>
+      <th>ColumnVariableMeasurementUnit</th>
+      <th>ColumnVariableDescription</th>
+    </tr>
+    <tr>
+      <th>DatasetId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CT0010</th>
+      <td>CT00100001</td>
+      <td>Count</td>
+      <td>All categories: Ethnic group</td>
+    </tr>
+    <tr>
+      <th>CT0010</th>
+      <td>CT00100002</td>
+      <td>Count</td>
+      <td>English/Welsh/Scottish/Northern Irish/British</td>
+    </tr>
+    <tr>
+      <th>CT0010</th>
+      <td>CT00100003</td>
+      <td>Count</td>
+      <td>Irish</td>
+    </tr>
+    <tr>
+      <th>CT0010</th>
+      <td>CT00100004</td>
+      <td>Count</td>
+      <td>Gypsy or Irish Traveller</td>
+    </tr>
+    <tr>
+      <th>CT0010</th>
+      <td>CT00100005</td>
+      <td>Count</td>
+      <td>Other White</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we are interested in exploring the country of birth (code <code>QS203EW</code>), we can subset the table using <code>loc</code> in a similar way as before. The only difference is that now we do not want to restrict the column to only one, so we use the colon <code>:</code> instead of a particular name, including thus <em>all</em> the columns. Let us also save the subset by assigning it to a new object, <code>birth_orig</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">birth_orig</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;QS203EW&#39;</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">birth_orig</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(78, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To be clear, the table above contains all the variables that the dataset <code>QS203EW</code> is comprised of. This means that, for every row in this table, there is a column in the actual dataset which, for the LSOAs, is on the file <code>QS203EW_lsoa11.csv</code>, in the <code>tables</code> folder.</p>
+<p>This is still a lot. Arguably, to get a first sense of the data and start exploring it, we do not need every single disaggregation available. Let us look at the names and codes of the first 25 variables to see if we can spot any pattern that helps us simplify (note how we now use <code>:</code> first to indicate we want <em>all</em> the rows):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">birth_orig</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s">&#39;ColumnVariableCode&#39;</span><span class="p">,</span> <span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ColumnVariableCode</th>
+      <th>ColumnVariableDescription</th>
+    </tr>
+    <tr>
+      <th>DatasetId</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0001</td>
+      <td>All categories: Country of birth</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0002</td>
+      <td>Europe: Total</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0003</td>
+      <td>Europe: United Kingdom: Total</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0004</td>
+      <td>Europe: United Kingdom: England</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0005</td>
+      <td>Europe: United Kingdom: Northern Ireland</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0006</td>
+      <td>Europe: United Kingdom: Scotland</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0007</td>
+      <td>Europe: United Kingdom: Wales</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0008</td>
+      <td>Europe: Great Britain not otherwise specified</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0009</td>
+      <td>Europe: United Kingdom not otherwise specified</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0010</td>
+      <td>Europe: Guernsey</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0011</td>
+      <td>Europe: Jersey</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0012</td>
+      <td>Europe: Channel Islands not otherwise specified</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0013</td>
+      <td>Europe: Isle of Man</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0014</td>
+      <td>Europe: Ireland</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0015</td>
+      <td>Europe: Other Europe: Total</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0016</td>
+      <td>Europe: Other Europe: EU Countries: Total</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0017</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0018</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0019</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0020</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0021</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0022</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0023</td>
+      <td>Europe: Other Europe: EU countries: Member cou...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0024</td>
+      <td>Europe: Other Europe: EU countries: Accession ...</td>
+    </tr>
+    <tr>
+      <th>QS203EW</th>
+      <td>QS203EW0025</td>
+      <td>Europe: Other Europe: EU countries: Accession ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how we have been able to pass a list of variables we wanted to select as columns, and <code>pandas</code> has returned the dataframe "sliced" with only those, cutting off the rest.</p>
+<p>It looks like the variable name follows a hierarchical pattern that dissaggregates by regions of the world. A sensible first approach might be to start considering only the largest regions. To do that, we need a list of the variable name for those aggregates since, once we have it, subsetting the dataframe will be straightforward. There are several ways we can go about it:</p>
+<ul>
+<li>Since there are not that many regions, we can hardcode them into a list, the same we have used above:</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">region_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;QS203EW0002&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0032&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0045&#39;</span><span class="p">,</span> \
+                <span class="s">&#39;QS203EW0063&#39;</span><span class="p">,</span> <span class="s">&#39;QS203EW0072&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>[Advanced extension. Optional]</strong></p>
+<ul>
+<li>However, this approach would not get us very far if the list was longer. For that, a much more useful way is to write a loop that builds the list for us. To do this, we can remember some of the tricks learnt in the previous session about writing <code>for</code> loops and <code>if</code> statements and combine them with new ones about working with strings.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">regions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">birth_orig</span><span class="p">[</span><span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">]:</span>
+    <span class="c"># Split the name of the variable in pieces by &#39;: &#39;</span>
+    <span class="n">pieces</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;: &#39;</span><span class="p">)</span>
+    <span class="c"># Keep the first one (top hierarchy) and append &#39;: Total&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">pieces</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;: Total&#39;</span>
+    <span class="c"># If the name create matches the variable (exists in the original list), </span>
+    <span class="c"># add the name to the list</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">var</span><span class="p">:</span>
+        <span class="n">regions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">regions</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;Europe: Total&apos;,
+ &apos;Africa: Total&apos;,
+ &apos;Middle East and Asia: Total&apos;,
+ &apos;The Americas and the Caribbean: Total&apos;,
+ &apos;Antarctica and Oceania: Total&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us work slowly by each step of this loop:</p>
+<ul>
+<li>We first create an empty list where we will store the names of the regions.</li>
+<li>We begin a loop over every single row the column containing the names (<code>ColumnVariableDescription</code>).</li>
+<li>For each name, which is a string, we split it in pieces using <code>": "</code> as the points in the string where we want to break it, obtaining a list with the resulting pieces. For instance if we have <code>Europe: Total</code>, we essentially do:</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&#39;Europe: Total&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;: &#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;Europe&apos;, &apos;Total&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>We keep the first element, as it contains the name we want to maintain.</li>
+<li>In order to build the actual name of the variable, we join it to <code>": Total"</code>, obtaining the string we want to keep:</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&#39;Europe&#39;</span> <span class="o">+</span> <span class="s">&#39;: Total&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;Europe: Total&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>We then check that the string we have built is the same as the variable we began with. If so, we save it on the list we created in the beginning. This step is a bit counter-intuitive, but is done to ensure a) that the name of the variable exists, and b) that it is saved only once.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have the names, we need to convert them into the codes. There are several ways to go about it, but here we will show one that relies on the indexing capabilities of <code>pandas</code>. Essentially we take <code>birth_orig</code> and index it on the names of the variables, to then subset it, keeping only those in our list (the variables we want to retain).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">subset</span> <span class="o">=</span> <span class="n">birth_orig</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;ColumnVariableDescription&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span>
+<span class="n">subset</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ColumnVariableCode</th>
+      <th>ColumnVariableMeasurementUnit</th>
+    </tr>
+    <tr>
+      <th>ColumnVariableDescription</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Europe: Total</th>
+      <td>QS203EW0002</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <th>Africa: Total</th>
+      <td>QS203EW0032</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <th>Middle East and Asia: Total</th>
+      <td>QS203EW0045</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <th>The Americas and the Caribbean: Total</th>
+      <td>QS203EW0063</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <th>Antarctica and Oceania: Total</th>
+      <td>QS203EW0072</td>
+      <td>Count</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once this is done, all left to do is to retrieve the codes:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">region_codes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">ColumnVariableCode</span><span class="p">)</span>
+<span class="n">region_codes</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;QS203EW0002&apos;, &apos;QS203EW0032&apos;, &apos;QS203EW0045&apos;, &apos;QS203EW0063&apos;, &apos;QS203EW0072&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which is the same that we hardcoded originally, only it has been entirely picked up by the python program, not a human.</p>
 
 </div>
 </div>
@@ -8747,6 +9044,7 @@ dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lab 2</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 
 </div>
 </div>
