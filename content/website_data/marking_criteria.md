@@ -5,7 +5,7 @@
 This course follows the standard marking criteria (the general ones and those
 relating to GIS assignments in particular) set by the School of
 Environmental Sciences. In addition to these generic criteria, the following
-specific **criteria** relating to the code provided will be used:
+specific criteria relating to the code provided will be used:
 
 * **0-15**: the code does not run and there is no documentation to follow it.
 * **16-39**: the code does not run, or runs but it does not produce the
