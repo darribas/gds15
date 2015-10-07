@@ -1,9 +1,6 @@
----
-title: Assignment 2
----
+<a name="task_02"></a>
 
-[**IMPORTANT!!!** This text is provisional and subject to change until
-assignment is officially announced]
+## Assignment 2
 
 ### *Targetting areas*
 
@@ -56,9 +53,6 @@ This assignment can use any of the [datasets]({{site.baseurl}}/datasets.html)
 employed in the course, and/or any other datasets you consider useful. If you are 
 thinking of including additional datasets, or have ideas in this respect,
 please get in touch with the module lead 
-([{{site.data.instructor.name}}](mailto:{{site.data.instructor.email}})).
+([Dani Arribas-Bel](mailto:D.Arribas-Bel@liverpool.ac.uk)).
 
-**Marking Criteria**
-
-To be specified.
 

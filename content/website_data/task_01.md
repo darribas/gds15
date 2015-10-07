@@ -1,9 +1,6 @@
----
-title: Assignment 1
----
+<a name="task_01"></a>
 
-[**IMPORTANT!!!** This text is provisional and subject to change until
-assignment is officially announced]
+## Assignment 1
 
 ### *Raising awareness of multiple deprivation*
 
@@ -64,8 +61,4 @@ visualization.
 * CDRC Census Geodata pack.
 * CDRC Census Data pack.
 * 2015 Index of Multiple Deprivation.
-
-**Marking Criteria**
-
-To be specified.
 
