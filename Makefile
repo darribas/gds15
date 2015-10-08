@@ -24,6 +24,6 @@ website:
 	git checkout master
 
 handbook:
-	cat content/handbook/head.md content/website_data/index.md content/website_data/overview.md content/website_data/syllabus.md > handbook.md
+	cat content/handbook/head.md content/website_data/index.md content/website_data/overview.md content/website_data/syllabus.md content/website_data/task_01.md content/website_data/task_02.md content/website_data/marking_criteria.md > handbook.md
 	pandoc --toc -s -S -H content/handbook/include.tex handbook.md -o content/handbook/handbook.pdf
 	rm handbook.md
