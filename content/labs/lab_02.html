@@ -552,7 +552,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>The argument <code>index_col</code> is not strictly necessary but allows us to choose one of the columns as the index of the table. More on indices below.</li>
-<li>We are using <code>read_csv</code> because the file we want to read is in the <code>csv</code> format. However, <code>pandas</code> allows for many more formats to be read (and written, just replace <code>read</code> by <code>write</code>!). A full list of formats supported includes:</li>
+<li>We are using <code>read_csv</code> because the file we want to read is in the <code>csv</code> format. However, <code>pandas</code> allows for many more formats to be read (and written, just replace <code>read</code> by <code>to</code>! For example, <code>read_csv</code> reads in, <code>to_csv</code> writes out). A full list of formats supported includes:</li>
 </ul>
 
 </div>
@@ -1110,7 +1110,7 @@ memory usage: 14.0+ KB
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <p><strong>[Renaming columns]</strong></p>
-<p><strong>NOTE</strong>: some of the elemnts in this part are more advanced hence optional. If you want to move quickly through the lab, simply run the code cells without paying much attention to what it does. Once you have become more familiar with the rest of the tutorial, return here and work through the logic.</p>
+<p><strong>IMPORTANT</strong>: some of the elemnts in this part are more advanced hence optional. If you want to move quickly through the lab, simply run the code cells without paying much attention to what it does. Once you have become more familiar with the rest of the tutorial, return here and work through the logic.</p>
 <p>The table we have compiled contains exactly what we wanted. However, the names of the columns are a bit unintuitive, to say the least. It would be much handier if we could rename the columns into something more human readable. The easiest way to do that in <code>pandas</code> is by creating a dictionary that maps the original name into the desired one, and then applying it to the <code>DataFrame</code> with the command <code>rename</code>. Let us walk through the steps necessary, one by one:</p>
 
 </div>
@@ -1336,7 +1336,7 @@ memory usage: 14.0+ KB
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[In-class exercise]</strong></p>
+<p><strong>[Optional exercise. Difficulty: 2/5]</strong></p>
 <p>Take the subset table just created (<code>lsoa_orig_sub</code>) and write it into a <code>csv</code> file.</p>
 <hr>
 
@@ -2176,7 +2176,7 @@ dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[In-class exercise]</strong></p>
+<p><strong>[Optional exercise. Difficulty: 3/5]</strong></p>
 <p>Obtain the total population in Liverpool by each subgroup.</p>
 <p><strong>Tip</strong>: focus on the axis argument.</p>
 <hr>
@@ -3174,7 +3174,7 @@ dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[In-class exercise]</strong></p>
+<p><strong>[Optional exercise. Difficulty: 4/5]</strong></p>
 <ul>
 <li>Create a new table that, instead of the total counts, has the percentages of population groups in each area. Call this <code>db_pct</code>. </li>
 <li>Practice your query skills further by answering the following questions:<ul>
@@ -6961,7 +6961,7 @@ TBAEQbBKYgMTBEEQrJLYwARBEASr9P8A4+lLvV4o1hAAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[In-class exercise]</strong></p>
+<p><strong>[Optional exercise. Difficulty: 3/5]</strong></p>
 <ul>
 <li>Explore the help of <code>sns.distplot</code> and <code>sns.kdeplot</code> to discover additional arguments. Check also the <a href="http://stanford.edu/~mwaskom/software/seaborn/tutorial/distributions.html#plotting-univariate-distributions">tutorial</a>.</li>
 <li>Create a figure that overlays both a histogram and a KDE plot of the total population in a single figure.</li>
@@ -8029,7 +8029,7 @@ dtype: int64</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[In-class exercise]</strong></p>
+<p><strong>[Optional exercise. Difficulty: 4/5]</strong></p>
 <p>Practice your data tidying skills with a different dataset. For example, you can have a look at the Guardian's version of <a href="http://www.theguardian.com/news/datablog/2010/jul/27/wikileaks-afghanistan-data-datajournalism">Wikileaks' Afghanistan war logs</a>. The table is stored on a GoogleDoc on the following address:</p>
 <blockquote><p><a href="https://docs.google.com/spreadsheets/d/1EAx8_ksSCmoWW_SlhFyq2QrRn0FNNhcg1TtDFJzZRgc/edit?hl=en#gid=1">https://docs.google.com/spreadsheets/d/1EAx8_ksSCmoWW_SlhFyq2QrRn0FNNhcg1TtDFJzZRgc/edit?hl=en#gid=1</a></p>
 </blockquote>
@@ -8099,7 +8099,8 @@ dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Delving-deeper-into-the-Census-Data-Pack">Delving deeper into the Census Data Pack<a class="anchor-link" href="#Delving-deeper-into-the-Census-Data-Pack">&#182;</a></h2>
+<h2 id="Appendix:-Delving-deeper-into-the-Census-Data-Pack">Appendix: Delving deeper into the Census Data Pack<a class="anchor-link" href="#Appendix:-Delving-deeper-into-the-Census-Data-Pack">&#182;</a></h2><p><strong>[Optional extension]</strong></p>
+
 </div>
 </div>
 </div>
