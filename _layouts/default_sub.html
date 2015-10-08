@@ -77,20 +77,7 @@
               {% endif %}
             </ul>
           </li>
-            <!--
-          <li class="dropdown{% if page.category == "assignment" %} active{% endif %}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              {% if site.assignments[0] %}
-              {% for ass in site.assignments %}
-              <li><a href="{{site.subbaseurl}}{{ass.url}}">{{ass.title}}</a></li>
-              {% endfor %}
-              {% else %}
-              <li class="dropdown-header">No assignments posted</li>
-              {% endif %}
-            </ul>
-          </li>
-          --!>
+          <li{% if page.category == "assignment" %} class="active"{% endif %}><a href="{{ site.subbaseurl }}/assignments.html">Assignments</a></li>
           <li{% if page.category == "bibliography" %} class="active"{% endif %}><a href="{{ site.subbaseurl }}/bibliography.html">Bibliography</a></li>
           <li{% if page.category == "datasets" %} class="active"{% endif %}><a href="{{ site.subbaseurl }}/datasets.html">Datasets</a></li>
           <li{% if page.category == "software" %} class="active"{% endif %}><a href="{{ site.subbaseurl }}/software.html">Software</a></li>

@@ -41,10 +41,7 @@ This week there will not be a lecture or a computer lab.
 
 ##### Week 8: Clustering
 
-<!---
-[**ASSIGNMENT 1**](assignments/task_01.html) due at Noon on Monday, January
-16th-2015.
--->
+[**ASSIGNMENT 1**](assignments/task_01.html) due on Wednesday, November 18th-2015.
 
 * Lecture: [Clustering](notes/Class_07.html).
 * Tutorial: [Geodemographic analysis](labs/Lab_07.html).
@@ -68,11 +65,10 @@ This week there will not be a lecture or a computer lab.
 
 ##### Week 12: Spatial interaction models
 
+[**ASSIGNMENT 2**](assignments/task_02.html) due on Thursday, December
+17th-2015.
+
 * Lecture: [Spatial interaction models](notes/Class_10.html).
 * Tutorial: [Spatial interaction models](labs/Lab_10.html).
 
-<!---
-##### Week 13
 
-[**ASSIGNMENT 2**](assignments/task_02.html) due at Noon on Monday, January 11th-2016.
--->
