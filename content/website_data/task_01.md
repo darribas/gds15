@@ -6,9 +6,10 @@
 
 * Type: `Coursework`
 * [Equivalent to 2,500 words] Maps, code and 500 words.
-* Due on Wednesday, November 18th-2015 (**Week 8**).
+* Due on **Wednesday, November 18th-2015** (Week 8).
 * 50% of the final mark
 * Chance to be reassessed
+* Submission channels will be specified in due course.
 
 In this assignment, you will take the role of the data editor of a local
 newspaper that wants to write about the geography of deprivation. In order
