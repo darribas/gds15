@@ -135,7 +135,7 @@ source activate gds
 Or the following for Windows:
 
 ```
-source activate gds
+activate gds
 ```
 
 And then:
