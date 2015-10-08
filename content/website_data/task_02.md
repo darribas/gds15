@@ -10,7 +10,8 @@
 * 50% of the final mark
 * Chance to be reassessed
 * Final Assessment
-* Due on Thursday, December 17th-2015.
+* Due on **Thursday, December 17th-2015** (Week 12).
+* Submission channels will be specified in due course.
 
 In this assignment, you will take the role of a real-world data scientist
 tasked to identify areas to direct investments. 
