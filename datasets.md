@@ -10,7 +10,6 @@ layout: default
 
 *Targetting deprived neighborhoods*
 
-* API query
 * Visualization
 * Choropleth mapping
 * Spatial regression
