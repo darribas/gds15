@@ -26,8 +26,6 @@ layout: default
 
 #### Commuting data
 
-*Where should I put my food truck?*
-
 * Spatial interaction models
 * Spatial regression
 
