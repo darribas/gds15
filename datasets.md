@@ -15,14 +15,14 @@ layout: default
 * Choropleth mapping
 * Spatial regression
 
-{% capture jsnow %}{% include_relative content/datasets/jsnow.md %}{% endcapture %}
-{{ jsnow | markdownify }}
+{% capture census %}{% include_relative content/datasets/census.md %}{% endcapture %}
+{{ census | markdownify }}
+
+{% capture osgeo %}{% include_relative content/datasets/os_geodatapack.md %}{% endcapture %}
+{{ osgeo | markdownify }}
 
 {% capture tweets %}{% include_relative content/datasets/twitter.md %}{% endcapture %}
 {{ tweets | markdownify }}
-
-{% capture census %}{% include_relative content/datasets/census.md %}{% endcapture %}
-{{ census | markdownify }}
 
 
 #### Commuting data
