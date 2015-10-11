@@ -12,7 +12,10 @@ revealjs/*
 */.vagrant/
 .vagrant/
 site/content/infrastructure/notebooks/
+*~
+*/*~
 *.*~
 */*.*~
 .Rhistory
 */.Rhistory
+content/infrastructure/notebooks/
