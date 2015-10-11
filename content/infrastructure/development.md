@@ -13,8 +13,18 @@ setup, change the theme by:
 
 ## Converting html slides to pdf
 
-Conversion can be automated using [`wkhtmltopdf`](http://wkhtmltopdf.org/).
-See the `Makefile` for specific command.
+Conversion is automated by using
+[`decktape`](https://github.com/astefanutti/decktape). In particular,
+`darribas`'s fork contains an additional utility script that allows the
+conversion through the Makefile. To get the fork working, follow these steps:
+
+* Clone the [fork](https://github.com/darribas/decktape).
+* Follow install instructions.
+* Add the `decktape` folder to your system path so the executable `decktape`
+  inside the folder can be called.
+
+Note the executable is a Python script, so you'll need a basic Python
+distribution installed.
 
 ## Running the website locally
 
