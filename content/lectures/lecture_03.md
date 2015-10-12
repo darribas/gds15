@@ -1,5 +1,24 @@
+% Geographic Data Science - Lecture III
+% (Geo-)Visualization
+%[Dani Arribas-Bel](http://darribas.org)
 
-# Visualization
+#
+## Today
+
+* Visualization
+
+    * *What* and *why*
+    * History
+    * Examples
+
+* Geovisualization
+
+    * *What*
+    * "A map for everyone"
+    * Dangers of geovisualization
+
+#
+## Visualization
 
 ##
 
@@ -9,33 +28,39 @@ use** of points, lines, a coordinate system, numbers, symbols, words, shading,
 and color."*
 </center>
 
+<div style="text-align:right">
+<small>
 *The Visual Display of Quantitative Information*. Edward R. Tufte.
+</small>
+</div>
 
 ##
 
-[Figure with data turned into Mona Lisa]
+<div style="height: 600px;" markdown="1">
+![](../content/lectures/figs/l03_monalisa_data.png)
+ <span class="fragment"> 
+![](../content/lectures/figs/l03_monalisa.jpg)
+</div>
+
+
+[[Source](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg/687px-Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg)]
 
 ## A bit of history
 
 <center>
-Maps --> Data Maps (XVIIth.C.) --> Time series (1786) --> Scatter plots
+Maps <span class="fragment">  --> Data Maps (XVIIth.C.) <span class="fragment">  --> Time series (1786) <span class="fragment">  --> Scatter plots
 </center>
 
-* Surprisingly recent: 1750-1800 approx. (much later than many other
-  advances in math and stats!)
-* **William Playfair**'s *"linear arithmetic"*: encode/replace numbers in
-  tables into visual representations.
-* Other relevant names throughout history: Lambert, Minard, Marey.
+<span class="fragment">
+<ul>
+<li> Surprisingly recent: 1750-1800 approx. (much later than many other
+  advances in math and stats!) </li>
+<li> **William Playfair**'s *"linear arithmetic"*: encode/replace numbers in
+  tables into visual representations. </li>
+<li> Other relevant names throughout history: Lambert, Minard, Marey. </li>
+</ul>
 
-# Visualization
-
-<center>
-*"The most extensive data maps [...] place millions of bits of information on
-a single page before our eyes. No other method for the display of statistical
-information is so powerful"*
-</center>
-
-# Visualization
+## Visualization
 
 *The Visual Display of Quantitative Information*. Edward R. Tufte.
 
@@ -64,7 +89,16 @@ Fig. 5 Lambert, measured rate against temperature, 1769
 
 Minard map --> French export of wines (1864) (full screen)
 
-# Geovisualization
+#
+## Geovisualization
+
+## Tufte (1983)
+
+<center>
+*"The most extensive data maps [...] place millions of bits of information on
+a single page before our eyes. No other method for the display of statistical
+information is so powerful"*
+</center>
 
 ## MacEachren (1994)
 
@@ -231,5 +265,6 @@ Statistics to rescue!!!
 ## Recapitulation
 
 #
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lecture 3</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 
-[License]
+
