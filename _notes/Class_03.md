@@ -2,14 +2,29 @@
 title: Week 3 - (Geo)Visualization
 ---
 
-**[Slides** - [html](../revealjs/intro_esda1.html)**]**
+### Slides
 
-* Why visualization
-* The role of visualization in Data Science
-* Geo-visualization
+- [html](../slides/lecture_03.html)
+- [pdf](../slides/lecture_03.pdf)
 
-Nathan Yau's [video](https://www.youtube.com/watch?v=j8g4_ee27Tk) on
-visualization.
+### To do before class
+
+* Nathan Yau's [video](https://www.youtube.com/watch?v=j8g4_ee27Tk) on
+  visualization.
+* Spend the rest of the prep hour browsing through his excellet blog, [Flowing Data](http://flowingdata.com/).
+
+### Related readings
+
+* This class was partially based on {% cite rey2015gis471l3 %}.
+* The slides are also based on {% cite tufte1983visual %}, which is not only a
+  classic resource for all things visualization, but a beautiful book.
+* Nathan Yau's book ["Visualize this"](http://flowingdata.com/visualize-this/)
+  is a good introductory overview.
+
+### References
+
+{% bibliography --cited %}
+
 
 ### Related readings
 
