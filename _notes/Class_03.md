@@ -20,6 +20,8 @@ title: Week 3 - (Geo)Visualization
   classic resource for all things visualization, but a beautiful book.
 * Nathan Yau's book ["Visualize this"](http://flowingdata.com/visualize-this/)
   is a good introductory overview.
+* Interesting chronology of milestones in visualization
+  ([pdf](http://www.math.usu.edu/~symanzik/teaching/2009_stat6560/Downloads/Friendly_milestone.pdf)).
 
 ### References
 
