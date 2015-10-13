@@ -28,6 +28,4 @@ title: Week 3 - (Geo)Visualization
 {% bibliography --cited %}
 
 
-### Related readings
-
 
