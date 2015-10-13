@@ -39,7 +39,7 @@ and color."*
 <div style="height: 600px;" markdown="1">
 ![](../content/lectures/figs/l03_monalisa_data.png)
  <span class="fragment"> 
-![](../content/lectures/figs/l03_monalisa.jpg)
+![](../content/lectures/figs/l03_monalisa.png)
 </div>
 
 
@@ -71,26 +71,41 @@ Maps <span class="fragment">  --> Data Maps (XVIIth.C.) <span class="fragment"> 
 
 ## Learning by seeing time...
 
-## Time series (XVIIIth. C.)
+## Time series 
 
-Lambert plot on soil temperature, depth under the surface
+[[Source](http://www.fisme.science.uu.nl/wiskrant/artikelen/hist_grafieken/begin/images/pyrometrie.gif)] XVIIIth. Cent. - *Pytometrie* by J. H Lambert 
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_pyrometrie.gif)
+</div>
 
 ## Bar chart
 
-Playfair's bar chart in The Commercial and Political Atlas
+[[Source](https://upload.wikimedia.org/wikipedia/commons/3/3f/Playfair_Barchart.gif)] Playfair's bar chart in The Commercial and Political Atlas (1786)
 
-## Lambert line abstract line plot
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_playfair.gif)
+</div>
 
-Fig. 5 Lambert, measured rate against temperature, 1769
+## Abstract line plot
 
-## Examples
+[[Source](https://hal.archives-ouvertes.fr/halshs-00663305/document)] Lambert - Evaporation rate against temperature, 1769
 
-*"It may well be the best statistical graphic ever drawn"*
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_lambert_plot.png)
+</div>
 
-Minard map --> French export of wines (1864) (full screen)
+## Minard - Napoleon army map (XIXth. Cent.)
+
+[[Source](https://en.wikipedia.org/wiki/File:Minard.png)]
+*"It may well be the best statistical graphic ever drawn"* (E. R. Tufte)
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_minard.png)
+</div>
 
 #
-## Geovisualization
+## **Geo**visualization
 
 ## Tufte (1983)
 
@@ -102,22 +117,24 @@ information is so powerful"*
 
 ## MacEachren (1994)
 
-> **Geographic visualization** can be defined as the use of concrete visual
-> representations --whether on paper or through computer displays or other
-> media--to **make spatial contexts and problems visible**, so as to engage
-> the most powerful **human information processing** abilities, those
-> associated with vision.
+<center>
+ *"**Geographic visualization** can be defined as the use of concrete visual
+ representations --whether on paper or through computer displays or other
+ media--to **make spatial contexts and problems visible**, so as to engage
+ the most powerful **human information processing** abilities, those
+ associated with vision."*
+</center>
 
 ## GeoVisualization
 
 * End goal is not to replace the human *in the loop*, but to **augment** her/him.
-* Augmentation here comes through engaging the pattern recognition
+* Augmentation here comes through engaging the **pattern recognition**
   capabilities that our brain inherently has.
 * Combines:
     * Traditional maps
     * Statistical maps
     * Statistical devices of other kind (charts, scatter plots, etc.)
-* Different roles in the analysis process...
+* **Different roles** in the analysis process...
 
 ## A map for everyone
 
@@ -132,22 +149,35 @@ MacEachren & Kraak (1997) identify three main dimensions:
 * Target audience
 * Degree of interactivity
 
-## A map for everyone
+## MacEachren & Kraak (1997) map cube
 
-[MacEachren & Kraak (1997) map cube]
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_map_cube.png)
+</div>
+
+[[Source](http://cartography.tuwien.ac.at/wordpress/wp-content/uploads/2013/01/cartotalk-corne-van-elzakker.pdf)]
 
 ## Un/known: *fast* and *slow* maps
 
 ## Fast maps
 
-[Amsterdam postcode polygons]
+[[Source](http://darribas.org/buzz_adam/)]
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_adam_pc.png)
+</div>
 
 ## Slow maps
 
-[Amsterdam twitterhoods final]
+[[Source](http://www.tandfonline.com/doi/full/10.1080/21681376.2015.1067151)]
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_pc4_low.png)
+</div>
 
 ## Audience: *easy* and *hard* maps
 
+<!--
 The larger and non-specialized the audience, the less you can assume about
 what they know, hence less information can be emedded
 
@@ -158,14 +188,23 @@ the trained eye
 This changes with statistical/geographic literacy (the minimum grows)
 
 Pro-tip: know your audience and optimize for it
+-->
 
 ## Easy map
 
-[easy map figure: screenshot of where train stations are]
+[[Source](https://en.wikipedia.org/wiki/Template:Map_of_same-sex_marriage_in_the_United_States#/media/File:Same-sex_marriage_in_the_United_States.svg)] Map of same-sex marriage in the US, 2015
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_easy_map.svg)
+</div>
 
 ## Hard map
 
-[hard map figure: Arribas-Bel & Gerritse (2012)]
+[[Source](http://epn.sagepub.com/content/44/9/2041.short)]
+
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_arribas_gerritse.png)
+</div>
 
 ## Interaction: one or many maps in one
 
@@ -178,91 +217,90 @@ also takes much more time (althought changing)
 
 ## Static map
 
-[static map figure: LA choropleth]
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_la.png)
+</div>
 
 ## Interactive map
 
-[Interactive map figure: LA interactive map]
+ <iframe 
+           width='100%' height='520' frameborder='0'
+               src='http://darribasbel.cartodb.com/viz/47da5d26-cc8a-11e3-84c3-0e230854a1cb/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=true&legends=true&scrollwheel=true&fullscreen=true&sublayer_options=1%7C1%7C0%7C0&sql=&sw_lat=33.285&sw_lon=-119.030&ne_lat=34.763&ne_lon=-117.431'
+                   allowfullscreen webkitallowfullscreen mozallowfullscreen
+                   oallowfullscreen
+                       msallowfullscreen>
+</iframe>
 
-# Examples of GeoVisualization
+#
+## **Dangers** of GeoVisualization
 
-## Choropleths
+##
 
-See next lecture
-
-## Box maps - Outliers
-
-[Create box map]
-
-## Cartograms
-
-[Look for Danny Dorling examples]
-
-## Conditional maps/
-
-## Space-Time maps: animations
-
-CartoDB/Torquee example
-
-## Interactivity
-
-Bokeh linked views
-
-## Surfaces
-
-Pollution/weather map
-
-See lecture on points
-
-# Dangers of GeoVisualization
+<div style="height: 600px;" markdown="1">
+![](../content/lectures/figs/l03_lie.png)
+</div>
 
 ## *How to lie with maps*
 
-[How to lie with maps cover with Pinnochio]
 
-## *How to lie with maps*
+<div style="height: 300px;" markdown="1">
+![](../content/lectures/figs/l03_liv_equal.png)
+![](../content/lectures/figs/l03_liv_quantiles.png)
+</div>
 
-[Map of UK with the same variable, different classifications]
 
 ## *How to lie with maps*
 
 The human brain is so good a picking up patterns...
 
+<p class="fragment">
 ... that it finds them even where they don't exist!
+</p>
 
-* Patternicity (Shermer, 2008)
-
-> *The tendencey to find meaningful patterns in meaningless noise*
-
-* Apophenia (Konrad, 1958)
-
-> *The experience of seeing patterns or connections in random or meaningless
-> data*
+<p class="fragment">
+**Patternicity** (Shermer, 2008)
+*The tendencey to find meaningful patterns in meaningless noise*
+</p>
+<p class="fragment">
+**Apophenia** (Konrad, 1958)
+*The experience of seeing patterns or connections in random or meaningless
+data*
+</p>
 
 ## Twitter clusters
 
-[Map of random points on the UK]
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_kde.png)
+</div>
 
 ## How to *be truthful* with maps
 
 <center>
 *"With great power comes great responsibility"*
 </center>
-
-Statistics to rescue!!!
-
-* Complement and enhance visuals
-* Help disentangling **true** from **spurious** patterns (a.k.a. identifying
-  the "Jesus on the toast")
-* Reciprocity: GeoVis can also enhance statistics and make them more useful
+ <span class="fragment"> 
+**Statistics** to the rescue!!!
+ <span class="fragment"> 
+<ul>
+<li> **Complement** and enhance visuals</li>
+<li> Help disentangling **true** from **spurious** patterns (a.k.a. identifying
+  the "Jesus on the toast")</li>
+<li> **Reciprocity**: GeoVis can also enhance statistics and make them more useful</li>
+</ul>
 
 ## Statistics for Twitter clusters
 
-[Show a spatial statistic can disentangle]
+<div style="height: 500px;" markdown="1">
+![](../content/lectures/figs/l03_kfun.png)
+</div>
 
-# Recapitulation
-
+#
 ## Recapitulation
+
+* Visualization of statistical data is a fairly **recent** phenomenon.
+* Its power comes from engaging and **augmenting** the human in the loop,
+  rather than replacing her/him.
+* Its power **can be misused**, but there are methods to limit this risk.
 
 #
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lecture 3</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
