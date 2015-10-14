@@ -14,7 +14,6 @@ download by clicking:
 
 * `install_gds_stack`([Windows](content/infrastructure/install_gds_stack_win.bat), 
 [Mac/Linux](content/infrastructure/install_gds_stack_unix.sh))
-* [`check_gds_stack.ipynb`](content/infrastructure/check_gds_stack.ipynb)
 
 [Required for the Vagrant option only]
 
@@ -49,7 +48,8 @@ The easiest way to install locally and natively the software stack required is
 to install a full scientific Python distribution. Although other good alternatives
 are also available (e.g. [Canopy](https://www.enthought.com/products/canopy/),
 [Sage](http://www.sagemath.org)), we recommend to install
-[Anaconda](https://store.continuum.io/cshop/anaconda/). Please follow the
+[Anaconda](https://store.continuum.io/cshop/anaconda/). Make sure, whichever
+option you pick, to install a Python 2 version, not Python 3. Please follow the
 instructions provided in the link for installation.
 
 Once you have a fully working Anaconda distribution installed in your
