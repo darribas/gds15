@@ -26,22 +26,28 @@ if %debug%.==on. @echo on
 
 REM Install dependencies
 conda install -n gds -y jupyter
-conda install -n gds -y pandas scipy matplotlib seaborn statsmodels scikit-learn
+conda install -n gds -y pandas=0.16 scipy matplotlib seaborn statsmodels scikit-learn
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% pysal
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% clusterpy
-conda install -n gds -y fiona six
+conda install -n gds -y fiona=1.5 six
 conda install -n gds -y -c scitools shapely
-conda install -n gds -y -c ioos psycopg2
+conda install -n gds -y -c https://conda.binstar.org/ioos psycopg2
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% geopy
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% descartes
-pip install --no-deps -t %ANACONDA_DIR%\%GDS_PACKAGES% geopandas
+pip install --no-deps -t %ANACONDA_DIR%\%GDS_PACKAGES% git+git://github.com/geopandas/geopandas.git
 
 REM Switch geos version to install cartopy correctly
 conda install -n gds -y -c scitools geos
 conda install -n gds -y -c scitools cartopy
 
 REM not present on Windows apparently
-conda install -n gds -y -c ioos pyproj
+conda install -n gds -y -c https://conda.binstar.org/ioos pyproj
+
+REM additional packages
+conda install -n gds -y rasterio=0.24
+pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% Jinja2
+pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% mplleaflet
+conda install -n gds -y pytables=3.2.1
 
 REM copy test notebook into place
 md %ANACONDA_DIR%\notebooks
