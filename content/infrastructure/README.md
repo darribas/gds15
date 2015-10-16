@@ -14,6 +14,7 @@ download by clicking:
 
 * `install_gds_stack`([Windows](content/infrastructure/install_gds_stack_win.bat), 
 [Mac/Linux](content/infrastructure/install_gds_stack_unix.sh))
+*  [`check_gds_stack.ipynb`](content/infrastructure/check_gds_stack.ipynb`)
 
 [Required for the Vagrant option only]
 
