@@ -19,3 +19,6 @@ site/content/infrastructure/notebooks/
 .Rhistory
 */.Rhistory
 content/infrastructure/notebooks/
+content/labs/*.png
+content/labs/_map.html
+conntent/infrastructure/temp_test.ipynb
