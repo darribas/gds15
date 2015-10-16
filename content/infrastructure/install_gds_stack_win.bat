@@ -19,7 +19,7 @@ REM requirement (for now):
 conda create -y -n gds ipython
 conda install -n gds -y pip
 
-REM This creates the environment, to access it, we need to activate it:
+REM to use the environment, we must activate it:
 REM although note that on Windows this appears to make no difference to future package installations
 call activate.bat gds
 if %debug%.==on. @echo on
@@ -36,14 +36,14 @@ conda install -n gds -y --no-update-deps -c scitools geos shapely=1.5.8
 
 REM additional packages
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% geopy descartes pysal clusterpy Jinja2 mplleaflet
-REM pip install --no-deps -t %ANACONDA_DIR%\%GDS_PACKAGES% --pre geopandas
-pip install -U --no-deps "N:\Continuum Analytics\Anaconda\DanielArribas-Bel\package\geopandas-master.zip" -t %ANACONDA_DIR%\%GDS_PACKAGES%
+curl -Lk https://github.com/geopandas/geopandas/archive/master.zip -o %ANACONDA_DIR%\%GDS_PACKAGES%\master.zip
+pip install -U --no-deps "%ANACONDA_DIR%\%GDS_PACKAGES%\master.zip" -t %ANACONDA_DIR%\%GDS_PACKAGES%
 
 REM copy test notebook into place
-md %ANACONDA_DIR%\notebooks
+md %ANACONDA_DIR%\notebooks >nul
 pushd %~dp0
 copy check_gds_stack.ipynb %ANACONDA_DIR%\notebooks >nul
 pushd %ANACONDA_DIR%\notebooks
 
-launch test notebook
+REM launch test notebook
 jupyter notebook
