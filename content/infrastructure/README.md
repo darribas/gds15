@@ -37,8 +37,9 @@ download by clicking:
 
 * [PySAL](http://pysal.org)
 * [Clusterpy](http://www.rise-group.org/risem/clusterpy/)
-* [Cartopy](http://scitools.org.uk/cartopy/)
 * [Geopandas](http://geopandas.org)
+* [Rasterio](https://pypi.python.org/pypi/rasterio/)
+* [mplleaflet](https://github.com/jwass/mplleaflet)
 
 ## Installation
 
