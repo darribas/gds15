@@ -208,7 +208,7 @@ Pro-tip: know your audience and optimize for it
 
 ## Interaction: one or many maps in one
 
-<!---
+<!--
 Talk about interaction, oportunity for discovery, and the end-user as explorer
 rather than mere consumer
 
