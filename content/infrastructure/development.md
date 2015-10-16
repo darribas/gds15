@@ -1,5 +1,25 @@
 # Notes for developers
 
+## Testing installation
+
+Once you have successfully run `install_gds_stack_XXX`, you can
+programatically test the installation using the
+[`ipnbdoctest`](https://gist.github.com/minrk/2620735) script, by Min RK. 
+You can run it from this folder as follows (you might have to `chmod +x
+ipnbdoctest.py` first):
+
+> ipnbdoctest.py check_gds_stack.ipynb temp_test.ipynb
+
+Which will run it, write the output into `temp_test.ipynb`, and compare
+the output of both. 
+
+Or, alternatively, you can also run it and delete the resulting notebook
+using the project's `Makefile`:
+
+> make test_stack
+
+**NOTE**: not working at the moment with a modern IPython install.
+
 ## Tweaking CSS theme for html slides
 
 Modifications to the original theme can be done using `reveal.js` custom theme

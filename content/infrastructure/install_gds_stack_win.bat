@@ -45,5 +45,5 @@ pushd %~dp0
 copy check_gds_stack.ipynb %ANACONDA_DIR%\notebooks >nul
 pushd %ANACONDA_DIR%\notebooks
 
-REM launch test notebook
-REM jupyter notebook
+launch test notebook
+jupyter notebook

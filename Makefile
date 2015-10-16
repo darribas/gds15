@@ -33,3 +33,10 @@ handbook:
 	cat content/handbook/head.md content/website_data/index.md content/website_data/overview.md content/website_data/syllabus.md content/website_data/task_01.md content/website_data/task_02.md content/website_data/marking_criteria.md > handbook.md
 	pandoc --toc -s -S -H content/handbook/include.tex handbook.md -o content/handbook/handbook.pdf
 	rm handbook.md
+
+test_stack:
+	source activate gds
+	content/infrastructure/ipnbdoctest.py content/infrastructure/check_gds_stack.ipynb content/infrastructure/temp_test.ipynb
+	rm content/infrastructure/temp_test.ipynb
+	source deactivate
+
