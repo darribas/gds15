@@ -213,7 +213,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># Please note this will not display on your machine as it depends on an external file</span>
+<span class="c"># A rendered version can be found on the HTML or PDF versions of this notebook</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
 <span class="n">IFrame</span><span class="p">(</span><span class="s">&quot;figs/lab03_liverpool_smallest.html&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">560</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">315</span><span class="p">)</span>
 </pre></div>
 
@@ -261,7 +263,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lcp_dir</span> <span class="o">=</span> <span class="s">&#39;../../../../data/Liverpool/&#39;</span>
-<span class="n">los_dir</span> <span class="o">=</span> <span class="s">&#39;../../../../data/E08000012/&#39;</span>
+<span class="n">los_dir</span> <span class="o">=</span> <span class="s">&#39;../../../../data/E08000012_OS/&#39;</span>
 </pre></div>
 
 </div>
@@ -430,7 +432,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc212860490&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10e05f890&gt;</pre>
 </div>
 
 </div>
@@ -1457,7 +1459,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Displaying lines is as straight-forward as polygons. To load railway tunnels in Liverpool:</p>
+<p>Displaying lines is as straight-forward as polygons. To load railway tunnels in Liverpool and name the rows after the <code>id</code> column (or to "index" them):</p>
 
 </div>
 </div>
@@ -1467,8 +1469,8 @@ AABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">rwy_tun</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">los_dir</span> <span class="o">+</span> <span class="s">&#39;RailwayTunnel.shp&#39;</span><span class="p">)</span>\
-             <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">rwy_tun</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">los_dir</span> <span class="o">+</span> <span class="s">&#39;RailwayTunnel.shp&#39;</span><span class="p">)</span>
+<span class="n">rwy_tun</span> <span class="o">=</span> <span class="n">rwy_tun</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
 <span class="n">rwy_tun</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
@@ -1502,6 +1504,44 @@ memory usage: 1.0+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how, similarly to the polygon case, if we pick the <code>'geometry'</code> column of a table with lines, a single row will display the geometry as well:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">rwy_tun</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s">&#39;0ACD196C313D4F8DE050A00A568A6F6F&#39;</span><span class="p">,</span> <span class="s">&#39;geometry&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+<div class="output_svg output_subarea output_execute_result">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200.129292731" height="300" viewBox="335338.561962 394927.267371 200.129292731 309.723884322" preserveAspectRatio="xMinYMin meet"><g transform="matrix(1,0,0,-1,0,790164.258626)"><g><polyline fill="none" stroke="#66cc99" stroke-width="2.06482589548" points="335350.033217,394938.738626 335360.190872,394955.179051" opacity="0.8" /><polyline fill="none" stroke="#66cc99" stroke-width="2.06482589548" points="335439.780907,395083.997574 335527.22,395225.52" opacity="0.8" /></g></g></svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Note how we have also indexed the table on the <code>id</code> column.</p>
 <p>A quick plot is similarly generated by (mind that because there are over 18,000 segments, this may take a little bit):</p>
 
@@ -1510,7 +1550,7 @@ memory usage: 1.0+ KB
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">rwy_tun</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -1524,11 +1564,11 @@ memory usage: 1.0+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc20e473890&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x110b12f10&gt;</pre>
 </div>
 
 </div>
@@ -1694,8 +1734,12 @@ GEZITCyGERITi2GExMRiGCExsRhGSEwshhESE4thhOT/AxLTWM6sE8bwAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 2/5]</strong></p>
+<p><strong>[Optional exercise]</strong></p>
 <p>Obtain the graphical representation of the line with <code>id</code> = <code>0ACD196C32214F8DE050A00A568A6F6F</code>.</p>
+<!--
+rwy_tun.loc['0ACD196C313D4F8DE050A00A568A6F6F', 'geometry']
+-->
+
 <hr>
 
 </div>
@@ -1725,7 +1769,7 @@ GEZITCyGERITi2GExMRiGCExsRhGSEwshhESE4thhOT/AxLTWM6sE8bwAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">namp</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">los_dir</span> <span class="o">+</span> <span class="s">&#39;NamedPlace.shp&#39;</span><span class="p">)</span>
@@ -1740,7 +1784,7 @@ GEZITCyGERITi2GExMRiGCExsRhGSEwshhESE4thhOT/AxLTWM6sE8bwAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -1837,7 +1881,7 @@ GEZITCyGERITi2GExMRiGCExsRhGSEwshhESE4thhOT/AxLTWM6sE8bwAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">namp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -1851,11 +1895,11 @@ GEZITCyGERITi2GExMRiGCExsRhGSEwshhESE4thhOT/AxLTWM6sE8bwAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc20caa8790&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11124c710&gt;</pre>
 </div>
 
 </div>
@@ -2049,7 +2093,7 @@ I+EWoqRIuIUoKRJuIUqKhFuIkiLhFqKkSLiFKCkSbiFKyv8H4zASNBcZ25UAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
@@ -2063,11 +2107,11 @@ I+EWoqRIuIUoKRJuIUqKhFuIkiLhFqKkSLiFKCkSbiFKyv8H4zASNBcZ25UAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc20c85f6d0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x111808a50&gt;</pre>
 </div>
 
 </div>
@@ -2879,7 +2923,7 @@ NmCggMIgtwEDBRT/D0AgV9qV1IBVAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2893,11 +2937,11 @@ NmCggMIgtwEDBRT/D0AgV9qV1IBVAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc207ca9c50&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x112750a90&gt;</pre>
 </div>
 
 </div>
@@ -3750,7 +3794,7 @@ KdwmJkWU/wNGT/XgaAPJQAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -5082,7 +5126,7 @@ KIqiKJXi/wHwuMp9B9rmuAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -6585,7 +6629,7 @@ QDAHYxiGYQQEczCGYRhGQDAHYxiGYQSE/wevaW33glPJCgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
@@ -10935,7 +10979,7 @@ PuHBuZmZmZlZn/gf4BJZzEo+R5EAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -13115,7 +13159,7 @@ f5k9MaYIYK4YAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -14173,7 +14217,7 @@ B+fB13J9ajFzAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -15098,7 +15142,7 @@ RK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -15335,7 +15379,7 @@ REQSoYAREZFEKGBERCQR/x9i8HgnI6nPQgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -16477,7 +16521,7 @@ jUbjELSB0Wg0Go1D0AZGo9FoNA5BGxiNRqPROIT/B0/zyYSxt3D0AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoas</span><span class="o">.</span><span class="n">crs</span>
@@ -16491,7 +16535,7 @@ jUbjELSB0Wg0Go1D0AZGo9FoNA5BGxiNRqPROIT/B0/zyYSxt3D0AAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -16525,7 +16569,7 @@ jUbjELSB0Wg0Go1D0AZGo9FoNA5BGxiNRqPROIT/B0/zyYSxt3D0AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoas</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -17855,7 +17899,7 @@ gK8oivKUUAFfURTlKaECvqIoylPi/8L5DcM/yxoUAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 4/5]</strong></p>
+<p><strong>[Optional exercise]</strong></p>
 <p>Make a map of the LSOAs that features the following characteristics:</p>
 <ul>
 <li>Includes a title</li>
@@ -17918,7 +17962,7 @@ plt.show()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -19402,7 +19446,7 @@ DsYwDMMICOZgDMMwjIDw/6VNL07/W7ZGAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -20378,9 +20422,20 @@ RU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 3/5]</strong></p>
-<p>Create a similar map to the one above, but replace the railway tunnels by the named places points used at the beginning (and saved into <code>namp</code>).</p>
+<p><strong>[Optional exercise]</strong></p>
+<p>Create a similar map to the one above, but replace the railway tunnels by the named places points used at the beginning (and saved into <code>namp</code>). Do not try to set the color to green or any other particular one, but you can play with the size of the dot.</p>
 <p><strong>Pro-tip</strong>: keep in mind you are plotting points no lines, so be sure to check the help of the function <code>gpd.plotting.plot_point</code>.</p>
+<!--
+f, ax = plt.subplots(1)
+# Plot polygons in light grey
+for poly in lsoas['geometry']:
+    gpd.plotting.plot_multipolygon(ax, poly, facecolor='grey', alpha=0.25, linewidth=0.1)
+# Overlay points
+for pt in namp['geometry']:
+    gpd.plotting.plot_point(ax, pt, markersize=4)
+plt.show()
+-->
+
 <hr>
 
 </div>
@@ -20407,7 +20462,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -21391,7 +21446,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -22392,7 +22447,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -22419,7 +22474,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Read original table</span>
@@ -22450,7 +22505,7 @@ RU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -22547,7 +22602,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">lsoas</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -22561,7 +22616,7 @@ RU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -22622,7 +22677,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">geo_pop</span> <span class="o">=</span> <span class="n">lsoas</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lsoa_orig_sub</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
@@ -22637,7 +22692,7 @@ RU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -22750,7 +22805,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">geo_pop</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">lsoas</span><span class="o">.</span><span class="n">crs</span>
@@ -22783,10 +22838,10 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">smallest</span> <span class="o">=</span> <span class="n">geo_pop</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">&#39;Total&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">smallest</span> <span class="o">=</span> <span class="n">geo_pop</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&#39;Total&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -22806,7 +22861,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -23439,7 +23494,7 @@ QohJkMAIIYSYBAmMEEKISZDACCGEmAQJjBBCiEn4f5+IbLOIbmUTAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">cents</span> <span class="o">=</span> <span class="n">geo_pop</span><span class="o">.</span><span class="n">centroid</span>
@@ -23454,7 +23509,7 @@ QohJkMAIIYSYBAmMEEKISZDACCGEmAQJjBBCiEn4f5+IbLOIbmUTAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -23472,9 +23527,19 @@ dtype: object</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how <code>cents</code> is not an entire table but a single column, or a <code>GeoSeries</code> object. This means you can plot it directly, just like a table:</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">cents</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -23488,11 +23553,11 @@ dtype: object</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc20697bc90&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x116c70f90&gt;</pre>
 </div>
 
 </div>
@@ -23691,9 +23756,32 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>But you don't need to call a <code>geometry</code> column to inspect the spatial objects. In fact, if you do it will return an error because there is not any <code>geometry</code> column, the object <code>cents</code> itself is the geometry.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 1/5]</strong></p>
+<p><strong>[Optional exercise]</strong></p>
 <p>Create a map with the polygons of Liverpool in the background and overlay on top of them their centroids.</p>
+<!--
+f, ax = plt.subplots(1, figsize=(6, 6))
+# Base layer with all the areas for the background
+for poly in geo_pop['geometry']:
+    gpd.plotting.plot_multipolygon(ax, poly, facecolor='black', linewidth=0.025)
+# Smallest areas
+cents.plot(axes=ax)
+ax.set_axis_off()
+f.suptitle('Areas with smallest population')
+plt.axis('equal')
+plt.show()
+-->
+
 <hr>
 
 </div>
@@ -23714,7 +23802,7 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">poly</span> <span class="o">=</span> <span class="n">geo_pop</span><span class="p">[</span><span class="s">&#39;geometry&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -23729,7 +23817,7 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">poly</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pt1</span><span class="p">)</span>
@@ -23743,7 +23831,7 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -23758,7 +23846,7 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">poly</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pt2</span><span class="p">)</span>
@@ -23772,7 +23860,7 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -23801,8 +23889,8 @@ NWYwDMNIjRkMwzBSYwbDMIzU/H9jzW1o6aavXgAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 5/5]</strong></p>
-<p>Find in which polygons the named places in <code>namp</code> fall into. Return, for each named place, the LSOA code in which it is located.</p>
+<p><strong>[Optional exercise]</strong></p>
+<p>This one is fairly advanced, so do not dispair if you cannot solve it. Find in which polygons the named places in <code>namp</code> fall into. Return, for each named place, the LSOA code in which it is located.</p>
 <!--
 pip = []
 for id, place in namp.iterrows():
@@ -23833,7 +23921,7 @@ pip = pd.DataFrame(pip, columns=['NamePlace', 'LSOA'])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">namp</span><span class="o">.</span><span class="n">crs</span>
@@ -23847,7 +23935,7 @@ pip = pd.DataFrame(pip, columns=['NamePlace', 'LSOA'])
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -23872,7 +23960,7 @@ pip = pd.DataFrame(pip, columns=['NamePlace', 'LSOA'])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">buf</span> <span class="o">=</span> <span class="n">namp</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
@@ -23887,7 +23975,7 @@ pip = pd.DataFrame(pip, columns=['NamePlace', 'LSOA'])
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -23917,7 +24005,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -24390,6 +24478,32 @@ XCk4juM4Lfw/lzb7oNCnlogAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
+<p><strong>[Optional exercise]</strong></p>
+<p>Generate a map of the Liverpool polygons in black and overlay on top of them yellow buffers of 250 metres around each centroid.</p>
+<!--
+f, ax = plt.subplots(1)
+b250 = namp.buffer(250)
+# Plot polys
+for poly in lsoas['geometry']:
+    gpd.plotting.plot_multipolygon(ax, poly, edgecolor='black', facecolor='black')
+# Plot buffer
+for poly in buf:
+    gpd.plotting.plot_multipolygon(ax, poly, linewidth=0, facecolor='yellow')
+plt.axis('equal')
+plt.show()
+-->
+
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
 <p><strong>NOTE</strong> The folowing are extensions and as such are not required to complete this section. They are intended as additional resources to explore further possibilities that Python allows to play with representing spatial data.</p>
 
 </div>
@@ -24406,7 +24520,7 @@ XCk4juM4Lfw/lzb7oNCnlogAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">mplleaflet</span>
@@ -24430,7 +24544,7 @@ XCk4juM4Lfw/lzb7oNCnlogAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -24447,17 +24561,17 @@ XCk4juM4Lfw/lzb7oNCnlogAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <iframe src="data:text/html;base64,PGhlYWQ+CiAgICA8c2NyaXB0IHNyYz0iaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4
 L2xpYnMvbGVhZmxldC8wLjcuMy9sZWFmbGV0LmpzIj48L3NjcmlwdD4KICAgIDxsaW5rIHJlbD0i
 c3R5bGVzaGVldCIgaHJlZj0iaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4L2xpYnMv
-bGVhZmxldC8wLjcuMy9sZWFmbGV0LmNzcyIgLz4KICA8c3R5bGU+CiAgICAjbWFwM2RjMjVhMTNj
-MmI4NDA0N2FkZmUyODQwNTU5ODU0ZWYgewogICAgICBoZWlnaHQ6MTAwJTsKICAgIH0KICA8L3N0
-eWxlPiAKPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJtYXAzZGMyNWExM2MyYjg0MDQ3YWRmZTI4
-NDA1NTk4NTRlZiI+PC9kaXY+CjxzY3JpcHQgdGV4dD0idGV4dC9qYXZhc2NyaXB0Ij4KdmFyIG1h
-cCA9IEwubWFwKCdtYXAzZGMyNWExM2MyYjg0MDQ3YWRmZTI4NDA1NTk4NTRlZicpOwpMLnRpbGVM
+bGVhZmxldC8wLjcuMy9sZWFmbGV0LmNzcyIgLz4KICA8c3R5bGU+CiAgICAjbWFwZGU1ZGNkOTE0
+ZGZhNDU5YzgzOWM0NTkyZjkxYWRhZTUgewogICAgICBoZWlnaHQ6MTAwJTsKICAgIH0KICA8L3N0
+eWxlPiAKPC9oZWFkPgo8Ym9keT4KICA8ZGl2IGlkPSJtYXBkZTVkY2Q5MTRkZmE0NTljODM5YzQ1
+OTJmOTFhZGFlNSI+PC9kaXY+CjxzY3JpcHQgdGV4dD0idGV4dC9qYXZhc2NyaXB0Ij4KdmFyIG1h
+cCA9IEwubWFwKCdtYXBkZTVkY2Q5MTRkZmE0NTljODM5YzQ1OTJmOTFhZGFlNScpOwpMLnRpbGVM
 YXllcigKICAiaHR0cDovL3tzfS50aWxlLm9wZW5zdHJlZXRtYXAub3JnL3t6fS97eH0ve3l9LnBu
 ZyIsCiAge21heFpvb206MTksIGF0dHJpYnV0aW9uOiAnPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIu
 Y29tL2p3YXNzL21wbGxlYWZsZXQiPm1wbGxlYWZsZXQ8L2E+IHwgTWFwIGRhdGEgKGMpIDxhIGhy
@@ -24468,229 +24582,229 @@ b3JkaW5hdGVzIjogW1stMi45OTUxNTQzNTY1ODA3Nzk0LCA1My40MDMyMDI4Mjc0MDgwMTZdLCBb
 LTMuMDAzNzY0NzM5MTc4MDk3NywgNTMuMzk5MjA1NzI2NTA4NDNdXX0sICJ0eXBlIjogIkZlYXR1
 cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndl
 aWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5h
-dGVzIjogW1stMi45ODkxOTE4NzQxOTQ5NjMsIDUzLjQwNzA0NjE2NDEzNDMyXSwgWy0yLjk4OTMz
-MzA0NDQ5OTEwMDYsIDUzLjQwNjc2MzkxMDM2MzIxXSwgWy0yLjk4OTc2MTE2MTEyNjIzNjUsIDUz
-LjQwNjMyOTc5MTczNDQ3XSwgWy0yLjk5MzkzNjQ3MTI1MDgwODgsIDUzLjQwNDEwMDgxMTY3Mjgy
-XSwgWy0yLjk5NDg1NzMwNDQ0OTM3MSwgNTMuNDAzNDkzNjY4NjUyNDFdLCBbLTIuOTk1MTU0MzU2
+dGVzIjogW1stMi45ODkxOTE4NzQxOTQ5NjMsIDUzLjQwNzA0NjE2NDEzNDMxNF0sIFstMi45ODkz
+MzMwNDQ0OTkxMDEsIDUzLjQwNjc2MzkxMDM2MzE5Nl0sIFstMi45ODk3NjExNjExMjYyMzcsIDUz
+LjQwNjMyOTc5MTczNDQ2NF0sIFstMi45OTM5MzY0NzEyNTA4MDg4LCA1My40MDQxMDA4MTE2NzI4
+Ml0sIFstMi45OTQ4NTczMDQ0NDkzNzEsIDUzLjQwMzQ5MzY2ODY1MjRdLCBbLTIuOTk1MTU0MzU2
 NTgwNzc5NCwgNTMuNDAzMjAyODI3NDA4MDE2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3Bl
 cnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0s
 IHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIu
-OTg5MjI0MDAxODczMzMyNywgNTMuNDA1MjY3MjU3NTA0MjM1XSwgWy0yLjk5MDI0Nzc3MTI5MTY5
+OTg5MjI0MDAxODczMzMyMywgNTMuNDA1MjY3MjU3NTA0MjM1XSwgWy0yLjk5MDI0Nzc3MTI5MTY5
 NjQsIDUzLjQwNTIyMTY0NTM1MDM5NV0sIFstMi45OTA4ODY4NDI3OTMyMDY1LCA1My40MDUxMDIw
 MDMyMTc4OF0sIFstMi45OTUxNTQzNTY1ODA3Nzk0LCA1My40MDMyMDI4Mjc0MDgwMTZdXX0sICJ0
 eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFj
 aXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5n
-IiwgImNvb3JkaW5hdGVzIjogW1stMi45OTQ5MTM0NDQ4NTA4MjA2LCA1My40MTI3MDUxNTIwOTUw
-M10sIFstMi45OTM5NDkwNTY3ODkwODk2LCA1My40MTE2NzI1MzY1OTkxOV1dfSwgInR5cGUiOiAi
-RmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAx
-LCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29v
-cmRpbmF0ZXMiOiBbWy0yLjk4OTE5MTg3NDE5NDk2MywgNTMuNDA3MDQ2MTY0MTM0MzJdLCBbLTIu
-OTg5NjUwMDg3ODQwMDY1LCA1My40MDc2MTY2NjkzODQ5OF0sIFstMi45OTA0NjE5NDMzMDcxODcz
-LCA1My40MDg5ODE4MjcyNjk5Nl0sIFstMi45OTA5OTMwOTU1ODAwMDIsIDUzLjQwOTYyMDg0NzA0
-NTk4XSwgWy0yLjk5MTQ4MzAyMTA5ODM1OCwgNTMuNDEwMDkwNzY1NTEzNzldLCBbLTIuOTkyMDc3
-MTM3NDg3NTE5LCA1My40MTA1MTg2NDY5MDM0N10sIFstMi45OTM5NDkwNTY3ODkwODk2LCA1My40
-MTE2NzI1MzY1OTkxOV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xv
-ciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5Ijog
-eyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk5Mzk0OTA1Njc4OTA4
-OTYsIDUzLjQxMTY3MjUzNjU5OTE5XSwgWy0yLjk5MzY0MDg5NTgwODc3NCwgNTMuNDExMzM0ODcw
-ODAyNTA2XSwgWy0yLjk5MjM4NjY4MjI1NTQ3MzcsIDUzLjQxMDM4MDI1MTQ3MDMxXSwgWy0yLjk5
-MTM1MDcyMTk0NDM2NzYsIDUzLjQwOTQ2NzEzMzUwOTU3XSwgWy0yLjk4OTA0NDQ5NDEzMjUyMzYs
-IDUzLjQwNjc1NjE0MzgxNTU2NF0sIFstMi45ODg1MzM1OTY5NDYwMjMsIDUzLjQwNjI5MzY3MDAy
-MzkxXSwgWy0yLjk4NzcxNTMwMDQ2MjkzNSwgNTMuNDA1ODI3MTc1ODg4MjM0XSwgWy0yLjk4NzAw
-MDUzNTgxOTg3ODMsIDUzLjQwNTU4MjU2NjAwNTA2Nl0sIFstMi45ODYwNDMyMjc1NzUyMzY0LCA1
-My40MDUzNzM5MzM2NDgyNl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJj
-b2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5
-IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4NjQ2ODcwMDAw
-Njc1NTYsIDUzLjQzODYxMzI5MDg5MDkzNV0sIFstMi45ODcxNTg3OTkxOTY4OTQ0LCA1My40Mzg2
-MDc3NjgxMzA3NjVdLCBbLTIuOTg4Njc1MDYzNDEzNDMwMywgNTMuNDM4ODU1MDkzMzc4MjQ0XSwg
-Wy0yLjk4OTMzNDAyMTI0ODA1NjYsIDUzLjQzOTA3NzA1NDkxNjM0Nl0sIFstMi45OTAwMzkxOTg4
-MjEyMjE2LCA1My40Mzk0NDEyODMyOTA3NF1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0
-aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7
-Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4
-NjA0MzIyNzU3NTIzNjQsIDUzLjQwNTM3MzkzMzY0ODI2XSwgWy0yLjk4OTIyNDAwMTg3MzMzMjcs
-IDUzLjQwNTI2NzI1NzUwNDIzNV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjog
-eyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21l
-dHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4OTIyNDAw
-MTg3MzMzMjcsIDUzLjQwNTI2NzI1NzUwNDIzNV0sIFstMi45ODMyNTQ5OTc0MzkxMjk2LCA1My40
-MDQ2NzY0Njg1ODI4MV0sIFstMi45ODExMDk2MDE1NDE1NTQ0LCA1My40MDQ1NjA5OTM5MDA4NF0s
-IFstMi45Nzk1ODI5ODM2MzAxNDU1LCA1My40MDQzMjUwNzY3NzU2ODVdLCBbLTIuOTc4NjQ5OTQx
-ODEyOTkyLCA1My40MDQzMDU3NjI3MTU2Ml0sIFstMi45Nzc2NDY4NTc5MTIwMTIsIDUzLjQwNDUx
-MTczODE5OTg1XSwgWy0yLjk3NzAwOTU5NjM1NzAxMTYsIDUzLjQwNDczNzgxMzM0MjcxXSwgWy0y
-Ljk3NjU3MjUwNTMwNTQxMzUsIDUzLjQwNDk2ODk4OTQwOTMyXSwgWy0yLjk3NjE3NzMwMjE5ODcw
-MjQsIDUzLjQwNTQyMDIyOTc3OTQ2Nl0sIFstMi45NzU5NTE1NTgzNTMzNDE2LCA1My40MDYyOTU4
-ODg4NTM5Nl0sIFstMi45NzYxMTAwNDQ1Njc3MDYsIDUzLjQwNjc3OTI3NTg0MTI3NF0sIFstMi45
-NzY1MDA5NDYzMTEwMDI2LCA1My40MDcyMTY2MjYxMDg0XSwgWy0yLjk3Njk3NTAxMDkwODM3Niwg
-NTMuNDA3NTIxMjQ3MjcxMjc2XSwgWy0yLjk4NDYzMDM0Njg2MDQwNCwgNTMuNDExMjEwNzgwMDIy
-MzldLCBbLTIuOTg1NDY5Mjc4NTM4NzQzMywgNTMuNDExMzQzNDU1OTc4NzNdLCBbLTIuOTg2MTA4
-OTIyMzQxNjc2NiwgNTMuNDExMzY3NTY4MTAzMTVdLCBbLTIuOTg3MzIxMDc3MTI2MTQwNywgNTMu
-NDExMTczOTA1OTc2MDldLCBbLTIuOTg3ODIxMjI0ODM4MzM2NywgNTMuNDExMDA4MzI3NTgyNDld
-LCBbLTIuOTg4ODI2MDE5MDI5NTE1LCA1My40MTAzNDYzMzQ2NTk4NF0sIFstMi45ODkwODcxMDcw
-OTAyOTIsIDUzLjQwOTk0NzU4MDM0MzY0XSwgWy0yLjk4OTE2MDM2NDc3MDY0NywgNTMuNDA5Mzk2
-MzExNTk1OF0sIFstMi45ODkyMDk1MjYwMjIzNzEsIDUzLjQwODMzODM1NjYxNTA2XSwgWy0yLjk4
-OTEyNDQ4MjQwOTc5ODcsIDUzLjQwNzMxODQ1Nzk2MTQ5XSwgWy0yLjk4OTE5MTg3NDE5NDk2Mywg
-NTMuNDA3MDQ2MTY0MTM0MzJdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsi
-Y29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRy
-eSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45ODkxOTE4NzQx
-OTQ5NjMsIDUzLjQwNzA0NjE2NDEzNDMyXSwgWy0yLjk4ODcwNDMyMjEwODMwOSwgNTMuNDA2NTY1
-Njk5NTQ2MzZdLCBbLTIuOTg3NzcxODcyMjU3NzUzLCA1My40MDYwMDI5ODA3OTU1N10sIFstMi45
-ODYzODcwNDAyOTc0Mjg2LCA1My40MDU1NDA2MjQ1OTIzMDVdLCBbLTIuOTg1NjY0ODUxNjc2NTM5
-LCA1My40MDUzODQyNDk1MTg4NDZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6
-IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9t
-ZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45ODU2NjQ4
-NTE2NzY1MzksIDUzLjQwNTM4NDI0OTUxODg0Nl0sIFstMi45ODYwNDMyMjc1NzUyMzY0LCA1My40
-MDUzNzM5MzM2NDgyNl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xv
-ciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5Ijog
-eyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3NzI1NjkzMTUyNDg5
-NjUsIDUzLjQwMzA5MjcwMjY0OTg5XSwgWy0yLjk3OTU4Mjk4MzYzMDE0NTUsIDUzLjQwNDMyNTA3
-Njc3NTY4NV0sIFstMi45ODA4MDM0NjM0NzU3Mjg4LCA1My40MDQ3MDMzNzcyNzk1N10sIFstMi45
-ODI5MzY5Njg5NzU3Mjc3LCA1My40MDUwODU3NDY4NjI0MDVdLCBbLTIuOTg1NjY0ODUxNjc2NTM5
-LCA1My40MDUzODQyNDk1MTg4NDZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6
-IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9t
-ZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45ODEyMDgz
-NTkyNzMyOTk2LCA1My40NDAyMTk3MDQwOTM5MV0sIFstMi45ODQ0MjczNDc1NDM0ODI2LCA1My40
-MzkwMDI4MTUwNDA5MV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xv
-ciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5Ijog
-eyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4MDQyMTM1MTA4NTE5
-MjcsIDUzLjQ0MDUxNTg3OTI4OTYzXSwgWy0yLjk4MDMxNDYzNDY3ODQ1MjQsIDUzLjQ0MDU1NjAz
-NjczOTM4XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNG
-RkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUi
-OiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTc2MzIxNjkwNDA4MzAyNSwgNTMu
-NDAwNDAxMzM4OTU3OTZdLCBbLTIuOTc2MzUyODA5MTA4Nzc2MywgNTMuNDAxNDkwOTkyNDMwNl0s
-IFstMi45NzY0ODY4MTAzODkzODUzLCA1My40MDIxODY1Mzg0ODUzOTVdLCBbLTIuOTc2ODY3NTE1
-OTc3NDQ4NywgNTMuNDAyNzUxNzAzODM3MTI2XSwgWy0yLjk3NzI1NjkzMTUyNDg5NjUsIDUzLjQw
-MzA5MjcwMjY0OTg5XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9y
-IjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7
-InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTc3MjU2OTMxNTI0ODk2
-NSwgNTMuNDAzMDkyNzAyNjQ5ODldLCBbLTIuOTc2NzE1NzY4MzU1NTc1NiwgNTMuNDAyNzk4NTE5
-Mzk1OV0sIFstMi45NzYxNzc1OTgxMDA5NjczLCA1My40MDIzMjU5Njg4NjQ3XSwgWy0yLjk3NTg4
-ODIyMjYyMzgzMTIsIDUzLjQwMTgxNDE2ODA4NDA2Nl0sIFstMi45NzU5MTEyODY1MzQ5NzksIDUz
-LjQwMTMwMzg1NzcxODAzXSwgWy0yLjk3NjMyMTY5MDQwODMwMjUsIDUzLjQwMDQwMTMzODk1Nzk2
-XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAi
-LCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGlu
-ZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTc2NTYxMzcyMDYzNzkxNiwgNTMuMzg4NzI4
-NDA2NDk0OTJdLCBbLTIuOTc2NjQ2MzgxMjIwNzEzLCA1My4zODcwMTAxMDIxMDQxNTZdXX0sICJ0
-eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFj
-aXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5n
-IiwgImNvb3JkaW5hdGVzIjogW1stMi45NzY0ODY4MzA0MjQ1NzM1LCA1My4zOTAxMTYwMTExODUy
-NTZdLCBbLTIuOTc2NTQ4OTA1NzE3NTMzLCA1My4zODg4NjY5MzgzMjEwNjVdXX0sICJ0eXBlIjog
-IkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5Ijog
-MSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNv
-b3JkaW5hdGVzIjogW1stMi45NzY0NTg5NzIzODAzNTYsIDUzLjM5MDM3NzAwODQ2NTQ1XSwgWy0y
-Ljk3NjM4NTc1MzQ4MzEyMTMsIDUzLjM5MTc3MDA4NTEzMTAzNl1dfSwgInR5cGUiOiAiRmVhdHVy
-ZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2Vp
-Z2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0
-ZXMiOiBbWy0yLjk3NjM1OTIzMTE0NzAxOTMsIDUzLjM5MjE3NDg5NDUwMzQwNV0sIFstMi45NzYy
-Nzg2Mzg1NDE4OTczLCA1My4zOTM2Nzk2NzM2NTIwN11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJw
-cm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0Ijog
-M319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBb
-Wy0yLjk3NjMyMTY5MDQwODMwMjUsIDUzLjQwMDQwMTMzODk1Nzk2XSwgWy0yLjk3NjI1NjcwNTY0
-Njk1ODQsIDUzLjM5NDM4MzU5NzMwOTM2NF1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0
-aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7
-Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3
-Njc0NTYzNDIzODg5ODUsIDUzLjQ0MTY1MjcwOTE5MTkzNV0sIFstMi45NzQ0NzAyNDI0NDI2Njc0
-LCA1My40NDIxOTM1NTA4MjM3NzRdLCBbLTIuOTcyMTkwNjI0NzIyMTQ5NSwgNTMuNDQyNTQ1MjU3
-NDgzMTZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZG
-RkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6
-ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45NzM1OTA0MjU5ODk0NjQzLCA1My40
-MDcxNjMyNzMwMjIxM10sIFstMi45NzM0NTI4ODkwODQ0NTg1LCA1My40MDcxNjc5MDAyODcyNl1d
-fSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwg
-Im9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVT
-dHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3MzU3ODU3NTQ3NjQzMjYsIDUzLjQwNzE4NDQ5
-MzYzMDMxXSwgWy0yLjk3MzQ1Mjg4OTA4NDQ1ODUsIDUzLjQwNzE2NzkwMDI4NzI2XV19LCAidHlw
-ZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0
-eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIs
-ICJjb29yZGluYXRlcyI6IFtbLTIuOTE2MjUxNzQ2NjI1MjQ4NywgNTMuMzYwMTA5MTAyNzA1NjE0
-XSwgWy0yLjkxNTI2MTE0ODQ0MTIyMjUsIDUzLjM1OTc0MTQxNjgyNTIzXV19LCAidHlwZSI6ICJG
-ZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEs
-ICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29y
-ZGluYXRlcyI6IFtbLTIuOTQyMzIyMjE3MTIzNTAxLCA1My4zNzA5NzA1Njk2MzAyMl0sIFstMi45
-NDAwODMyMjkyNzcxOCwgNTMuMzcwMDAzNjY5MjEwMTddXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAi
-cHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6
-IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjog
-W1stMi45NTI3OTQzNjM0ODY4MywgNTMuMzc1NjEyNDYwNzI5NzRdLCBbLTIuOTUxNzQyOTkwNzQ2
-MjIsIDUzLjM3NTEzODMyMzI0MTgzXV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMi
-OiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2Vv
-bWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTU3NTg3
-MzI3MTk0OTc1LCA1My4zNzczNTEzOTM5OTEyMDVdLCBbLTIuOTcxMjM1Njg5NTI1MjkxLCA1My4z
-ODA3MjY4Mzk3MzQ5N11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xv
-ciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5Ijog
-eyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk1NDQ1NDA5MTI3NTE3
-MzgsIDUzLjQwMzgyNTUyMjUwNDk2XSwgWy0yLjk1MjU1MDYxNTcyMTIyNywgNTMuNDAzNDkxMjM3
-NTI0MjVdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZG
-RkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6
-ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45MjczODAyNjg3MDg2OTA3LCA1My40
-MDQ4NTYxODc3NTc5MV0sIFstMi45MjY4MDg1NDkzODExODA0LCA1My40MDUxMjA0MDY2ODQ3MV1d
-fSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwg
-Im9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVT
-dHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk2MTAyNTkzNjc0NDMxMTIsIDUzLjQwNDk2NTM1
-NjU5MjkyXSwgWy0yLjk1OTc4ODUwMDE5MzEyMywgNTMuNDA0NzY4Mzg3MTYwNjhdXX0sICJ0eXBl
-IjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5
-IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwg
-ImNvb3JkaW5hdGVzIjogW1stMi45MjY2NTQ1MzA2ODIyMDI3LCA1My40MDUxOTcxMDkwMDM2M10s
-IFstMi45MjU5MzA2NTcxNzY0Njg1LCA1My40MDU3Njk4MzQ3MTQzNF0sIFstMi45MjU2ODgxMTEw
-OTk5MDg1LCA1My40MDYzNTU3MjM2NzAzN11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0
-aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7
-Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk2
-MTQzODcyMzIxMjkxMzMsIDUzLjQwNTAyNjc1Mjk5Nzc4XSwgWy0yLjk2MzgzMjczODk1NDM5ODYs
-IDUzLjQwNTQyODU3ODgzMzc1XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7
-ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0
-cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTIxNTQzOTEy
-MDg3NTAyLCA1My40MDYwNzg1NjkyMDQ5NjVdLCBbLTIuOTE5NjI0MjUzNDQ1ODU1NiwgNTMuNDA1
-NjQyMDQwODY4NTldXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3Ii
-OiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsi
-dHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45NjgzOTQ2MTkxNTk4MzI3
-LCA1My40MDYyNjMyMjU1MjIxOTZdLCBbLTIuOTY0MzI4NDM0ODM5NzE0NSwgNTMuNDA1NTYzOTAz
-ODU0Mjg2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNG
-RkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUi
-OiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTI1NjQ4NzM2MDQ3NTYyMywgNTMu
-NDA2NTM3NTE0NTg4ODM0XSwgWy0yLjkyNTY3MTA0NDM1NDYyNzQsIDUzLjQwNjQyMTgzNDQzMDE5
-XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAi
-LCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGlu
-ZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTI1NjM4NTA4NTE4MDczLCA1My40MDY2NTUz
-NDgyOTA5Ml0sIFstMi45MjU2NDQyNDI4ODc1NDMsIDUzLjQwNjU3MzA1NTUyNTk4XV19LCAidHlw
-ZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0
-eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIs
-ICJjb29yZGluYXRlcyI6IFtbLTIuOTY4Mzk0NjE5MTU5ODMyNywgNTMuNDA2MjYzMjI1NTIyMTk2
-XSwgWy0yLjk2ODk4Njg3MzI3NDQyNSwgNTMuNDA2NDU2MzU1NzA2MDZdXX0sICJ0eXBlIjogIkZl
+IiwgImNvb3JkaW5hdGVzIjogW1stMi45OTQ5MTM0NDQ4NTA4MjEsIDUzLjQxMjcwNTE1MjA5NTAy
+XSwgWy0yLjk5Mzk0OTA1Njc4OTA4OTYsIDUzLjQxMTY3MjUzNjU5OTJdXX0sICJ0eXBlIjogIkZl
 YXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwg
 IndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3Jk
-aW5hdGVzIjogW1stMi45NjkwMDM0MTc1MTMzMzUsIDUzLjQwNjM5MDA2Mjk3OTUzXSwgWy0yLjk2
-ODM5NDYxOTE1OTgzMjcsIDUzLjQwNjI2MzIyNTUyMjE5Nl1dfSwgInR5cGUiOiAiRmVhdHVyZSIs
-ICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0
-IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMi
-OiBbWy0yLjk2OTUyNDgzNTIwNDMxNSwgNTMuNDA2NTc3MDIzNzc3MzY2XSwgWy0yLjk3MDM3MDQw
-MDgwOTYyOCwgNTMuNDA2NzI5NzA2OTM3NzVdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVy
-dGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwg
-eyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45
-NzA2NzA0NzQ4MTk2MjQsIDUzLjQwNjc4MTI5MDgyODc4XSwgWy0yLjk3MzYwNzA4Mjc0OTI4MTUs
-IDUzLjQwNzI5MzIwNjg1ODg0Nl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjog
-eyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21l
-dHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3MjA1MDM0
-MjM5MzcxMzIsIDUzLjQwNjkxMjk4NzA0MTgyXSwgWy0yLjk3MzQ1Mjg4OTA4NDQ1ODUsIDUzLjQw
-NzE2NzkwMDI4NzI2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9y
+aW5hdGVzIjogW1stMi45ODkxOTE4NzQxOTQ5NjMsIDUzLjQwNzA0NjE2NDEzNDMxNF0sIFstMi45
+ODk2NTAwODc4NDAwNjUsIDUzLjQwNzYxNjY2OTM4NDk4XSwgWy0yLjk5MDQ2MTk0MzMwNzE4Nywg
+NTMuNDA4OTgxODI3MjY5OTZdLCBbLTIuOTkwOTkzMDk1NTgwMDAxNywgNTMuNDA5NjIwODQ3MDQ1
+OTg2XSwgWy0yLjk5MTQ4MzAyMTA5ODM1OCwgNTMuNDEwMDkwNzY1NTEzNzldLCBbLTIuOTkyMDc3
+MTM3NDg3NTE5LCA1My40MTA1MTg2NDY5MDM0N10sIFstMi45OTM5NDkwNTY3ODkwODk2LCA1My40
+MTE2NzI1MzY1OTkyXV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9y
 IjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7
-InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTczNTcwNDgwMzE2ODU4
-LCA1My40MDcyMTIwNjU3NDUxOF0sIFstMi45NzM0NTI4ODkwODQ0NTg1LCA1My40MDcxNjc5MDAy
-ODcyNl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZG
+InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTkzOTQ5MDU2Nzg5MDg5
+NiwgNTMuNDExNjcyNTM2NTk5Ml0sIFstMi45OTM2NDA4OTU4MDg3NzQzLCA1My40MTEzMzQ4NzA4
+MDI1MDZdLCBbLTIuOTkyMzg2NjgyMjU1NDc0LCA1My40MTAzODAyNTE0NzAzXSwgWy0yLjk5MTM1
+MDcyMTk0NDM2NzYsIDUzLjQwOTQ2NzEzMzUwOTU3XSwgWy0yLjk4OTA0NDQ5NDEzMjUyMywgNTMu
+NDA2NzU2MTQzODE1NTY0XSwgWy0yLjk4ODUzMzU5Njk0NjAyMywgNTMuNDA2MjkzNjcwMDIzOTFd
+LCBbLTIuOTg3NzE1MzAwNDYyOTM0NywgNTMuNDA1ODI3MTc1ODg4MjJdLCBbLTIuOTg3MDAwNTM1
+ODE5ODc5LCA1My40MDU1ODI1NjYwMDUwNl0sIFstMi45ODYwNDMyMjc1NzUyMzY0LCA1My40MDUz
+NzM5MzM2NDgyNV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6
+ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0
+eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4NjQ2ODcwMDAwNjc1NTYs
+IDUzLjQzODYxMzI5MDg5MDkzNV0sIFstMi45ODcxNTg3OTkxOTY4OTQ0LCA1My40Mzg2MDc3Njgx
+MzA3Nl0sIFstMi45ODg2NzUwNjM0MTM0MzAzLCA1My40Mzg4NTUwOTMzNzgyNDRdLCBbLTIuOTg5
+MzM0MDIxMjQ4MDU2LCA1My40MzkwNzcwNTQ5MTYzNDZdLCBbLTIuOTkwMDM5MTk4ODIxMjIxLCA1
+My40Mzk0NDEyODMyOTA3M11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJj
+b2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5
+IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4NjA0MzIyNzU3
+NTIzNjQsIDUzLjQwNTM3MzkzMzY0ODI1XSwgWy0yLjk4OTIyNDAwMTg3MzMzMjMsIDUzLjQwNTI2
+NzI1NzUwNDIzNV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6
+ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0
+eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4OTIyNDAwMTg3MzMzMjMs
+IDUzLjQwNTI2NzI1NzUwNDIzNV0sIFstMi45ODMyNTQ5OTc0MzkxMjk2LCA1My40MDQ2NzY0Njg1
+ODI4MV0sIFstMi45ODExMDk2MDE1NDE1NTQsIDUzLjQwNDU2MDk5MzkwMDgzXSwgWy0yLjk3OTU4
+Mjk4MzYzMDE0NTUsIDUzLjQwNDMyNTA3Njc3NTY4XSwgWy0yLjk3ODY0OTk0MTgxMjk5MiwgNTMu
+NDA0MzA1NzYyNzE1NjJdLCBbLTIuOTc3NjQ2ODU3OTEyMDEyLCA1My40MDQ1MTE3MzgxOTk4NV0s
+IFstMi45NzcwMDk1OTYzNTcwMTE2LCA1My40MDQ3Mzc4MTMzNDI3MV0sIFstMi45NzY1NzI1MDUz
+MDU0MTMsIDUzLjQwNDk2ODk4OTQwOTMyXSwgWy0yLjk3NjE3NzMwMjE5ODcwMjQsIDUzLjQwNTQy
+MDIyOTc3OTQ2Nl0sIFstMi45NzU5NTE1NTgzNTMzNDE2LCA1My40MDYyOTU4ODg4NTM5Nl0sIFst
+Mi45NzYxMTAwNDQ1Njc3MDYsIDUzLjQwNjc3OTI3NTg0MTI3NF0sIFstMi45NzY1MDA5NDYzMTEw
+MDI2LCA1My40MDcyMTY2MjYxMDg0XSwgWy0yLjk3Njk3NTAxMDkwODM3NiwgNTMuNDA3NTIxMjQ3
+MjcxMjc2XSwgWy0yLjk4NDYzMDM0Njg2MDQwNCwgNTMuNDExMjEwNzgwMDIyMzldLCBbLTIuOTg1
+NDY5Mjc4NTM4NzQzMywgNTMuNDExMzQzNDU1OTc4NzI0XSwgWy0yLjk4NjEwODkyMjM0MTY3Niwg
+NTMuNDExMzY3NTY4MTAzMTVdLCBbLTIuOTg3MzIxMDc3MTI2MTQwNywgNTMuNDExMTczOTA1OTc2
+MDhdLCBbLTIuOTg3ODIxMjI0ODM4MzM2LCA1My40MTEwMDgzMjc1ODI0OF0sIFstMi45ODg4MjYw
+MTkwMjk1MTUsIDUzLjQxMDM0NjMzNDY1OTg0XSwgWy0yLjk4OTA4NzEwNzA5MDI5MTQsIDUzLjQw
+OTk0NzU4MDM0MzYzXSwgWy0yLjk4OTE2MDM2NDc3MDY0NywgNTMuNDA5Mzk2MzExNTk1OF0sIFst
+Mi45ODkyMDk1MjYwMjIzNzEsIDUzLjQwODMzODM1NjYxNTA1NF0sIFstMi45ODkxMjQ0ODI0MDk3
+OTgyLCA1My40MDczMTg0NTc5NjE0OV0sIFstMi45ODkxOTE4NzQxOTQ5NjMsIDUzLjQwNzA0NjE2
+NDEzNDMxNF1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIj
+RkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBl
+IjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk4OTE5MTg3NDE5NDk2MywgNTMu
+NDA3MDQ2MTY0MTM0MzE0XSwgWy0yLjk4ODcwNDMyMjEwODMwOSwgNTMuNDA2NTY1Njk5NTQ2MzZd
+LCBbLTIuOTg3NzcxODcyMjU3NzUzLCA1My40MDYwMDI5ODA3OTU1Nl0sIFstMi45ODYzODcwNDAy
+OTc0Mjg2LCA1My40MDU1NDA2MjQ1OTIzMDVdLCBbLTIuOTg1NjY0ODUxNjc2NTM5LCA1My40MDUz
+ODQyNDk1MTg4NDZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3Ii
+OiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsi
+dHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45ODU2NjQ4NTE2NzY1Mzks
+IDUzLjQwNTM4NDI0OTUxODg0Nl0sIFstMi45ODYwNDMyMjc1NzUyMzY0LCA1My40MDUzNzM5MzM2
+NDgyNV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZG
 RjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjog
-IkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3NDg3ODAzNjcxNTUyOCwgNTMuNDQ3
-MjI5Mjc4ODg1MzldLCBbLTIuOTc0NzI4NTA0NDM4ODY1LCA1My40NDczNzgyODAwOTgyM11dfSwg
+IkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3NzI1NjkzMTUyNDg5NiwgNTMuNDAz
+MDkyNzAyNjQ5ODldLCBbLTIuOTc5NTgyOTgzNjMwMTQ1NSwgNTMuNDA0MzI1MDc2Nzc1NjhdLCBb
+LTIuOTgwODAzNDYzNDc1NzI4OCwgNTMuNDA0NzAzMzc3Mjc5NTVdLCBbLTIuOTgyOTM2OTY4OTc1
+NzI3NywgNTMuNDA1MDg1NzQ2ODYyNDA1XSwgWy0yLjk4NTY2NDg1MTY3NjUzOSwgNTMuNDA1Mzg0
+MjQ5NTE4ODQ2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjog
+IiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5
+cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTgxMjA4MzU5MjczMjk5Niwg
+NTMuNDQwMjE5NzA0MDkzOTFdLCBbLTIuOTg0NDI3MzQ3NTQzNDgyNiwgNTMuNDM5MDAyODE1MDQw
+OTFdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYw
+MCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJM
+aW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45ODA0MjEzNTEwODUxOTI3LCA1My40NDA1
+MTU4NzkyODk2M10sIFstMi45ODAzMTQ2MzQ2Nzg0NTI0LCA1My40NDA1NTYwMzY3MzkzOF1dfSwg
 InR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9w
 YWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJp
-bmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3MzU1NjgxMjEzNjYyMywgNTMuNDQ4NTQ1NzY4NzM1
-NDM2XSwgWy0yLjk3MjI2OTQ5NTM4MjY5NCwgNTMuNDQ5ODI4MzgwMzAzMjQ1XV19LCAidHlwZSI6
-ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6
-IDEsICJ3ZWlnaHQiOiAzfX1dfTsKCmlmIChnakRhdGEuZmVhdHVyZXMubGVuZ3RoICE9IDApIHsK
-ICB2YXIgZ2ogPSBMLmdlb0pzb24oZ2pEYXRhLCB7CiAgICBzdHlsZTogZnVuY3Rpb24gKGZlYXR1
-cmUpIHsKICAgICAgcmV0dXJuIGZlYXR1cmUucHJvcGVydGllczsKICAgIH0sCiAgICBwb2ludFRv
-TGF5ZXI6IGZ1bmN0aW9uIChmZWF0dXJlLCBsYXRsbmcpIHsKICAgICAgdmFyIGljb24gPSBMLmRp
-dkljb24oeydodG1sJzogZmVhdHVyZS5wcm9wZXJ0aWVzLmh0bWwsIAogICAgICAgIGljb25BbmNo
-b3I6IFtmZWF0dXJlLnByb3BlcnRpZXMuYW5jaG9yX3gsIAogICAgICAgICAgICAgICAgICAgICBm
-ZWF0dXJlLnByb3BlcnRpZXMuYW5jaG9yX3ldLCAKICAgICAgICAgIGNsYXNzTmFtZTogJ2VtcHR5
-J30pOyAgLy8gV2hhdCBjYW4gSSBkbyBhYm91dCBlbXB0eT8KICAgICAgcmV0dXJuIEwubWFya2Vy
-KGxhdGxuZywge2ljb246IGljb259KTsKICAgIH0KICB9KTsKICBnai5hZGRUbyhtYXApOwogIAog
-IG1hcC5maXRCb3VuZHMoZ2ouZ2V0Qm91bmRzKCkpOwp9IGVsc2UgewogIG1hcC5zZXRWaWV3KFsw
-LCAwXSwgMSk7Cn0KPC9zY3JpcHQ+CjwvYm9keT4=
+bmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3NjMyMTY5MDQwODMwMywgNTMuNDAwNDAxMzM4OTU3
+OTU1XSwgWy0yLjk3NjM1MjgwOTEwODc3NjMsIDUzLjQwMTQ5MDk5MjQzMDZdLCBbLTIuOTc2NDg2
+ODEwMzg5Mzg1MywgNTMuNDAyMTg2NTM4NDg1Mzk1XSwgWy0yLjk3Njg2NzUxNTk3NzQ0ODcsIDUz
+LjQwMjc1MTcwMzgzNzEyXSwgWy0yLjk3NzI1NjkzMTUyNDg5NiwgNTMuNDAzMDkyNzAyNjQ5ODld
+XX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIs
+ICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5l
+U3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45NzcyNTY5MzE1MjQ4OTYsIDUzLjQwMzA5Mjcw
+MjY0OTg5XSwgWy0yLjk3NjcxNTc2ODM1NTU3NTYsIDUzLjQwMjc5ODUxOTM5NTldLCBbLTIuOTc2
+MTc3NTk4MTAwOTY3LCA1My40MDIzMjU5Njg4NjQ3XSwgWy0yLjk3NTg4ODIyMjYyMzgzMTIsIDUz
+LjQwMTgxNDE2ODA4NDA1XSwgWy0yLjk3NTkxMTI4NjUzNDk3OSwgNTMuNDAxMzAzODU3NzE4MDJd
+LCBbLTIuOTc2MzIxNjkwNDA4MzAzLCA1My40MDA0MDEzMzg5NTc5NTVdXX0sICJ0eXBlIjogIkZl
+YXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwg
+IndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3Jk
+aW5hdGVzIjogW1stMi45NzY1NjEzNzIwNjM3OTE2LCA1My4zODg3Mjg0MDY0OTQ5Ml0sIFstMi45
+NzY2NDYzODEyMjA3MTMsIDUzLjM4NzAxMDEwMjEwNDE1Nl1dfSwgInR5cGUiOiAiRmVhdHVyZSIs
+ICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0
+IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMi
+OiBbWy0yLjk3NjQ4NjgzMDQyNDU3MzUsIDUzLjM5MDExNjAxMTE4NTI0XSwgWy0yLjk3NjU0ODkw
+NTcxNzUzMywgNTMuMzg4ODY2OTM4MzIxMDY1XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3Bl
+cnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0s
+IHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIu
+OTc2NDU4OTcyMzgwMzU2LCA1My4zOTAzNzcwMDg0NjU0NV0sIFstMi45NzYzODU3NTM0ODMxMjEz
+LCA1My4zOTE3NzAwODUxMzEwMzZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6
+IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9t
+ZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45NzYzNTky
+MzExNDcwMTksIDUzLjM5MjE3NDg5NDUwMzQwNV0sIFstMi45NzYyNzg2Mzg1NDE4OTczLCA1My4z
+OTM2Nzk2NzM2NTIwN11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xv
+ciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5Ijog
+eyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3NjMyMTY5MDQwODMw
+MywgNTMuNDAwNDAxMzM4OTU3OTU1XSwgWy0yLjk3NjI1NjcwNTY0Njk1ODQsIDUzLjM5NDM4MzU5
+NzMwOTM2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNG
+RkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUi
+OiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTc2NzQ1NjM0MjM4ODk4NSwgNTMu
+NDQxNjUyNzA5MTkxOTNdLCBbLTIuOTc0NDcwMjQyNDQyNjY3NCwgNTMuNDQyMTkzNTUwODIzNzdd
+LCBbLTIuOTcyMTkwNjI0NzIyMTQ5NSwgNTMuNDQyNTQ1MjU3NDgzMTU0XV19LCAidHlwZSI6ICJG
+ZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEs
+ICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29y
+ZGluYXRlcyI6IFtbLTIuOTczNTkwNDI1OTg5NDY0LCA1My40MDcxNjMyNzMwMjIxM10sIFstMi45
+NzM0NTI4ODkwODQ0NTgsIDUzLjQwNzE2NzkwMDI4NzI2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwg
+InByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQi
+OiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6
+IFtbLTIuOTczNTc4NTc1NDc2NDMyNiwgNTMuNDA3MTg0NDkzNjMwMzA0XSwgWy0yLjk3MzQ1Mjg4
+OTA4NDQ1OCwgNTMuNDA3MTY3OTAwMjg3MjZdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVy
+dGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwg
+eyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45
+MTYyNTE3NDY2MjUyNDgsIDUzLjM2MDEwOTEwMjcwNTYxNF0sIFstMi45MTUyNjExNDg0NDEyMjI1
+LCA1My4zNTk3NDE0MTY4MjUyMl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjog
+eyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21l
+dHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk0MjMyMjIx
+NzEyMzUwMSwgNTMuMzcwOTcwNTY5NjMwMjJdLCBbLTIuOTQwMDgzMjI5Mjc3MTgsIDUzLjM3MDAw
+MzY2OTIxMDE3XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjog
+IiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5
+cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTUyNzk0MzYzNDg2ODMsIDUz
+LjM3NTYxMjQ2MDcyOTczXSwgWy0yLjk1MTc0Mjk5MDc0NjIyLCA1My4zNzUxMzgzMjMyNDE4M11d
+fSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwg
+Im9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVT
+dHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk1NzU4NzMyNzE5NDk3NSwgNTMuMzc3MzUxMzkz
+OTkxMjA1XSwgWy0yLjk3MTIzNTY4OTUyNTI5MSwgNTMuMzgwNzI2ODM5NzM0OTddXX0sICJ0eXBl
+IjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5
+IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwg
+ImNvb3JkaW5hdGVzIjogW1stMi45NTQ0NTQwOTEyNzUxNzM4LCA1My40MDM4MjU1MjI1MDQ5Nl0s
+IFstMi45NTI1NTA2MTU3MjEyMjcsIDUzLjQwMzQ5MTIzNzUyNDI0XV19LCAidHlwZSI6ICJGZWF0
+dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3
+ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGlu
+YXRlcyI6IFtbLTIuOTI3MzgwMjY4NzA4NjkwNywgNTMuNDA0ODU2MTg3NzU3ODldLCBbLTIuOTI2
+ODA4NTQ5MzgxMTgwNCwgNTMuNDA1MTIwNDA2Njg0N11dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJw
+cm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0Ijog
+M319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBb
+Wy0yLjk2MTAyNTkzNjc0NDMxMTIsIDUzLjQwNDk2NTM1NjU5MjkyNV0sIFstMi45NTk3ODg1MDAx
+OTMxMjMsIDUzLjQwNDc2ODM4NzE2MDY4Nl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0
+aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7
+Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjky
+NjY1NDUzMDY4MjIwMjcsIDUzLjQwNTE5NzEwOTAwMzYzXSwgWy0yLjkyNTkzMDY1NzE3NjQ2NzYs
+IDUzLjQwNTc2OTgzNDcxNDM0XSwgWy0yLjkyNTY4ODExMTA5OTkwODUsIDUzLjQwNjM1NTcyMzY3
+MDM3XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZG
+MDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAi
+TGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTYxNDM4NzIzMjEyOTEzMywgNTMuNDA1
+MDI2NzUyOTk3NzhdLCBbLTIuOTYzODMyNzM4OTU0Mzk4NiwgNTMuNDA1NDI4NTc4ODMzNzVdXX0s
+ICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJv
+cGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3Ry
+aW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45MjE1NDM5MTIwODc1MDE3LCA1My40MDYwNzg1Njky
+MDQ5NV0sIFstMi45MTk2MjQyNTM0NDU4NTY1LCA1My40MDU2NDIwNDA4Njg1OF1dfSwgInR5cGUi
+OiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHki
+OiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAi
+Y29vcmRpbmF0ZXMiOiBbWy0yLjk2ODM5NDYxOTE1OTgzMjMsIDUzLjQwNjI2MzIyNTUyMjE4XSwg
+Wy0yLjk2NDMyODQzNDgzOTcxNDUsIDUzLjQwNTU2MzkwMzg1NDI4Nl1dfSwgInR5cGUiOiAiRmVh
+dHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAi
+d2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRp
+bmF0ZXMiOiBbWy0yLjkyNTY0ODczNjA0NzU2MjMsIDUzLjQwNjUzNzUxNDU4ODgzXSwgWy0yLjky
+NTY3MTA0NDM1NDYyNzQsIDUzLjQwNjQyMTgzNDQzMDE5XV19LCAidHlwZSI6ICJGZWF0dXJlIiwg
+InByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQi
+OiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6
+IFtbLTIuOTI1NjM4NTA4NTE4MDcyNywgNTMuNDA2NjU1MzQ4MjkwOTA0XSwgWy0yLjkyNTY0NDI0
+Mjg4NzU0MywgNTMuNDA2NTczMDU1NTI1OTddXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVy
+dGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fSwg
+eyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVzIjogW1stMi45
+NjgzOTQ2MTkxNTk4MzIzLCA1My40MDYyNjMyMjU1MjIxOF0sIFstMi45Njg5ODY4NzMyNzQ0MjUs
+IDUzLjQwNjQ1NjM1NTcwNjA2XV19LCAidHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7
+ImNvbG9yIjogIiNGRkZGMDAiLCAib3BhY2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0
+cnkiOiB7InR5cGUiOiAiTGluZVN0cmluZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTY5MDAzNDE3
+NTEzMzM1LCA1My40MDYzOTAwNjI5Nzk1M10sIFstMi45NjgzOTQ2MTkxNTk4MzIzLCA1My40MDYy
+NjMyMjU1MjIxOF1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6
+ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0
+eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk2OTUyNDgzNTIwNDMxNSwg
+NTMuNDA2NTc3MDIzNzc3MzZdLCBbLTIuOTcwMzcwNDAwODA5NjI4LCA1My40MDY3Mjk3MDY5Mzc3
+NV1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAw
+IiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxp
+bmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0yLjk3MDY3MDQ3NDgxOTYyNCwgNTMuNDA2Nzgx
+MjkwODI4NzhdLCBbLTIuOTczNjA3MDgyNzQ5MjgxNSwgNTMuNDA3MjkzMjA2ODU4ODQ2XV19LCAi
+dHlwZSI6ICJGZWF0dXJlIiwgInByb3BlcnRpZXMiOiB7ImNvbG9yIjogIiNGRkZGMDAiLCAib3Bh
+Y2l0eSI6IDEsICJ3ZWlnaHQiOiAzfX0sIHsiZ2VvbWV0cnkiOiB7InR5cGUiOiAiTGluZVN0cmlu
+ZyIsICJjb29yZGluYXRlcyI6IFtbLTIuOTcyMDUwMzQyMzkzNzEzMiwgNTMuNDA2OTEyOTg3MDQx
+ODJdLCBbLTIuOTczNDUyODg5MDg0NDU4LCA1My40MDcxNjc5MDAyODcyNl1dfSwgInR5cGUiOiAi
+RmVhdHVyZSIsICJwcm9wZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAx
+LCAid2VpZ2h0IjogM319LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29v
+cmRpbmF0ZXMiOiBbWy0yLjk3MzU3MDQ4MDMxNjg1ODMsIDUzLjQwNzIxMjA2NTc0NTE3XSwgWy0y
+Ljk3MzQ1Mjg4OTA4NDQ1OCwgNTMuNDA3MTY3OTAwMjg3MjZdXX0sICJ0eXBlIjogIkZlYXR1cmUi
+LCAicHJvcGVydGllcyI6IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdo
+dCI6IDN9fSwgeyJnZW9tZXRyeSI6IHsidHlwZSI6ICJMaW5lU3RyaW5nIiwgImNvb3JkaW5hdGVz
+IjogW1stMi45NzQ4NzgwMzY3MTU1MjgsIDUzLjQ0NzIyOTI3ODg4NTM5NV0sIFstMi45NzQ3Mjg1
+MDQ0Mzg4NjQ3LCA1My40NDczNzgyODAwOTgyMl1dfSwgInR5cGUiOiAiRmVhdHVyZSIsICJwcm9w
+ZXJ0aWVzIjogeyJjb2xvciI6ICIjRkZGRjAwIiwgIm9wYWNpdHkiOiAxLCAid2VpZ2h0IjogM319
+LCB7Imdlb21ldHJ5IjogeyJ0eXBlIjogIkxpbmVTdHJpbmciLCAiY29vcmRpbmF0ZXMiOiBbWy0y
+Ljk3MzU1NjgxMjEzNjYyMywgNTMuNDQ4NTQ1NzY4NzM1NDNdLCBbLTIuOTcyMjY5NDk1MzgyNjk0
+LCA1My40NDk4MjgzODAzMDMyNDVdXX0sICJ0eXBlIjogIkZlYXR1cmUiLCAicHJvcGVydGllcyI6
+IHsiY29sb3IiOiAiI0ZGRkYwMCIsICJvcGFjaXR5IjogMSwgIndlaWdodCI6IDN9fV19OwoKaWYg
+KGdqRGF0YS5mZWF0dXJlcy5sZW5ndGggIT0gMCkgewogIHZhciBnaiA9IEwuZ2VvSnNvbihnakRh
+dGEsIHsKICAgIHN0eWxlOiBmdW5jdGlvbiAoZmVhdHVyZSkgewogICAgICByZXR1cm4gZmVhdHVy
+ZS5wcm9wZXJ0aWVzOwogICAgfSwKICAgIHBvaW50VG9MYXllcjogZnVuY3Rpb24gKGZlYXR1cmUs
+IGxhdGxuZykgewogICAgICB2YXIgaWNvbiA9IEwuZGl2SWNvbih7J2h0bWwnOiBmZWF0dXJlLnBy
+b3BlcnRpZXMuaHRtbCwgCiAgICAgICAgaWNvbkFuY2hvcjogW2ZlYXR1cmUucHJvcGVydGllcy5h
+bmNob3JfeCwgCiAgICAgICAgICAgICAgICAgICAgIGZlYXR1cmUucHJvcGVydGllcy5hbmNob3Jf
+eV0sIAogICAgICAgICAgY2xhc3NOYW1lOiAnZW1wdHknfSk7ICAvLyBXaGF0IGNhbiBJIGRvIGFi
+b3V0IGVtcHR5PwogICAgICByZXR1cm4gTC5tYXJrZXIobGF0bG5nLCB7aWNvbjogaWNvbn0pOwog
+ICAgfQogIH0pOwogIGdqLmFkZFRvKG1hcCk7CiAgCiAgbWFwLmZpdEJvdW5kcyhnai5nZXRCb3Vu
+ZHMoKSk7Cn0gZWxzZSB7CiAgbWFwLnNldFZpZXcoWzAsIDBdLCAxKTsKfQo8L3NjcmlwdD4KPC9i
+b2R5Pg==
 " width="100%" height="240"></iframe>
 </div>
 
@@ -24757,7 +24871,7 @@ LCAwXSwgMSk7Cn0KPC9zY3JpcHQ+CjwvYm9keT4=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">rasterio</span>
@@ -24790,7 +24904,7 @@ LCAwXSwgMSk7Cn0KPC9zY3JpcHQ+CjwvYm9keT4=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Plotting</span>
@@ -25556,8 +25670,15 @@ AElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<p><strong>[Optional exercise. Difficulty: 3/5]</strong></p>
+<p><strong>[Optional exercise]</strong></p>
 <p>Reproduce the raster map above in larger size (e.g. 14 by 14) and add the polygons of Liverpool.</p>
+<!--
+# Plotting
+f, ax = plt.subplots(1, figsize=(14, 14))
+ax.imshow(pix, extent=bounds)
+lsoas.plot(axes=ax)
+-->
+
 <hr>
 
 </div>
