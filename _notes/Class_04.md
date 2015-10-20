@@ -2,12 +2,30 @@
 title: Week 4 - Choropleth mapping
 ---
 
-**[Slides** - [html](../revealjs/intro_esda1.html)**]**
+### Slides
 
-* Choropleth mapping (different classifiers)
-* Lying with maps: MAUP
+- [html](../slides/lecture_03.html)
+- [pdf](../slides/lecture_03.pdf)
 
+### To do before class
+
+* Lecture on  "Statistical maps" by Luc Anselin
+  ([link](https://geodacenter.asu.edu/statistical-map) to 25min video).
+* Lecture on "Special maps" by Luc Anselin
+  ([link](https://geodacenter.asu.edu/special-maps) to 20min video).
 
 ### Related readings
+
+* The modifiable areal unit problem is treated in depth in {% cite openshaw1984modifiable %}.
+* Color palettes for maps in [ColorBrewer](http://colorbrewer2.org/).
+* James Cheshire and Oliver Uberti's *"The Information Capital"* is full of
+  beautiful and clever maps ([book site](http://theinformationcapital.com/)).
+* If you liked the bit about cartograms, the overview by Waldo Tobler is an
+  excellent resource
+  ([pdf](http://www.geog.ucsb.edu/~kclarke/Geography232/ToblerCartograms.pdf)).
+
+### References
+
+{% bibliography --cited %}
 
 
