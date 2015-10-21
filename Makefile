@@ -10,7 +10,7 @@ le03:
 	decktape automatic -s 1280x960 slides/lecture_03.html slides/lecture_03.pdf
 le04:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_04.md -o slides/lecture_04.html
-	#decktape automatic -s 1280x960 slides/lecture_04.html slides/lecture_04.pdf
+	decktape automatic -s 1280x960 slides/lecture_04.html slides/lecture_04.pdf
 le05:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_05.md -o slides/lecture_05.html
 	#decktape automatic -s 1280x960 slides/lecture_05.html slides/lecture_05.pdf
