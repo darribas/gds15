@@ -39,15 +39,53 @@ Before we delve into different types of data maps...
 
 ##
 
-Figure 1 of dots --> Overlay --> Choropleth
+<center>
+<img src="../content/lectures/figs/l04_maup_pts.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_2x2_grid.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_2x2_map.png" alt=""
+style="width:300px;height:300px;"/>
+</center>
 
 ##
 
-Figure 2 of dots --> Overlay --> Choropleth
+<center>
+<img src="../content/lectures/figs/l04_maup_pts.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_5x5_grid.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_5x5_map.png" alt=""
+style="width:300px;height:300px;"/>
+</center>
 
 ##
 
-Compare both choropleths
+<center>
+<img src="../content/lectures/figs/l04_maup_pts.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_10x10_grid.png" alt=""
+style="width:300px;height:300px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_maup_10x10_map.png" alt=""
+style="width:300px;height:300px;"/>
+</center>
+
+##
+
+<center>
+<img src="../content/lectures/figs/l04_maup_2x2_map.png" alt=""
+style="width:300px;height:300px;"/>
+<img src="../content/lectures/figs/l04_maup_5x5_map.png" alt=""
+style="width:300px;height:300px;"/>
+<img src="../content/lectures/figs/l04_maup_10x10_map.png" alt=""
+style="width:300px;height:300px;"/>
+</center>
 
 ## MAUP
 
