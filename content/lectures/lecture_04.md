@@ -163,13 +163,12 @@ interpretation, or obscures the intended representation. </li>
 ## Cartograms
 
 <center>
-<div style="height: 400px;" markdown="1">
-![](../content/lectures/figs/l04_liv_choro.png)
- <span class="fragment"> 
-![](../content/lectures/figs/l04_liv_carto.png)
-</div>
+<img src="../content/lectures/figs/l04_liv_choro.png" alt=""
+style="width:400px;height:500px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l04_liv_carto.png" alt=""
+style="width:400px;height:500px;"/>
 </center>
-
 
 ## {data-background=../content/lectures/figs/l04_carto_consumption.png}
 
@@ -190,7 +189,11 @@ create a map for each *bucket*
 
 ## Conditional maps
 
-Example with Liverpool data
+<center>
+<div style="width: 600px;" markdown="1">
+![](../content/lectures/figs/l04_conditional_plot.png)
+</div>
+</center>
 
 #
 ## Space-Time mapping
