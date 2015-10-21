@@ -110,6 +110,10 @@
     <h2></h2>
     <p>Figure 2 of dots --&gt; Overlay --&gt; Choropleth</p>
     </section>
+    <section id="section-7" class="level2">
+    <h2></h2>
+    <p>Compare both choropleths</p>
+    </section>
     <section id="maup-1" class="level2">
     <h2>MAUP</h2>
     <p><strong>Scale</strong> and <strong>delineation mismatch</strong> between:</p>
@@ -117,19 +121,23 @@
     <li>Underlying process (e.g. individuals, firms, shops)</li>
     <li>Unit of measurement (e.g. neighborhoods, regions, etc.)</li>
     </ul>
+    <p>In some cases, it can <strong>seriously mislead</strong> analysis on aggregated data</p>
     <p><span class="fragment">Always keep <strong>MAUP</strong> in mind when exploring aggregated data!!!</p>
     </section>
     </section>
-    <section id="section-7" class="level1">
+    <section id="section-8" class="level1">
     <h1></h1>
     <section id="choropleths" class="level2">
     <h2>Choropleths</h2>
     </section>
     <section id="choropleths-1" class="level2">
     <h2>Choropleths</h2>
+    <center>
+    <em>Thematic map in which values of a variable are encoded using a color gradient of some sort</em>
+    </center>
+    
     <ul>
     <li>Counterpart of the histogram</li>
-    <li><em>Thematic map in which values of a variable are encoded using a color gradient of some sort</em></li>
     <li><strong>Values</strong> are <strong>classified</strong> into specific <strong>colors</strong>: value --&gt; bin</li>
     <li><strong>Information loss</strong> as a trade off for <strong>simplicity</strong></li>
     </ul>
@@ -167,15 +175,51 @@
     <img src="../content/lectures/figs/l04_heatmap.png" />
     </div>
     </section>
+    <section id="color-schemes" class="level2">
+    <h2>Color schemes</h2>
+    </section>
+    <section id="section-9" class="level2" data-background="../content/lectures/figs/l04_colorbrewer.png">
+    <h2></h2>
+    <p>[<a href="http://colorbrewer2.org/">Source</a>]</p>
+    </section>
     <section id="unique-values" class="level2">
     <h2>Unique values</h2>
-    <p>Same value span for each bin</p>
+    <ul>
+    <li>Categorical data</li>
+    <li>No gradient (reflect it with the color scheme!!!)</li>
+    <li>Examples: Religion, country of origin...</li>
+    </ul>
+    </section>
+    <section id="unique-values-1" class="level2">
+    <h2>Unique values</h2>
+    <center>
+    <div style="height: 600px;" markdown="1">
+    <img src="../content/lectures/figs/l04_unique_values.png" />
+    </div>
+    </center>
+    
     </section>
     <section id="equal-interval" class="level2">
     <h2>Equal interval</h2>
+    <ul>
+    <li>Take the <strong>value</strong> span of the data to represent and split it equally</li>
+    <li><strong>Splitting</strong> happens based on the <strong>numerical value</strong></li>
+    <li>Gives more weight to outliers if the distribution is skewed</li>
+    </ul>
     </section>
-    <section id="quintiles" class="level2">
-    <h2>Quintiles</h2>
+    <section id="section-10" class="level2" data-background="../content/lectures/figs/l04_equal_interval.png">
+    <h2></h2>
+    </section>
+    <section id="quantiles" class="level2">
+    <h2>Quantiles</h2>
+    <ul>
+    <li>Regardless of numerical values, split the distribution keeping the same amount of values in each bin</li>
+    <li><strong>Splitting</strong> based on the <strong>rank</strong> of the value</li>
+    <li>If distribution is skewed, it can put very different values in the same bin</li>
+    </ul>
+    </section>
+    <section id="section-11" class="level2" data-background="../content/lectures/figs/l04_quantiles.png">
+    <h2></h2>
     </section>
     <section id="other" class="level2">
     <h2>Other</h2>
@@ -187,11 +231,15 @@
     </section>
     <section id="tips" class="level2">
     <h2>Tips</h2>
-    <p>Skewed distributions</p>
-    <p>Combine alternative options</p>
+    <p>Different classification schemes can produce widely different maps as a result of:</p>
+    <ul>
+    <li>The distribution of the values</li>
+    <li>The inherent simplification that a choropleth implies</li>
+    </ul>
+    <p>Best advice is to <strong>explore</strong> different ones and <strong>combine</strong> choropleths with other graphical devices like histograms or density plots</p>
     </section>
     </section>
-    <section id="section-8" class="level1">
+    <section id="section-12" class="level1">
     <h1></h1>
     <section id="cartograms" class="level2">
     <h2>Cartograms</h2>
@@ -216,19 +264,23 @@
     
     
     </section>
-    <section id="section-9" class="level2" data-background="../content/lectures/figs/l04_carto_consumption.png">
+    <section id="section-13" class="level2" data-background="../content/lectures/figs/l04_carto_consumption.png">
     <h2></h2>
     <p>[<a href="http://www.worldmapper.org/">Source</a>]</p>
     </section>
     </section>
-    <section id="section-10" class="level1">
+    <section id="section-14" class="level1">
     <h1></h1>
     <section id="conditional-maps" class="level2">
     <h2>Conditional maps</h2>
+    <center>
+    Split a dataset in <em>buckets</em> by <em>conditioning</em> on additional variables, then create a map for each <em>bucket</em>
+    </center>
+    
     <ul>
-    <li>What they are</li>
-    <li>If no association, maps should look the same, otherwise, there's a clear pattern</li>
-    <li>Exploration of multivariate relationships</li>
+    <li>If no association, maps should look the same</li>
+    <li>But, if the conditioning variables are somewhat related to the outcome we are mapping, the spatial distribution can vary substantially</li>
+    <li><strong>Exploration</strong> of <strong>multivariate</strong> relationships</li>
     </ul>
     </section>
     <section id="conditional-maps-1" class="level2">
@@ -236,7 +288,7 @@
     <p>Example with Liverpool data</p>
     </section>
     </section>
-    <section id="section-11" class="level1">
+    <section id="section-15" class="level1">
     <h1></h1>
     <section id="space-time-mapping" class="level2">
     <h2>Space-Time mapping</h2>
@@ -249,27 +301,27 @@
     <li>More recently <span class="fragment"> --&gt; animation and interactivity</li>
     </ul>
     </section>
-    <section id="section-12" class="level2">
+    <section id="section-16" class="level2">
     <h2></h2>
     [<a href="http://www.svgopen.org/2005/papers/abstract_neumann_thematic_navigation_in_space_and_time/">Source</a>]
     <div style="height: 500px;" markdown="1">
     <img src="../content/lectures/figs/l04_space_time_cube.png" />
     </div>
     </section>
-    <section id="section-13" class="level2">
+    <section id="section-17" class="level2">
     <h2></h2>
     <p>[<a href="http://cartodb.github.io/torque/examples/navy_leaflet.html">Source</a>]</p>
     <iframe width='100%' height='520' frameborder='0' src='http://cartodb.github.io/torque/examples/navy_leaflet.html' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
     
     </section>
-    <section id="section-14" class="level2">
+    <section id="section-18" class="level2">
     <h2></h2>
     <p>[<a href="https://cartodb.com/case-studies/la-metro-movement/">Source</a>]</p>
     <iframe width='100%' height='520' frameborder='0' src='https://d9a.cartodb.com/viz/fe9751f0-6ced-11e4-98f3-0e9d821ea90d/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
     
     </section>
     </section>
-    <section id="section-15" class="level1">
+    <section id="section-19" class="level1">
     <h1></h1>
     <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lecture 4</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
     </section>

@@ -45,6 +45,10 @@ Figure 1 of dots --> Overlay --> Choropleth
 
 Figure 2 of dots --> Overlay --> Choropleth
 
+##
+
+Compare both choropleths
+
 ## MAUP
 
 **Scale** and **delineation mismatch**  between:
@@ -52,15 +56,20 @@ Figure 2 of dots --> Overlay --> Choropleth
 * Underlying process (e.g. individuals, firms, shops)
 * Unit of measurement (e.g. neighborhoods, regions, etc.)
 
+In some cases, it can **seriously mislead** analysis on aggregated data
+
 <span class="fragment">Always keep **MAUP** in mind when exploring aggregated data!!!
 
 #
 ## Choropleths
 ## Choropleths
 
+<center>
+*Thematic map in which values of a variable are encoded using a color
+gradient of some sort*
+</center>
+
 * Counterpart of the histogram
-* *Thematic map in which values of a variable are encoded using a color
-  gradient of some sort*
 * **Values** are **classified** into specific **colors**: value --> bin
 * **Information loss** as a trade off for **simplicity**
 
@@ -85,13 +94,41 @@ Figure 2 of dots --> Overlay --> Choropleth
 ![](../content/lectures/figs/l04_heatmap.png)
 </div>
 
+## Color schemes
+
+## {data-background=../content/lectures/figs/l04_colorbrewer.png}
+
+[[Source](http://colorbrewer2.org/)]
+
 ## Unique values
 
-Same value span for each bin
+* Categorical data
+* No gradient (reflect it with the color scheme!!!)
+* Examples: Religion, country of origin...
+
+## Unique values
+<center>
+<div style="height: 600px;" markdown="1">
+![](../content/lectures/figs/l04_unique_values.png)
+</div>
+</center>
 
 ## Equal interval
 
-## Quintiles
+* Take the **value** span of the data to represent and split it equally
+* **Splitting** happens based on the **numerical value**
+* Gives more weight to outliers if the distribution is skewed
+
+## {data-background=../content/lectures/figs/l04_equal_interval.png}
+
+## Quantiles
+
+* Regardless of numerical values, split the distribution keeping the same
+  amount of values in each bin
+* **Splitting** based on the **rank** of the value
+* If distribution is skewed, it can put very different values in the same bin
+
+## {data-background=../content/lectures/figs/l04_quantiles.png}
 
 ## Other
 
@@ -101,9 +138,14 @@ Same value span for each bin
 
 ## Tips
 
-Skewed distributions
+Different classification schemes can produce widely different maps as a
+result of:
 
-Combine alternative options 
+* The distribution of the values
+* The inherent simplification that a choropleth implies
+
+Best advice is to **explore** different ones and **combine** choropleths with other
+graphical devices like histograms or density plots
 
 #
 ## Cartograms
@@ -136,10 +178,15 @@ interpretation, or obscures the intended representation. </li>
 #
 ## Conditional maps
 
-* What they are
-* If no association, maps should look the same, otherwise, there's a clear
-  pattern
-* Exploration of multivariate relationships
+<center>
+Split a dataset in *buckets* by *conditioning* on additional variables, then
+create a map for each *bucket*
+</center>
+
+* If no association, maps should look the same
+* But, if the conditioning variables are somewhat related to the outcome we
+  are mapping, the spatial distribution can vary substantially
+* **Exploration** of **multivariate** relationships
 
 ## Conditional maps
 
