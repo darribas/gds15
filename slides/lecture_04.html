@@ -71,7 +71,6 @@
     <h3>
     Data <strong>maps</strong>
     </h3>
-    
     <ul>
     <li>Abstraction from the purely geographical map</li>
     <li>Representing numerical values within a spatial context</li>
@@ -81,15 +80,14 @@
     Mapping <strong>data</strong>
     </h3>
     <ul>
-    <li> 
+    <li>
     A geographical approach to statistical visualization
     </li>
-    <li> 
+    <li>
     The spread of data is considered in its geographical dimension
     </li>
     </ul>
-    
-    Before we delve into different types of data maps...
+    <p>Before we delve into different types of data maps...</p>
     </div>
     </section>
     </section>
@@ -135,7 +133,6 @@
     <center>
     <em>Thematic map in which values of a variable are encoded using a color gradient of some sort</em>
     </center>
-    
     <ul>
     <li>Counterpart of the histogram</li>
     <li><strong>Values</strong> are <strong>classified</strong> into specific <strong>colors</strong>: value --&gt; bin</li>
@@ -149,30 +146,31 @@
     <li>Bins <span class="fragment"> --&gt; How many?</li>
     <li>Algorithm:</li>
     </ul>
-    <ul class="fragment"> 
-     <li> 
+    <ul class="fragment">
+    <li>
     Unique values
     </li>
-     <li> 
+    <li>
     Equal interval
     </li>
-     <li> 
+    <li>
     Qua/Quintiles (equal count)
     </li>
-     <li> 
+    <li>
     Fisher-Jenks
     </li>
-     <li> 
+    <li>
     ...
     </li>
     </ul>
-    
     </section>
     <section id="beware-standarization" class="level2">
     <h2>Beware standarization!!!</h2>
     [<a href="http://imgs.xkcd.com/comics/heatmap.png">Source</a>]
     <div style="height: 500px;" markdown="1">
-    <img src="../content/lectures/figs/l04_heatmap.png" />
+    <figure>
+    <img src="../content/lectures/figs/l04_heatmap.png" alt="" />
+    </figure>
     </div>
     </section>
     <section id="color-schemes" class="level2">
@@ -194,10 +192,11 @@
     <h2>Unique values</h2>
     <center>
     <div style="height: 600px;" markdown="1">
-    <img src="../content/lectures/figs/l04_unique_values.png" />
+    <figure>
+    <img src="../content/lectures/figs/l04_unique_values.png" alt="" />
+    </figure>
     </div>
     </center>
-    
     </section>
     <section id="equal-interval" class="level2">
     <h2>Equal interval</h2>
@@ -245,24 +244,21 @@
     <h2>Cartograms</h2>
     <p><em>&quot;<strong>Data maps</strong> where the variable is encoded, not by a color gradient, but by <strong>distorting the shape/size</strong> of the geographical objects&quot;</em></p>
     <ul class="fragment">
-    <li> 
+    <li>
     Useful in cases where the natural size/shape induces to wrong interpretation, or obscures the intended representation.
     </li>
-    <li> 
+    <li>
     If not done carefully, it can distort the message in unintended ways
     </li>
     </ul>
-    
     </section>
     <section id="cartograms-1" class="level2">
     <h2>Cartograms</h2>
     <center>
-    <div style="height: 400px;" markdown="1">
-    <img src="../content/lectures/figs/l04_liv_choro.png" /> <span class="fragment"> <img src="../content/lectures/figs/l04_liv_carto.png" />
-    </div>
+    <img src="../content/lectures/figs/l04_liv_choro.png" alt=""
+    style="width:400px;height:500px;"/> <span class="fragment"> <img src="../content/lectures/figs/l04_liv_carto.png" alt=""
+    style="width:400px;height:500px;"/>
     </center>
-    
-    
     </section>
     <section id="section-13" class="level2" data-background="../content/lectures/figs/l04_carto_consumption.png">
     <h2></h2>
@@ -276,7 +272,6 @@
     <center>
     Split a dataset in <em>buckets</em> by <em>conditioning</em> on additional variables, then create a map for each <em>bucket</em>
     </center>
-    
     <ul>
     <li>If no association, maps should look the same</li>
     <li>But, if the conditioning variables are somewhat related to the outcome we are mapping, the spatial distribution can vary substantially</li>
@@ -285,7 +280,13 @@
     </section>
     <section id="conditional-maps-1" class="level2">
     <h2>Conditional maps</h2>
-    <p>Example with Liverpool data</p>
+    <center>
+    <div style="width: 600px;" markdown="1">
+    <figure>
+    <img src="../content/lectures/figs/l04_conditional_plot.png" alt="" />
+    </figure>
+    </div>
+    </center>
     </section>
     </section>
     <section id="section-15" class="level1">
@@ -305,20 +306,22 @@
     <h2></h2>
     [<a href="http://www.svgopen.org/2005/papers/abstract_neumann_thematic_navigation_in_space_and_time/">Source</a>]
     <div style="height: 500px;" markdown="1">
-    <img src="../content/lectures/figs/l04_space_time_cube.png" />
+    <figure>
+    <img src="../content/lectures/figs/l04_space_time_cube.png" alt="" />
+    </figure>
     </div>
     </section>
     <section id="section-17" class="level2">
     <h2></h2>
     <p>[<a href="http://cartodb.github.io/torque/examples/navy_leaflet.html">Source</a>]</p>
-    <iframe width='100%' height='520' frameborder='0' src='http://cartodb.github.io/torque/examples/navy_leaflet.html' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-    
+    <iframe width="100%" height="520" frameborder="0" src="http://cartodb.github.io/torque/examples/navy_leaflet.html" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+    </iframe>
     </section>
     <section id="section-18" class="level2">
     <h2></h2>
     <p>[<a href="https://cartodb.com/case-studies/la-metro-movement/">Source</a>]</p>
-    <iframe width='100%' height='520' frameborder='0' src='https://d9a.cartodb.com/viz/fe9751f0-6ced-11e4-98f3-0e9d821ea90d/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-    
+    <iframe width="100%" height="520" frameborder="0" src="https://d9a.cartodb.com/viz/fe9751f0-6ced-11e4-98f3-0e9d821ea90d/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen>
+    </iframe>
     </section>
     </section>
     <section id="section-19" class="level1">
