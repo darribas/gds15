@@ -4,8 +4,8 @@ title: Week 4 - Choropleth mapping
 
 ### Slides
 
-- [html](../slides/lecture_03.html)
-- [pdf](../slides/lecture_03.pdf)
+- [html](../slides/lecture_04.html)
+- [pdf](../slides/lecture_04.pdf)
 
 ### To do before class
 
