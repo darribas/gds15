@@ -38,6 +38,13 @@ website:
 	git push origin gh-pages
 	git checkout master
 
+update:
+	git checkout master
+	git pull origin master
+	git checkout gh-pages
+	git pull origin gh-pages
+	git checkout master
+
 handbook:
 	cat content/handbook/head.md content/website_data/index.md content/website_data/overview.md content/website_data/syllabus.md content/website_data/task_01.md content/website_data/task_02.md content/website_data/marking_criteria.md > handbook.md
 	pandoc --toc -s -S -H content/handbook/include.tex handbook.md -o content/handbook/handbook.pdf
