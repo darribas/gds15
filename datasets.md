@@ -6,16 +6,11 @@ layout: default
 
 ## Datasets
 
-#### Deprivation & Census
-
-*Targetting deprived neighborhoods*
-
-* Visualization
-* Choropleth mapping
-* Spatial regression
-
 {% capture census %}{% include_relative content/datasets/census.md %}{% endcapture %}
 {{ census | markdownify }}
+
+{% capture imd %}{% include_relative content/datasets/imd.md %}{% endcapture %}
+{{ imd | markdownify }}
 
 {% capture osgeo %}{% include_relative content/datasets/os_geodatapack.md %}{% endcapture %}
 {{ osgeo | markdownify }}
