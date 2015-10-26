@@ -59,98 +59,151 @@
     <li>Types</li>
     </ul></li>
     <li>The spatial lag</li>
+    <li>The Moran Plot</li>
     </ul>
     </section>
     </section>
     <section id="section-1" class="level1">
     <h1></h1>
-    <section id="the-need-to-represent-space-formally" class="level2">
-    <h2>The need to represent space formally</h2>
-    <ul>
-    <li>For a statistical method to be <strong>explicitly spatial</strong>, it needs to contain some representation of the geography, or <strong>spatial context</strong></li>
-    </ul>
+    <section id="space-formally" class="level2">
+    <h2>Space, formally</h2>
     </section>
-    <section id="the-need-to-represent-space-formally-1" class="level2">
-    <h2>The need to represent space formally</h2>
-    <ul>
-    <li><strong>(Geo)Visualization</strong>: translating numbers into a (visual) language that the human brain <em>&quot;speaks better&quot;</em></li>
-    <li><strong>Spatial Weights</strong>: translating geography into a (numerical) language that a computer <em>&quot;speaks better&quot;</em>.</li>
-    </ul>
-    </section>
-    </section>
-    <section id="section-2" class="level1">
-    <h1></h1>
-    <section id="w-as-a-formal-representation-of-space" class="level2">
-    <h2>W as a formal representation of space</h2>
+    <section id="section-2" class="level2">
+    <h2></h2>
+    <p>For a statistical method to be <strong>explicitly spatial</strong>, it needs to contain some representation of the geography, or <strong>spatial context</strong></p>
+    <p><span class="fragment"> One of the most common ways is through <strong>Spatial Weights Matrices</strong></p>
     </section>
     <section id="section-3" class="level2">
     <h2></h2>
     <ul>
-    <li><span class="math inline"><em>N</em></span> x <span class="math inline"><em>N</em></span> positive matrix that contains <strong>spatial relations</strong> between <em>all</em> the observations in the sample</li>
-    </ul>
-    <script type="math/tex; mode=display">
-    w_{ij} = \left\{ \begin{array}{rl}
-    x_{ij}>0 &\mbox{ if $i$ and $j$ are neighbors} \\
-    0 &\mbox{ otherwise}
-    \end{array} \right\}
-    </script>
-    <ul>
-    <li>Optional standardization
-    <ul>
-    <li>Row-wise</li>
-    <li>Matrix-wise</li>
-    <li>...</li>
-    </ul></li>
+    <li><strong>(Geo)Visualization</strong>: translating numbers into a (visual) language that the human brain <em>&quot;speaks better&quot;</em></li>
+    <li><strong>Spatial Weights Matrices</strong>: translating geography into a (numerical) language that a computer <em>&quot;speaks better&quot;</em>.</li>
     </ul>
     </section>
     <section id="section-4" class="level2">
     <h2></h2>
+    <p>Core element in several spatial analysis techniques:</p>
     <ul>
-    <li>Defined <strong>ex-ante</strong> (sometimes criticized by its <em>ad-hoc</em> nature)</li>
-    <li>Very often, <span class="math inline"><em>x</em><sub><em>i</em><em>j</em></sub></span> may follows standard <strong>criteria</strong>:
+    <li>Spatial autocorrelation</li>
+    <li>Spatial clustering / geodemographics</li>
+    <li>Spatial regression</li>
+    </ul>
+    </section>
+    </section>
+    <section id="section-5" class="level1">
+    <h1></h1>
+    <section id="w-as-a-formal-representation-of-space" class="level2">
+    <h2><span class="math inline"><em>W</em></span> as a formal representation of space</h2>
+    </section>
+    <section id="w" class="level2">
+    <h2><span class="math inline"><em>W</em></span></h2>
+    <center>
+    <em><span class="math inline"><em>N</em></span> x <span class="math inline"><em>N</em></span> positive matrix <span class="fragment"> that contains <strong>spatial relations</strong> <span class="fragment"> between all the observations in the sample</em>
+    </center>
+    <p class="fragment">
+    <script type="math/tex; mode=display">
+    w_{ij} = \left\{ \begin{array}{rl}
+    x > 0 &\mbox{ if $i$ and $j$ are neighbors} \\
+    0 &\mbox{ otherwise}
+    \end{array} \right\}
+    </script>
+    </p>
+    <p><span class="math inline"><em>w</em><sub><em>i</em><em>i</em></sub> = 0</span> by convention</p>
+    <p><span class="fragment"> <em>...What is a <strong>neighbor</strong>???</em></p>
+    </section>
+    <section id="types-of-w" class="level2">
+    <h2>Types of <span class="math inline"><em>W</em></span></h2>
+    <p>A neighbor is &quot;somebody&quot; who is:</p>
     <ul>
-    <li>Contiguity (queen, rook, bishop)</li>
-    <li>Some function of distance</li>
-    <li>Nearest neighbors (<em>knn</em>)</li>
+    <li>Next door <span class="fragment"> <span class="math inline"> → </span> <strong>Contiguity</strong>-based <span class="math inline"><em>W</em></span>s</li>
+    <li>Close <span class="fragment"> <span class="math inline"> → </span> <strong>Distance</strong>-based <span class="math inline"><em>W</em></span>s</li>
+    <li>In the same &quot;place&quot; as us <span class="fragment"> <span class="math inline"> → </span> <strong>Block</strong> weights</li>
     <li>...</li>
-    </ul></li>
-    <li>In some contexts, additional <strong>requirements</strong>:
-    <ul>
-    <li><em>Exogeneity</em></li>
-    <li>Close match to theoretical framework</li>
-    <li>Empirically motivated reflection of actual interactions</li>
-    </ul></li>
     </ul>
     </section>
-    <section id="w-graphically" class="level2">
-    <h2>W graphically</h2>
-    <p>Example: rook contiguity</p>
-    <CENTER>
-    <img src="../content/lectures/figs/l04kgeo.png" alt="Drawing" style="width: 500px;"/>
-    </CENTER>
-    <p><br /><span class="math display"> ↓ </span><br /></p>
+    <section id="contiguity-based-weights" class="level2">
+    <h2>Contiguity-based weights</h2>
+    <ul>
+    <li>Rook</li>
+    <li>Queen</li>
+    </ul>
     </section>
-    <section id="section-5" class="level2">
+    <section id="contiguity-based-weights-1" class="level2">
+    <h2>Contiguity-based weights</h2>
+    </section>
+    <section id="contiguity-based-weights-2" class="level2">
+    <h2>Contiguity-based weights</h2>
+    </section>
+    <section id="distance-based-weights" class="level2">
+    <h2>Distance-based weights</h2>
+    <ul>
+    <li>Inverse distance</li>
+    <li>KNN</li>
+    </ul>
+    </section>
+    <section id="distance-based-weights-1" class="level2">
+    <h2>Distance-based weights</h2>
+    </section>
+    <section id="block-weights" class="level2">
+    <h2>Block weights</h2>
+    </section>
+    <section id="block-weights-1" class="level2">
+    <h2>Block weights</h2>
+    </section>
+    <section id="other-types-of-weights" class="level2">
+    <h2>Other types of weights</h2>
+    <ul>
+    <li>Combinations of the above</li>
+    <li>Kernel</li>
+    <li>Statistically-derived</li>
+    <li>...</li>
+    </ul>
+    <p>See <a href="http://www.amazon.com/Modern-Spatial-Econometrics-Practice-GeoDaSpace/dp/0986342106/ref=sr_1_1?ie=UTF8&amp;qid=1421531753&amp;sr=8-1&amp;keywords=anselin+spatial+econometrics">Anselin &amp; Rey (2014)</a> for an in-detail discussion.</p>
+    </section>
+    <section id="choice-of-w" class="level2">
+    <h2>Choice of <code>W</code></h2>
+    <p>Should be based on and reflect the <strong>underlying channels of interaction</strong> for the question at hand.</p>
+    <p>Examples:</p>
+    <ul>
+    <li>Processes propagated by inmediate contact (e.g. disease contagion) <span class="math inline"> → </span> Contiguity weights</li>
+    <li>Accessibility <span class="math inline"> → </span> Distance weights</li>
+    <li>Effects of county differences in laws <span class="math inline"> → </span> Block weights</li>
+    </ul>
+    </section>
+    <section id="do-your-own-contiguity-weights-time" class="level2">
+    <h2>Do your own (contiguity) weights time!</h2>
+    </section>
+    <section id="section-6" class="level2">
     <h2></h2>
-    <CENTER>
-    <img src="../content/lectures/figs/l04_geo_w.png" alt="Drawing" style="width: 500px;"/>
-    </CENTER>
-    <ul>
-    <li>Diagonal of zeros by assumption</li>
-    <li>Gets large quickly</li>
-    <li>Fairly sparse</li>
-    </ul>
-    <p><span class="math inline"> → </span> GeoDaSpace demo with weights</p>
+    <center>
+    <img src="../content/lectures/figs/l05_geo.png" alt=""
+    style="width:400px;height:500px;"/> <span class="fragment"> <img src="../content/lectures/figs/l05_geo_w.png" alt=""
+    style="width:400px;height:500px;"/>
+    </center>
+    </section>
+    <section id="standardization" class="level2">
+    <h2>Standardization</h2>
+    <p>In some applications (e.g. spatial autocorrelation) it is common to <em>standardize</em> <span class="math inline"><em>W</em></span></p>
+    <p>The most widely used standardization is <strong>row-based</strong>: divide every element by the sum of the row:</p>
+    <p>
+    <script type="math/tex; mode=display">
+    \bar{w_{ij}} = \dfrac{w_{ij}}{w_{i\cdotp}}
+    </script>
+    </p>
+    <p>where <span class="math inline">$w_{i\cdotp}$</span> is the sum of a row.</p>
     </section>
     </section>
-    <section id="section-6" class="level1">
+    <section id="section-7" class="level1">
     <h1></h1>
     <section id="the-spatial-lag" class="level2">
+    <h2>The spatial lag</h2>
+    </section>
+    <section id="the-spatial-lag-1" class="level2">
     <h2>The spatial lag</h2>
     <p><br /><span class="math display"><em>y</em><sub><em>s</em><em>l</em> − <em>i</em></sub> = ∑<sub><em>j</em></sub><em>w</em><sub><em>i</em><em>j</em></sub><em>y</em><sub><em>j</em></sub></span><br /></p>
     <p><br /><span class="math display"><em>Y</em><sub><em>s</em><em>l</em></sub> = <em>W</em><em>Y</em></span><br /></p>
     </section>
-    <section id="section-7" class="level2">
+    <section id="section-8" class="level2">
     <h2></h2>
     <ul>
     <li>Measure that captures the behaviour of a variable in the neighborhood of a given observation <span class="math inline"><em>i</em></span>.</li>
@@ -158,7 +211,7 @@
     <li>Typically standardized to reflect some sort of average, although not always, depends on purpose (e.g. market potential).</li>
     </ul>
     </section>
-    <section id="section-8" class="level2">
+    <section id="section-9" class="level2">
     <h2></h2>
     <ul>
     <li>Common way to introduce space formally in a statistical framework</li>
@@ -171,13 +224,27 @@
     </ul>
     </section>
     </section>
-    <section id="section-9" class="level1">
+    <section id="section-10" class="level1">
+    <h1></h1>
+    <section id="moran-plot" class="level2">
+    <h2>Moran Plot</h2>
+    </section>
+    </section>
+    <section id="section-11" class="level1">
     <h1></h1>
     <section id="recapitulation" class="level2">
     <h2>Recapitulation</h2>
     </section>
+    <section id="recapitulation-1" class="level2">
+    <h2>Recapitulation</h2>
+    <ul>
+    <li>Spatial Weights matrices: matrix encapsulation of space</li>
+    <li>Different types for different cases</li>
+    <li>Useful in many contexts, like the spatial lag and Moran plot, but also many other things!</li>
+    </ul>
     </section>
-    <section id="section-10" class="level1">
+    </section>
+    <section id="section-12" class="level1">
     <h1></h1>
     <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lecture 5</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
     </section>
@@ -212,7 +279,9 @@
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // MathJax
+                    { src: 'plugin/math/math.js', async: true }
 				]
 			});
 
