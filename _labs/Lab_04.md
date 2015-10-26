@@ -21,6 +21,6 @@ Raster)](https://www.ordnancesurvey.co.uk/business-and-government/products/vecto
 and it is licensed as OpenData. The file is available for download on the
 following link:
 
-> [http://darribas.org/gds15/content/labs/figs/liverpool.tif](http://darribas.org/gds15/content/labs/figs/liverpool.tif)
+> [http://darribas.org/gds15/content/labs/figs/lab04_liverpool.tif](http://darribas.org/gds15/content/labs/figs/lab04_liverpool.tif)
 
 
