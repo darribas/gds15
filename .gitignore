@@ -20,5 +20,7 @@ site/content/infrastructure/notebooks/
 */.Rhistory
 content/infrastructure/notebooks/
 content/labs/*.png
+content/labs/*.gal
+content/labs/*.gwt
 content/labs/_map.html
 conntent/infrastructure/temp_test.ipynb
