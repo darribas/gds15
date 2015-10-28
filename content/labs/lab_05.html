@@ -178,6 +178,25 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this session we will be learning the ins and outs of one of the key pieces in spatial analysis: spatial weights matrices. These are structured sets of numbers that formalize geographical relationships between the observations in a dataset. Essentially, a spatial weights matrix of a given geography is a positive definite matrix of dimensions $N$ by $N$, where $N$ is the total number of observations:</p>
+$$
+W = \left(\begin{array}{cccc}
+0 & w_{12} & \dots & w_{1N} \\
+w_{21} & \ddots & w_{ij} & \vdots \\
+\vdots & w_{ji} & 0 & \vdots \\
+w_{N1} & \dots & \dots & 0 
+\end{array} \right)
+$$<p>where each cell $w_{ij}$ contains a value that represents the degree of spatial contact or interaction between observations $i$ and $j$. A fundamental concept in this context is that of <em>neighbor</em> and <em>neighborhood</em>. By convention, elements in the diagonal ($w_{ij}$) are set to zero. A <em>neighbor</em> of a given observation $i$ is another observation with which $i$ has some degree of connection. In terms of $W$, $i$ and $j$ are thus neighbors if $w_{ij} > 0$. Following this logic, the neighborhood of $i$ will be the set of observations in the system with which it has certain connection, or those observations with a weight greater than zero.</p>
+<p>There are several ways to create such matrices, and many more to transform them so they contain an accurate representation that aligns with the way we understand spatial interactions between the elements of a system. In this session, we will introduce the most commonly used ones and will show how to compute them with <code>PySAL</code>.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
@@ -212,7 +231,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># This will be different on your computer and will depend on where</span>
@@ -238,7 +257,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Read the file in</span>
@@ -298,7 +317,8 @@ memory usage: 30.3+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Contiguity">Contiguity<a class="anchor-link" href="#Contiguity">&#182;</a></h3>
+<h3 id="Contiguity">Contiguity<a class="anchor-link" href="#Contiguity">&#182;</a></h3><p>Contiguity weights matrices define spatial connections through the existence of common boundaries. This makes it directly suitable to use with polygons: if two polygons share boundaries to some degree, they will be labeled as neighbors under these kinds of weights. Exactly how much they need to share is what differenciates the two approaches we will learn: queen and rook.</p>
+
 </div>
 </div>
 </div>
@@ -310,13 +330,14 @@ memory usage: 30.3+ KB
 <ul>
 <li><strong>Queen</strong></li>
 </ul>
+<p>Under the queen criteria, two observations only need to share a vortex (a single point) of their boundaries to be considered neighbors. Constructing a weights matrix under these principles can be done by running:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">queen_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
@@ -331,11 +352,11 @@ memory usage: 30.3+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;pysal.weights.weights.W at 0x7f1d26655790&gt;</pre>
+<pre>&lt;pysal.weights.weights.W at 0x7f7a5abdbed0&gt;</pre>
 </div>
 
 </div>
@@ -343,10 +364,21 @@ memory usage: 30.3+ KB
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The command above creates an object <code>w_queen</code> of the class <code>W</code>. This is the format in which spatial weights matrices are stored in <code>PySAL</code>. Note also how we include the attribute <code>idVariable</code> and pass in <code>LSOA11CD</code>. This ensures that the observations are recorded using the ID codes we are used to, and also that we are using to index the table <code>imd</code>. This way we can keep everything in line easily.</p>
+<p>A <code>W</code> object can be queried to find out about the contiguity relations it contains. For example, if we would like to know who is a neighbor of observation <code>E01006690</code>:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">]</span>
@@ -360,7 +392,7 @@ memory usage: 30.3+ KB
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -384,7 +416,519 @@ memory usage: 30.3+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Check <a href="http://pysal.readthedocs.org/en/latest/users/tutorials/weights.html">Weights tutorial</a>.</p>
+<p>This returns a Python dictionary that contains the ID codes of each neighbor as keys, and the weights they are assigned as values. Since we are looking at a raw queen contiguity matrix, every neighbor gets a weight of one. If we want to access the weight of a specific neighbor, <code>E01006691</code> for example, we can do recursive querying:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">][</span><span class="s">&#39;E01006691&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>W</code> objects also have a direct way to provide a list of all the neighbors or their weights for a given observation. This is thanks to the <code>neighbors</code> and <code>weights</code> attributes:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="o">.</span><span class="n">neighbors</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;E01006720&apos;,
+ &apos;E01033763&apos;,
+ &apos;E01006691&apos;,
+ &apos;E01006692&apos;,
+ &apos;E01006695&apos;,
+ &apos;E01006697&apos;,
+ &apos;E01006759&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once created, <code>W</code> objects can provide much information about the matrix, beyond the basic attributes one would expect. We have direct access to the number of neighbors each observation has via the attribute <code>cardinalities</code>. For example, to find out how many neighbors observation <code>E01006524</code> has:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="o">.</span><span class="n">cardinalities</span><span class="p">[</span><span class="s">&#39;E01006524&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since <code>cardinalities</code> is a dictionary, it is direct to convert it into a <code>Series</code> object:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">queen_card</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">w_queen</span><span class="o">.</span><span class="n">cardinalities</span><span class="p">)</span>
+<span class="n">queen_card</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>E01006512    6
+E01006513    9
+E01006514    5
+E01006515    8
+E01006518    5
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This allows, for example, to access quick plotting, which comes in very handy to get an overview of the size of neighborhoods in general:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">queen_card</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7a546e7110&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+lS4naTo6OtDf34+9e/ciHA6ju7sb+/fvx2OPPXbFc9Ie1pfT3d2NL33pS/j2t7+dNWuJNzc349ix
+Y9iyZUtWrpE+OTmJz3/+83j88cdx++23K11O0v33f//3wsc7d+7EN7/5zawJaiC+pe3zzz+Pv/iL
+v8DY2BiCwWBW/TEMBoOwWOL7utvtdkQiEUiSpHBVybVu3TqcOHECt956K9544w3ccccdSpeUVD/9
+6U/xox/9CIcOHYLD4VC6nKS6/vrrceTIEQDA0NAQvvKVryQMakAlYf2tb30LkUgE//Iv/wIg/sv1
+9NNPK1zVtdm8eTOOHz++MMtv//79CleUXN/97nfh9Xrx9NNPL/y3eu655zJ+XClX3HPPPTh58iS2
+bt0KSZLw+OOPZ9X+v7t378Zjjz2Gz372s4hGo/jqV78Ko9GodFlJMf/f6dFHH8U3vvENRCIR1NfX
+48EHH1S4suQQBAGSJOHJJ59EeXk5vvjFLwIAbr31Vvzt3/6twtVduw//nsmyvKzfPa4NTkREpHLZ
+NYhKRESUhRjWREREKsewJiIiUjmGNRERkcoxrImIiFSOYU1ERKRyDGsiIiKV+/8BJUwBT99vEb8A
+AAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The figure above shows how most observations have around five neighbors, but there is some variation around it. The distribution also seems to follow a symmetric form, where deviations from the average occur both in higher and lower values almost evenly.</p>
+<p>Spatial weight matrices can be explored visually in other ways. For example, we can pick an observation and visualize it in the context of its neighborhood. The following plot does exactly that by zooming into the surroundings of LSOA <code>E01006690</code> and displaying its polygon as well as those of its neighbors:</p>
 
 </div>
 </div>
@@ -1870,9 +2414,21 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how the figure is built gradually, from the base map (L. 4-5), to the focal point (L. 9), to its neighborhood (L. 11-13). Once the entire figure is plotted, we zoom into the area of interest (L. 19-20).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><strong>Rook</strong></li>
 </ul>
+<p>Rook contiguity is similar to and, in many ways, superseded by queen contiguity. However, since it sometimes comes up in the literature, it is useful to know about it. The main idea is the same: two observations are neighbors if they share some of their boundary lines. However, in the rook case, it is not enough with sharing only one point, it needs to be at least a segment of their boundary. In most applied cases, these differences usually boil down to how the geocoding was done, but in some cases, such as when we use raster data or grids, this approach can differ more substantively and it thus makes more sense.</p>
+<p>From a technical point of view, constructing a rook matrix is very similar:</p>
 
 </div>
 </div>
@@ -1912,9 +2468,20 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>The output is of the same type as before, a <code>W</code> object that can be queried and used in very much the same way as any other one.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <p><strong>[Optional exercise]</strong></p>
-<p>Create a similar map for the rook neighbors of polygon <code>E01006580</code>. How would it differ if the spatial weights were created based on the queen criterion?</p>
+<p>Create a similar map for the rook neighbors of polygon <code>E01006580</code>.</p>
+<p>How would it differ if the spatial weights were created based on the queen criterion?</p>
 <hr>
 
 </div>
@@ -1925,7 +2492,8 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Distance">Distance<a class="anchor-link" href="#Distance">&#182;</a></h3>
+<h3 id="Distance">Distance<a class="anchor-link" href="#Distance">&#182;</a></h3><p>Distance based matrices assign the weight to each pair of observations as a function of how far from each other they are. How this is translated into an actual weight varies across types and variants, but they all share that the ultimate reason why two observations are assigned some weight is due to the distance between them.</p>
+
 </div>
 </div>
 </div>
@@ -1937,9 +2505,86 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 <ul>
 <li><strong>K-Nearest Neighbors</strong></li>
 </ul>
+<p>One approach to define weights is to take the distances between a given observation and the rest of the set, rank them, and consider as neighbors the $k$ closest ones. That is exactly what the $k$-nearest neighbors (KNN) criterium does.</p>
+<p>To calculate KNN weights, we can use a similar function as before and derive them from a shapefile:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">knn5</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">knnW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
+<span class="n">knn5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;pysal.weights.weights.W at 0x7f7a545810d0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how we need to specify the number of nearest neighbors we want to consider with the argument <code>k</code>. Since it is a polygon shapefile that we are passing, the function will automatically compute the centroids to derive distances between observations. Alternatively, we can provide the points in the form of an array, skipping this way the dependency of a file on disk:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Extract centroids</span>
+<span class="n">cents</span> <span class="o">=</span> <span class="n">imd</span><span class="o">.</span><span class="n">centroid</span>
+<span class="c"># Extract coordinates into an array</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">pt</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">cents</span><span class="p">])</span>
+<span class="c"># Compute KNN weights</span>
+<span class="n">knn5_from_pts</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">knnW_from_array</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">knn5_from_pts</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;pysal.weights.weights.W at 0x7f7a5465ccd0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -1947,8 +2592,154 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><strong>Inverse distance</strong></li>
+<li><strong>Distance band</strong></li>
 </ul>
+<p>Another approach to build distance-based spatial weights matrices is to draw a circle of certain radious and consider neighbor every observation that falls within the circle. The technique has two main variations: binary and continuous. In the former one, every neighbor is given a weight of one, while in the second one, the weights can be further tweaked by the distance to the observation of interest.</p>
+<p>To compute binary distance matrices in <code>PySAL</code>, we can use the following command:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1kmB</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">threshold_binaryW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This creates a binary matrix that considers neighbors of an observation every polygon whose centroid is closer than 1,000 metres (1Km) of the centroid of such observation. Check, for example, the neighborhood of polygon <code>E01006690</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1kmB</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&apos;E01006691&apos;: 1,
+ &apos;E01006692&apos;: 1,
+ &apos;E01006695&apos;: 1,
+ &apos;E01006697&apos;: 1,
+ &apos;E01006720&apos;: 1,
+ &apos;E01006725&apos;: 1,
+ &apos;E01006726&apos;: 1,
+ &apos;E01033763&apos;: 1}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the units in which you specify the distance directly depend on the CRS in which the spatial data are projected, and this has nothing to do with the weights building but it can affect it significantly. Recall how you can check the CRS of a <code>GeoDataFrame</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">imd</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{u&apos;datum&apos;: u&apos;OSGB36&apos;,
+ u&apos;k&apos;: 0.9996012717,
+ u&apos;lat_0&apos;: 49,
+ u&apos;lon_0&apos;: -2,
+ u&apos;no_defs&apos;: True,
+ u&apos;proj&apos;: u&apos;tmerc&apos;,
+ u&apos;units&apos;: u&apos;m&apos;,
+ u&apos;x_0&apos;: 400000,
+ u&apos;y_0&apos;: -100000}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, you can see the unit is expressed in metres (<code>m</code>), hence we set the threshold to 1,000 for a circle of 1km of radious.</p>
+<p>An extension of the weights above is to introduce further detail by assigning different weights to different neighbors within the radious circle based on how far they are from the observation of interest. For example, we could think of assigning the inverse of the distance between observations $i$ and $j$ as $w_{ij}$. This can be computed with the following command:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1kmC</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">threshold_continuousW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In <code>w_dist1kmC</code>, every observation within the 1km circle is assigned a weight equal to the inverse distance between the two:</p>
+$$
+w_{ij} = \dfrac{1}{d_{ij}}
+$$<p>This way, the further apart $i$ and $j$ are from each other, the smaller the weight $w_{ij}$ will be.</p>
+<p>Contrast the binary neighborhood with the continuous one for <code>E01006690</code>:</p>
 
 </div>
 </div>
@@ -1958,7 +2749,148 @@ c6OGB0sDUxYAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1km</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">threshold_binaryW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1kmC</span><span class="p">[</span><span class="s">&#39;E01006690&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&apos;E01006691&apos;: 0.0013201155583939742,
+ &apos;E01006692&apos;: 0.0016898105326562619,
+ &apos;E01006695&apos;: 0.0011209237936802396,
+ &apos;E01006697&apos;: 0.0014034695245779395,
+ &apos;E01006720&apos;: 0.0013390450966253398,
+ &apos;E01006725&apos;: 0.0010090443283278022,
+ &apos;E01006726&apos;: 0.0010528397241717365,
+ &apos;E01033763&apos;: 0.0012983249276301231}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>[Optional exercise]</strong></p>
+<p>Explore the help for functions <code>ps.threshold_binaryW_from_array</code> and <code>ps.threshold_continuousW_from_array</code> and try to use them to replicate <code>w_dist1kmB</code> and <code>w_dist1kmC</code>.</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Following this logic of more detailed weights, there is a temptation to take it further and consider everyone else in the dataset as a neighbor whose weight will then get modulated by the distance effect shown above. However, although conceptually correct, this approach is not always the most computationally or practical one. Because of the nature of spatial weights matrices, particularly because of the fact their size is $N$ by $N$, they can grow substantially large. A way to cope with this problem is by making sure they remain fairly <em>sparse</em> (with many zeros). Sparsity is typically ensured in the case of contiguity or KNN by construction but, with inverse distance, it needs to be imposed as, otherwise, the matrix could be potentially entirely dense (no zero values other than the diagonal). In practical terms, what is usually done is to impose a distance threshold beyond which no weight is assigned and interaction is assumed to be non-existent. Beyond being computationally feasible and scalable, results from this approach usually do not differ much from a fully "dense" one as the additional information that is included from further observations is almost ignored due to the small weight they receive. In this context, a commonly used threshold, although not always best, is that which makes every observation to have at least one neighbor.</p>
+<p>Such a threshold can be calculated as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">min_thr</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">min_threshold_dist_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">)</span>
+<span class="n">min_thr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>939.73728445042354</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which can then be used to calculate an inverse distance weights matrix:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_min_dist</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">threshold_continuousW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="n">min_thr</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>WARNING: there is one disconnected observation (no neighbors)
+Island id:  [214]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>NOTE</strong> The warning that it returns appears to be a bug caused by the point being exactly at the threshold distance. One solution until this gets resolved is to make the threshold marginally larger:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Add a marginally small amount to the threshold</span>
+<span class="n">new_thr</span> <span class="o">=</span> <span class="n">min_thr</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.000001</span> <span class="o">*</span> <span class="n">min_thr</span><span class="p">)</span>
+<span class="c"># Compute weights matrix</span>
+<span class="n">w_min_dist</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">threshold_continuousW_from_shapefile</span><span class="p">(</span><span class="n">imd_shp</span><span class="p">,</span> <span class="n">new_thr</span><span class="p">,</span> <span class="n">idVariable</span><span class="o">=</span><span class="s">&#39;LSOA11CD&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3643,7 +4575,8 @@ QqFQKBRK5/n//8503fssqbkAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For this case, we will build a spatial weights matrix that connects every LSOA with all the other ones in the same MSOA. To do this, we first need a lookup list that connects both kinds of geographies:</p>
+<p>Block weights connect every observation in a dataset that belongs to the same category in a list provided ex-ante. Usually, this list will have some relation to geography an the location of the observations but, technically speaking, all one needs to create block weights is a list of memberships. In this class of weights, neighboring observations, those in the same group, are assigned a weight of one, and the rest receive a weight of zero.</p>
+<p>In this example, we will build a spatial weights matrix that connects every LSOA with all the other ones in the same MSOA. To do this, we first need a lookup list that connects both kinds of geographies:</p>
 
 </div>
 </div>
@@ -4089,18 +5022,66 @@ Name: MSOA11CD, dtype: object</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Spatial-Lag">Spatial Lag<a class="anchor-link" href="#Spatial-Lag">&#182;</a></h2>
+<h2 id="Reading-and-Writing-spatial-weights-in-PySAL">Reading and Writing spatial weights in <code>PySAL</code><a class="anchor-link" href="#Reading-and-Writing-spatial-weights-in-PySAL">&#182;</a></h2><p>Sometimes, if a dataset is very detailed or large, it can be costly to build the spatial weights matrix of a given geography and, despite the optimizations in the <code>PySAL</code> code, the computation time can quickly grow out of hand. In these contexts, it is useful to not have to re-build a matrix from scratch every time we need to re-run the analysis. A useful solution in this case is to build the matrix once, and save it to a file where it can be reloaded at a later stage if needed.</p>
+<p><code>PySAL</code> has a common way to write any kind of <code>W</code> object into a file using the command <code>open</code>. The only element we need to decide for ourselves beforehand is the format of the file. Although there are several formats in which spatial weight matrices can be stored (have a look at the <a href="http://pysal.readthedocs.org/en/latest/users/tutorials/fileio.html">list</a> of supported ones by <code>PySAL</code>), we will focused on the two most commonly used ones:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>.gal</code></strong> files for contiguity weights</li>
+</ul>
+<p>Contiguity spatial weights can be saved into a <code>.gal</code> file with the following commands:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">w_queen</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s">&#39;R&#39;</span>
-<span class="n">w_queen_score</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">w_queen</span><span class="p">,</span> <span class="n">imd</span><span class="p">[</span><span class="s">&#39;imd_score&#39;</span><span class="p">])</span>
-<span class="n">w_queen_score</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># Open file to write into</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;imd_queen.gal&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="c"># Write the matrix into the file</span>
+<span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">w_queen</span><span class="p">)</span>
+<span class="c"># Close the file</span>
+<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The process is composed by the following three steps:</p>
+<ol>
+<li>Open a target file for <code>w</code>riting the matrix, hence the <code>w</code> argument. In this case, if a file <code>imd_queen.gal</code> already exists, it will be overwritten, so be careful.</li>
+<li>Write the <code>W</code> object into the file.</li>
+<li>Close the file. This is important as some additional information is written into the file at this stage, so failing to close the file might have unintended consequences.</li>
+</ol>
+<p>Once we have the file written, it is possible to read it back into memory with the following command:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_queen2</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;imd_queen.gal&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">w_queen2</span>
 </pre></div>
 
 </div>
@@ -4111,85 +5092,141 @@ Name: MSOA11CD, dtype: object</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[191]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 48.27833333,  34.96777778,  46.538     ,  40.02375   ,
-        63.738     ,  15.186     ,  44.95714286,  28.94833333,
-        30.52428571,  31.63      ,  19.00666667,  13.07857143,
-        24.07285714,  11.91      ,  19.08333333,  20.872     ,
-        20.588     ,  20.8225    ,  22.61833333,  20.18      ,
-        26.54      ,  26.27666667,  29.52166667,  34.0325    ,
-        36.095     ,  12.25285714,  73.82      ,  50.20444444,
-        63.29      ,  51.466     ,  53.36333333,  61.93      ,
-        66.624     ,  67.7725    ,  74.78833333,  44.68714286,
-        24.04      ,  26.9       ,  62.3825    ,  20.87428571,
-        31.19      ,  49.96888889,  36.54166667,  70.8275    ,
-        70.08285714,  69.16166667,  69.56142857,  72.504     ,
-        42.474     ,  45.63833333,  37.17571429,  38.31428571,
-        32.295     ,  35.3       ,  46.99333333,  54.71      ,
-        43.072     ,  59.825     ,  28.53625   ,  20.354     ,
-        20.082     ,  20.53      ,  15.34285714,  17.05857143,
-         8.2225    ,   9.64      ,   9.02166667,  28.005     ,
-        34.164     ,  28.90833333,  43.77571429,  27.24      ,
-        20.698     ,  20.666     ,  15.45375   ,   8.8025    ,
-        15.92142857,   6.618     ,  13.21666667,  13.58333333,
-        10.30333333,  57.162     ,  48.68      ,  51.895     ,
-        54.20125   ,  43.43142857,  45.20375   ,  47.09428571,
-        52.96666667,  56.295     ,  52.668     ,  58.88285714,
-        60.642     ,  50.89857143,  47.8275    ,  61.458     ,
-        64.71666667,  48.85571429,  31.36666667,  41.91833333,
-        22.41      ,  19.628     ,  29.86555556,  22.222     ,
-        30.4225    ,  29.31      ,  38.635     ,  35.96333333,
-        23.86545455,  33.31666667,  28.555     ,  54.67285714,
-        65.364     ,  49.468     ,  46.626     ,  39.282     ,
-        44.442     ,  29.31571429,  60.235     ,  46.468     ,
-        52.238     ,  39.705     ,  43.19666667,  54.71285714,
-        56.93      ,  45.31166667,  34.538     ,  29.25      ,
-        37.0225    ,  36.60428571,  37.66      ,  29.606     ,
-        34.15      ,  42.74      ,  41.98285714,  51.30375   ,
-        39.31      ,  49.955     ,  53.80333333,  42.61      ,
-        30.6325    ,  17.39      ,  37.83571429,  20.76      ,
-        38.138     ,  25.35142857,  37.994     ,  45.42125   ,
-        56.3       ,  64.515     ,  60.5325    ,  64.31      ,
-        62.5375    ,  59.18375   ,  55.85857143,  12.70166667,
-        19.68125   ,  12.02857143,  13.762     ,  15.594     ,
-        13.53666667,  21.096     ,  29.48833333,  23.832     ,
-        12.576     ,  63.58142857,  56.82      ,  49.87375   ,
-        74.47166667,  64.83166667,  63.67      ,  55.996     ,
-        64.058     ,  70.672     ,  63.12      ,  65.71666667,
-        71.982     ,  69.17      ,  66.72714286,  61.40333333,
-        52.84      ,  50.05333333,  46.43666667,  39.7775    ,
-        61.94      ,  48.68125   ,  43.264     ,  45.405     ,
-        46.2675    ,  41.755     ,  37.9125    ,  35.38166667,
-        53.282     ,  37.33666667,  52.92      ,  42.63428571,
-        29.74571429,  49.78714286,  47.5775    ,  40.0675    ,
-        47.834     ,  55.44666667,  51.73833333,  55.62333333,
-        52.984     ,  56.71      ,  48.018     ,  55.57833333,
-        51.706     ,  48.31333333,  41.20714286,  39.854     ,
-        49.11428571,  29.68857143,  43.07142857,  29.4       ,
-        35.836     ,  51.344     ,  45.2575    ,  53.695     ,
-        46.825     ,  62.47      ,  58.21      ,  55.875     ,
-        56.48      ,  59.28666667,  57.95      ,  59.47333333,
-        64.78      ,  65.04      ,  53.83142857,  54.076     ,
-        53.442     ,  58.786     ,  52.34666667,  64.372     ,
-        61.02142857,  36.92166667,  28.47714286,  51.58      ,
-        46.715     ,  39.4925    ,  17.395     ,  32.382     ,
-        43.47      ,  64.695     ,  66.768     ,  64.86666667,
-        32.31      ,  32.2275    ,  31.854     ,  35.97      ,
-        32.2725    ,  39.442     ,  36.3925    ,  46.148     ,
-        49.1425    ,  57.502     ,  46.89      ,  11.706     ,
-        24.592     ,  26.13142857,  17.27375   ,  11.47333333,
-        16.63333333,  22.1725    ,  17.502     ,  19.26714286,
-        18.0775    ,  38.38166667,  45.588     ,  36.59      ,
-        47.235     ,  55.01      ,  55.43      ,  46.48428571,
-        69.845     ,  47.272     ,  20.53833333,  37.902     ,
-        35.67285714,  25.33166667,  24.15333333,  30.4925    ,
-        24.2025    ,  24.505     ,  34.305     ,  44.02      ,
-        55.67571429,  29.66142857,  35.11      ,  30.874     ,
-        54.074     ,  61.251     ,  44.948     ,  17.15      ,
-        48.748     ,  40.745     ])</pre>
+<pre>&lt;pysal.weights.weights.W at 0x10ee45850&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how we now use <code>r</code> instead of <code>w</code> because we are <code>r</code>eading the file, and also notice how we open the file and, in the same line, we call <code>read()</code> directly.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong><code>.gwt</code></strong> files for distance-based weights.</li>
+</ul>
+<p>A very similar process to the one above can be used to read and write distance based weights. The only difference is specifying the right file format, <code>.gwt</code> in this case. So, if we want to write <code>w_dist1km</code> into a file, we will run:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Open file</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;imd_dist1km.gwt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="c"># Write matrix into the file</span>
+<span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">w_dist1km</span><span class="p">)</span>
+<span class="c"># Close file</span>
+<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And if we want to read the file back in, all we need to do is:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1km2</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;imd_dist1km.gwt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how, in this case, you will probably receive a warning alerting you that there was not a <code>DBF</code> relating to the file. This is because, by default, <code>PySAL</code> takes the order of the observations in a <code>.gwt</code> from a shapefile. If this is not provided, <code>PySAL</code> cannot entirely determine all the elements and hence the resulting <code>W</code> might not be complete (islands, for example, can be missing). To fully complete the reading of the file, we can remap the ids as we have seen above:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">w_dist1km2</span><span class="o">.</span><span class="n">remap_ids</span><span class="p">(</span><span class="n">imd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Spatial-Lag">Spatial Lag<a class="anchor-link" href="#Spatial-Lag">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># Row-standardize the queen matrix</span>
+<span class="n">w_queen</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s">&#39;R&#39;</span>
+<span class="c"># Compute spatial lag of `imd_score`</span>
+<span class="n">w_queen_score</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span><span class="n">w_queen</span><span class="p">,</span> <span class="n">imd</span><span class="p">[</span><span class="s">&#39;imd_score&#39;</span><span class="p">])</span>
+<span class="c"># Print the first five elements</span>
+<span class="n">w_queen_score</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 48.27833333,  34.96777778,  46.538     ,  40.02375   ,  63.738     ])</pre>
 </div>
 
 </div>
