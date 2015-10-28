@@ -56,9 +56,9 @@ x > 0 &\mbox{ if $i$ and $j$ are neighbors} \\
 0 &\mbox{ otherwise}
 \end{array} \right\}
 </script>
-</p>
 
 $w_{ii} = 0$ by convention
+</p>
 
 <span class="fragment">
 *...What is a **neighbor**???*
@@ -75,22 +75,45 @@ A neighbor is "somebody" who is:
 
 ## Contiguity-based weights
 
+**Sharing boundaries** to any extent
+
 * Rook
 * Queen
+* ...
 
-## Contiguity-based weights
-## Contiguity-based weights
-
-## Distance-based weights
-
-* Inverse distance
-* KNN
+## {data-background=../content/lectures/figs/l05_queen.png}
 
 ## Distance-based weights
 
-## Block weights
+Weight is (inversely) proportional to distance between observations
+
+* Inverse distance (threshold)
+* KNN (fixed number of neighbors)
+* ...
+
+## {data-background=../content/lectures/figs/l05_dist.png}
+
+##
+
+<center>
+<img src="../content/lectures/figs/l05_queen.png" alt=""
+style="width:400px;height:400px;"/>
+<img src="../content/lectures/figs/l05_dist.png" alt=""
+style="width:400px;height:400px;"/>
+</center>
 
 ## Block weights
+
+Weights are assigned based on discretionary rules loosely related to geography
+
+For example:
+
+* LSOAs into MSOAs
+* Post-codes within city boundaries
+* Counties within states
+* ...
+
+## {data-background=../content/lectures/figs/l05_block.png}
 
 ## Other types of weights
 
@@ -101,7 +124,20 @@ A neighbor is "somebody" who is:
 
 See [Anselin & Rey (2014)](http://www.amazon.com/Modern-Spatial-Econometrics-Practice-GeoDaSpace/dp/0986342106/ref=sr_1_1?ie=UTF8&qid=1421531753&sr=8-1&keywords=anselin+spatial+econometrics) for an in-detail discussion.
 
-## Choice of `W`
+## *How much of a neighbor?*
+
+No neighbors receive zero weight: $w_{ij} = 0$
+
+Neighbors, it depends, $w_{ij}$ can be:
+
+* One $w_{ij} = 1$ $\rightarrow$ **Binary**
+* Some proportion ($0 < w_{ij} < 1$, **continuous**) which can be a function of:
+
+    * Distance
+    * Strength of interaction (e.g. commuting flows, trade, etc.)
+    * ...
+
+## Choice of $W$
 
 Should be based on and reflect the **underlying channels of interaction** for
 the question at hand.
@@ -144,15 +180,18 @@ where $w_{i\cdotp}$ is the sum of a row.
 ## The spatial lag
 ## The spatial lag
 
-$$y_{sl-i} = \displaystyle \sum_j w_{ij} y_j$$
+Product of a spatial weights matrix $W$ and a given variably $Y$
 
+<p class="fragment">
 $$Y_{sl} = WY%_$$
+$$y_{sl-i} = \displaystyle \sum_j w_{ij} y_j$$
+</p>
 
 ##
 
 -   Measure that captures the behaviour of a variable in the neighborhood of a given observation $i$.
--   Similar to the time lag, but **not** completely (I am my neighbor's neighbor)
--   Typically standardized to reflect some sort of average, although not always, depends on purpose (e.g. market potential).
+-   If $W$ is **standardized**, the spatial lag is the *average value of the
+    variable in the neighborhood*
 
 ##
 
@@ -166,6 +205,23 @@ $$Y_{sl} = WY%_$$
 
 #
 ## Moran Plot
+
+## Moran Plot
+
+* Graphical device that displays **a variable** on the horizontal axis against **its spatial lag** on the vertical one
+* Usually, variables are standardized ($\dfrac{y - mean(y)}{std(y)}$), which
+  divides the space into **quadrants**
+* Tool to start exploring **spatial autocorrelation**
+
+## Moran Plot
+
+<center>
+<img src="../content/lectures/figs/l05_moranplot.png" alt=""
+style="width:400px;height:400px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l05_moranplot_std.png" alt=""
+style="width:400px;height:400px;"/>
+</center>
 
 #
 ## Recapitulation

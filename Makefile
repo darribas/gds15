@@ -13,9 +13,9 @@ le04:
 	decktape automatic -s 1280x960 slides/lecture_04.html slides/lecture_04.pdf
 le05:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_05.md -o slides/lecture_05.html
-	#decktape automatic -s 1280x960 slides/lecture_05.html slides/lecture_05.pdf
+	decktape automatic -s 1280x960 slides/lecture_05.html slides/lecture_05.pdf
 
-labs: la01 la02 la03 la04
+labs: la01 la02 la03 la04 la05
 la01:
 	cd content/labs && jupyter nbconvert --to html lab_01.ipynb --output lab_01.html
 	cd content/labs && jupyter nbconvert --to latex lab_01.ipynb --output lab_01.tex && texbuild lab_01.tex && rm lab_01.tex
@@ -28,6 +28,9 @@ la03:
 la04:
 	cd content/labs && jupyter nbconvert --to html lab_04.ipynb --output lab_04.html
 	cd content/labs && jupyter nbconvert --to latex lab_04.ipynb --output lab_04.tex && texbuild lab_04.tex && rm lab_04.tex && rm -R lab_04_files/
+la05:
+	cd content/labs && jupyter nbconvert --to html lab_05.ipynb --output lab_05.html
+	cd content/labs && jupyter nbconvert --to latex lab_05.ipynb --output lab_05.tex && texbuild lab_05.tex && rm lab_05.tex && rm -R lab_05_files/
 
 website:
 	jekyll build
