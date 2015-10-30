@@ -16,8 +16,8 @@ newspaper that wants to write about the geography of deprivation. In order
 to raise awareness of the problem among your readers, you will have to create
 a compelling visualization that is intuitive and attractive but also rigorous. 
 In addition, in order to convince your most skeptical and data-savvy readers, you
-will have to provide the code and data used to create the visualization in
-a way that allows complete reproducibility.
+will have to provide the code used to create the visualization in
+a way that allows reproducibility.
 
 Using data from the Index of Multiple Deprivation, as well as from the Census, 
 create at least three and no more than five maps to display different angles 
@@ -37,6 +37,8 @@ visualization.
   demographic data.
 * Compose a map with different layers.
 * Include a "zoom" of the global map by subsetting the original data.
+* At least three and no more than five maps.
+* Up to 500 words describing the patterns in the maps.
 
 **Optional suggestions** (include *at least one*)
 
