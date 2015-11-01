@@ -1,4 +1,4 @@
-lectures: le01 le02 le03 le04 le05
+lectures: le01 le02 le03 le04 le05 le06
 le01:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_01.md -o slides/lecture_01.html
 	decktape automatic -s 1280x960 slides/lecture_01.html slides/lecture_01.pdf
@@ -14,6 +14,9 @@ le04:
 le05:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_05.md -o slides/lecture_05.html
 	decktape automatic -s 1280x960 slides/lecture_05.html slides/lecture_05.pdf
+le06:
+	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_06.md -o slides/lecture_06.html
+	#decktape automatic -s 1280x960 slides/lecture_06.html slides/lecture_06.pdf
 
 labs: la01 la02 la03 la04 la05
 la01:
