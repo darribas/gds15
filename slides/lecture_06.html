@@ -109,9 +109,8 @@
     <center>
     <em>Everything is related to everything else, but near things are more related than distant things</em>
     </center>
-    
     <div style="text-align:right">
-    <small> Waldo Tobler (1970) </small>
+    <p><small> Waldo Tobler (1970) </small></p>
     </div>
     </section>
     <section id="spatial-autocorrelation-1" class="level2">
@@ -122,8 +121,8 @@
     <div class="fragment">
     <p>Two flavors:</p>
     <ul>
-    <li><strong>Positive</strong>: similar values <span class="math"> → </span> similar location (<em>closeby</em>)</li>
-    <li><strong>Negative</strong>: similar values <span class="math"> → </span> disimilar location (<em>further apart</em>)</li>
+    <li><strong>Positive</strong>: similar values <span class="math inline"> → </span> similar location (<em>closeby</em>)</li>
+    <li><strong>Negative</strong>: similar values <span class="math inline"> → </span> disimilar location (<em>further apart</em>)</li>
     </ul>
     </div>
     </section>
@@ -136,11 +135,11 @@
     <h2>Scales</h2>
     <div>
     <p><strong>[Global]</strong></p>
-    <em>Clustering</em>: do values tend to be close to other (dis)similar values?
+    <p><em>Clustering</em>: do values tend to be close to other (dis)similar values?</p>
     </div>
     <div class="fragment">
     <p><strong>[Local]</strong></p>
-    <em>Clusters</em>: are there any specific parts of a map with an extraordinary concentration of (dis)similar values?
+    <p><em>Clusters</em>: are there any specific parts of a map with an extraordinary concentration of (dis)similar values?</p>
     </div>
     </section>
     </section>
@@ -168,20 +167,20 @@
     <section id="section-8" class="level2">
     <h2></h2>
     <center>
-    <img src="../content/lectures/figs/l06_moranplot.png" alt="Random Choropleth"
-    style="width:450px;height:450px;"/> <span class="fragment"> <img src="../content/lectures/figs/l06.png" alt="Random Moran Plot"
+    <img src="../content/lectures/figs/l06_imd_score_choro.png" alt="IMD Choropleth"
+    style="width:450px;height:450px;"/> <span class="fragment"> <img src="../content/lectures/figs/l05_moranplot_std.png" alt="IMD Moran Plot"
     style="width:450px;height:450px;"/>
     </center>
-    
     </section>
     <section id="interactive-demo" class="level2">
-    <h2><a href="http://app.mybinder.org/1797174685/notebooks/index.ipynb">[Interactive Demo]</a></h2>
+    <h2><a href="http://mybinder.org/repo/darribas/int_sp_auto">[Interactive Demo]</a></h2>
     </section>
     <section id="morans-i" class="level2">
     <h2>Moran's I</h2>
     <p><strong>Formal test</strong> of global spatial autocorrelation</p>
     <p><strong>Statistically</strong> identify the presence of clustering in a variable</p>
     <p>Slope of the Moran plot</p>
+    <p>Inference based on how likely it is to obtain a map like observed from a purely random pattern</p>
     <div class="fragment">
     <script type="math/tex; mode=display">
     I = \dfrac{N} {\sum_{i} \sum_{j} w_{ij}} \dfrac {\sum_{i} \sum_{j}
@@ -209,7 +208,7 @@
     <section id="lisas" class="level2">
     <h2>LISAs</h2>
     <p><strong>L</strong>ocal <strong>I</strong>ndicators of <strong>S</strong>patial <strong>A</strong>ssociation</p>
-    <p>Statistical tests for <strong>spatial cluster detection</strong> <span class="math"> → </span> Statistical significance</p>
+    <p>Statistical tests for <strong>spatial cluster detection</strong> <span class="math inline"> → </span> Statistical significance</p>
     <p><strong>Compares</strong> the <strong>observed</strong> map with many <strong>random</strong>ly generated ones to see how likely it is to obtain the observed associations <strong>for each location</strong></p>
     <div class="fragment">
     <script type="math/tex; mode=display">
@@ -221,11 +220,10 @@
     <section id="section-10" class="level2">
     <h2></h2>
     <center>
-    <img src="../content/lectures/figs/l06_moranplot.png" alt="Choropleth"
-    style="width:450px;height:450px;"/> <span class="fragment"> <img src="../content/lectures/figs/l06.png" alt="LISA Map"
+    <img src="../content/lectures/figs/l06_js_choro.png" alt="Choropleth"
+    style="width:450px;height:450px;"/> <span class="fragment"> <img src="../content/lectures/figs/l06_js_lisa.png" alt="LISA Map"
     style="width:450px;height:450px;"/>
     </center>
-    
     </section>
     </section>
     <section id="section-11" class="level1">

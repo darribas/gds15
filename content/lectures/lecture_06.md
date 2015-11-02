@@ -140,14 +140,14 @@ How to measure it???
 ##
 
 <center>
-<img src="../content/lectures/figs/l06_moranplot.png" alt="Random Choropleth"
+<img src="../content/lectures/figs/l06_imd_score_choro.png" alt="IMD Choropleth"
 style="width:450px;height:450px;"/>
 <span class="fragment"> 
-<img src="../content/lectures/figs/l06.png" alt="Random Moran Plot"
+<img src="../content/lectures/figs/l05_moranplot_std.png" alt="IMD Moran Plot"
 style="width:450px;height:450px;"/>
 </center>
 
-## [[Interactive Demo]](http://app.mybinder.org/1797174685/notebooks/index.ipynb)
+## [[Interactive Demo]](http://mybinder.org/repo/darribas/int_sp_auto)
 
 ## Moran's I
 
@@ -156,6 +156,9 @@ style="width:450px;height:450px;"/>
 **Statistically** identify the presence of clustering in a variable
 
 Slope of the Moran plot
+
+Inference based on how likely it is to obtain a map like observed from a
+purely random pattern
 
 <div class="fragment">
 <script type="math/tex; mode=display">
@@ -209,10 +212,10 @@ I_i = \frac{Z_i}{m_2} \sum_j W_{ij} Z_j \; \; ; \; \;  m_2= \frac{\sum_i Z_i^2
 ##
 
 <center>
-<img src="../content/lectures/figs/l06_moranplot.png" alt="Choropleth"
+<img src="../content/lectures/figs/l06_js_choro.png" alt="Choropleth"
 style="width:450px;height:450px;"/>
 <span class="fragment"> 
-<img src="../content/lectures/figs/l06.png" alt="LISA Map"
+<img src="../content/lectures/figs/l06_js_lisa.png" alt="LISA Map"
 style="width:450px;height:450px;"/>
 </center>
 
