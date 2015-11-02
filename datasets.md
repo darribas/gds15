@@ -15,6 +15,9 @@ layout: default
 {% capture osgeo %}{% include_relative content/datasets/os_geodatapack.md %}{% endcapture %}
 {{ osgeo | markdownify }}
 
+{% capture js %}{% include_relative content/datasets/jsnow.md %}{% endcapture %}
+{{ js | markdownify }}
+
 {% capture tweets %}{% include_relative content/datasets/twitter.md %}{% endcapture %}
 {{ tweets | markdownify }}
 
