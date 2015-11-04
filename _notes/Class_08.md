@@ -1,5 +1,5 @@
 ---
-title: Week 8 - Points (I)
+title: Week 9 - Points (I)
 ---
 
 **[Slides** - [html](../revealjs/intro_esda1.html)**]**
