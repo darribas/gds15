@@ -18,7 +18,10 @@ le06:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_06.md -o slides/lecture_06.html
 	decktape automatic -s 1280x960 slides/lecture_06.html slides/lecture_06.pdf
 
-labs: la01 la02 la03 la04 la05 la06
+labs: qgis_extra la01 la02 la03 la04 la05 la06
+qgis_extra:
+	cd content/labs/qgis_extra && jupyter nbconvert --to html qgis_mapping.ipynb --output qgis_mapping.html
+	wkhtmltopdf file://$(shell pwd)/content/labs/qgis_extra/qgis_mapping.html $(shell pwd)/content/labs/qgis_extra/qgis_mapping.pdf
 la01:
 	cd content/labs && jupyter nbconvert --to html lab_01.ipynb --output lab_01.html
 	cd content/labs && jupyter nbconvert --to latex lab_01.ipynb --output lab_01.tex && texbuild lab_01.tex && rm lab_01.tex
