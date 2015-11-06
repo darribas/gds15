@@ -36,7 +36,7 @@ conda install -n gds -y --no-update-deps -c scitools geos shapely=1.5.8
 
 REM additional packages
 pip install -U -t %ANACONDA_DIR%\%GDS_PACKAGES% geopy descartes pysal clusterpy Jinja2 mplleaflet
-curl -Lk https://github.com/geopandas/geopandas/archive/master.zip -o %ANACONDA_DIR%\%GDS_PACKAGES%\master.zip
+curl -Lk https://github.com/geopandas/geopandas/archive/bdfc7fb819a53246fb44ca91b260bb394f4177fb.zip -o %ANACONDA_DIR%\%GDS_PACKAGES%\master.zip
 pip install -U --no-deps "%ANACONDA_DIR%\%GDS_PACKAGES%\master.zip" -t %ANACONDA_DIR%\%GDS_PACKAGES%
 
 REM copy test notebook into place
