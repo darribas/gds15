@@ -24,5 +24,5 @@ source activate gds
 conda install -n gds -y --no-update-deps pip pandas=0.16 numpy=1.9 scipy matplotlib seaborn statsmodels scikit-learn fiona=1.5 six  rasterio  pytables=3.2.1 psycopg2 shapely=1.5.8 pyproj=1.9.4
 
 pip install -U geopy descartes pysal clusterpy Jinja2 mplleaflet
-pip install --no-deps git+git://github.com/geopandas/geopandas.git
+pip install --no-deps git+git://github.com/geopandas/geopandas.git@bdfc7fb819a53246fb44ca91b260bb394f4177fb
 
