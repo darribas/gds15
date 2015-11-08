@@ -1,4 +1,4 @@
-% Geographic Data Science - Lecture VII
+% Geographic Data Science - Lecture VIII
 % Grouping Data over Space
 %[Dani Arribas-Bel](http://darribas.org)
 
