@@ -1,13 +1,26 @@
 ---
-title: Week 9 - Points (I)
+title: Week 8 - Clustering
 ---
 
-**[Slides** - [html](../revealjs/intro_esda1.html)**]**
+### Slides
 
-* Why/When points are different from polygons
-* The point of points: patterns
-* Exploring point patterns: Kernel Density
+- [html](../slides/lecture_08.html)
+- [pdf](../slides/lecture_08.pdf)
+
+### To do before class
+
+* Talk on "Geodemographics and the Internal Structure of Cities" by Prof. Alex
+  Singleton ([link](https://www.youtube.com/watch?v=lslLujtqGlw) to 50min. video).
 
 ### Related readings
+
+* Chapter 7 in {% cite brunsdon2015geocomputation %}: *Geodemographic
+  Analysis*, by Alexandros Alexiou and Alex Singleton.
+* {% cite duque2007supervised %} is an excellent review of regionalization
+  algorthims, but it is an advanced read.
+
+### References
+
+{% bibliography --cited %}
 
 
