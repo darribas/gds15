@@ -54,11 +54,11 @@ Albert Einstein
 * Origiated in the **Public** Sector (policy) and spread to the
   **Private** sector (marketing and business intelligence)
 
-## {data-background=../content/lectures/figs/l07_la.jpg}
+## {data-background=../content/lectures/figs/l08_la.jpg}
 
 [Source](gizmodo.com/uncovering-the-early-history-of-big-data-in-1974-los-an-1712551686)
 
-## {data-background=../content/lectures/figs/l07_oac.png}
+## {data-background=../content/lectures/figs/l08_oac.png}
 
 [Source](http://maps.cdrc.ac.uk)
 
@@ -88,17 +88,17 @@ Albert Einstein
 ## Census geographies
 
 <center>
-<img src="../content/lectures/figs/l07_census.png" alt="Choropleth"
+<img src="../content/lectures/figs/l08_census.png" alt="Choropleth"
 style="width:800px;height:350px;"/>
 </center>
-
-## {data-background=../content/lectures/figs/l07_livehoods.png}
-
-[Livehoods](http://www.livehoods.org/)
 
 ## {data-background=../content/lectures/figs/l01_airbnb.png}
 
 [AirBnb neighborhoods](https://www.airbnb.co.uk/locations)
+
+## {data-background=../content/lectures/figs/l08_livehoods.png}
+
+[Livehoods](http://www.livehoods.org/)
 
 #
 ## Recapitulation
