@@ -19,7 +19,7 @@ le06:
 	decktape automatic -s 1280x960 slides/lecture_06.html slides/lecture_06.pdf
 le08:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_08.md -o slides/lecture_08.html
-	#decktape automatic -s 1280x960 slides/lecture_08.html slides/lecture_08.pdf
+	decktape automatic -s 1280x960 slides/lecture_08.html slides/lecture_08.pdf
 
 labs: qgis_extra la01 la02 la03 la04 la05 la06
 qgis_extra:

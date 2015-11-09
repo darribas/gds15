@@ -69,9 +69,8 @@
     <center>
     <em>Everything should be made as simple as possible, but not simpler</em>
     </center>
-    
     <div style="text-align:right">
-    <small> Albert Einstein </small>
+    <p><small> Albert Einstein </small></p>
     </div>
     </section>
     <section id="the-need-to-group-data-1" class="level2">
@@ -79,6 +78,9 @@
     <ul>
     <li>The world (and its problems) are <strong>complex</strong> and <strong>multidimensional</strong></li>
     <li><strong>Univariate</strong> analysis involves focusing <strong>only one</strong> way of measure the world</li>
+    </ul>
+    <div class="fragment">
+    <ul>
     <li><p>Sometimes, world issues are best understood as <strong>multivariate</strong>:</p>
     <ul>
     <li>Percentage of foreign-born Vs. <em>What is a neighborhood?</em></li>
@@ -86,11 +88,13 @@
     <li>Monthly income Vs. <em>Deprivation</em></li>
     </ul></li>
     </ul>
+    </div>
     </section>
     <section id="grouping-as-simplifying" class="level2">
     <h2><em>Grouping</em> as <em>simplifying</em></h2>
     <ul>
     <li>Define a given number of categories based on <strong>many characteristics</strong> (multi-dimensional)</li>
+    <li>Each observation in the category where it <em>fits best</em></li>
     <li>Find the <strong>category</strong> where each observation <em>fits best</em></li>
     <li><strong>Reduce complexity</strong>, keep all the <strong>relevant information</strong></li>
     <li>Produce easier-to-understand outputs</li>
@@ -106,8 +110,8 @@
     <h2>Geodemographic analysis</h2>
     <ul>
     <li>Technique developed in 1970’s attributed to Richard Webber</li>
-    <li><strong>Identify similar neighborhoods</strong> <span class="math"> → </span> Target urban deprivation Funding</li>
-    <li>Origiated in the <strong>Public</strong> Sector (policy) and spread to the <strong>Private</strong> sector (marketing and business intelligence)</li>
+    <li><strong>Identify similar neighborhoods</strong> <span class="math inline"> → </span> Target urban deprivation funding</li>
+    <li>Originated in the <strong>Public</strong> Sector (policy) and spread to the <strong>Private</strong> sector (marketing and business intelligence)</li>
     </ul>
     </section>
     <section id="section-4" class="level2" data-background="../content/lectures/figs/l08_la.jpg">
@@ -132,27 +136,125 @@
     <section id="non-spatial-clustering" class="level2">
     <h2>Non-spatial clustering</h2>
     </section>
-    <section id="non-spatial-clustering-1" class="level2">
-    <h2>Non-spatial clustering</h2>
+    <section id="section-8" class="level2">
+    <h2></h2>
+    <p><strong>Split</strong> a dataset into <strong>groups</strong> of observations that are <strong>similar within</strong> the group and <strong>dissimilar between</strong> groups, based on a series of <strong>attributes</strong></p>
+    </section>
+    <section id="section-9" class="level2">
+    <h2></h2>
+    <p><strong>Machine learning</strong></p>
+    <div class="fragment">
     <ul>
-    <li>Machine learning</li>
-    <li>Unsupervised learning</li>
+    <li>The computer <em>learns</em> some of the properties of the dataset without the human specifying them</li>
     </ul>
+    </div>
+    <p><strong>Unsupervised</strong></p>
+    <div class="fragment">
+    <ul>
+    <li>There is no a-priori structure imposed on the classification <span class="math inline"> → </span> before the analysis, no observations is in a category</li>
+    </ul>
+    </div>
+    </section>
+    <section id="intuition" class="level2">
+    <h2>Intuition</h2>
+    <center>
+    <img src="../content/lectures/figs/l08_split.png" alt="Clustering"
+    style="width:750px;height:450px;"/>
+    </center>
+    </section>
+    <section id="k-means-source" class="level2">
+    <h2>K-means <small>[<a href="http://simplystatistics.org/2014/02/18/k-means-clustering-in-a-gif/">Source</a>]</small></h2>
+    <iframe width="750" height="450" src="https://www.youtube.com/embed/xnWFIgr34Lk" frameborder="0" allowfullscreen>
+    </iframe>
+    </section>
+    <section id="k-means-source-1" class="level2">
+    <h2>K-means <small>[<a href="http://simplystatistics.org/2014/02/18/k-means-clustering-in-a-gif/">Source</a>]</small></h2>
+    <center>
+    <img src="../content/lectures/figs/l08_kmeans.gif" alt="K-means"
+    style="width:650px;height:550px;"/>
+    </center>
+    </section>
+    <section id="more-clustering..." class="level2">
+    <h2>More clustering...</h2>
+    <ul>
+    <li>Hierarchical clustering</li>
+    <li>Agglomerative clustering</li>
+    <li>Spectral clustering</li>
+    <li>Neural networks (e.g. Self-Organizing Maps)</li>
+    <li>DBScan</li>
+    <li>...</li>
+    </ul>
+    <p>Different properties, different best usecases</p>
+    <p>See <a href="http://scikit-learn.org/stable/modules/clustering.html#overview-of-clustering-methods">interesting comparison</a> table</p>
     </section>
     </section>
-    <section id="section-8" class="level1">
+    <section id="section-10" class="level1">
     <h1></h1>
     <section id="regionalization" class="level2">
     <h2>Regionalization</h2>
     </section>
+    <section id="section-11" class="level2">
+    <h2></h2>
+    <p><span class="fragment"><strong>Spatial</strong></span> Machine Learning</p>
+    <p><span class="fragment"> <em>Aggregating basic spatial units (<strong>areas</strong>) <strong>into</strong> larger units (<strong>regions</strong>)</em></p>
+    </section>
     <section id="regionalization-1" class="level2">
     <h2>Regionalization</h2>
+    <p><strong>Split</strong> a dataset into <strong>groups</strong> of observations that are <strong>similar within</strong> the group and <strong>dissimilar between</strong> groups, based on a series of <strong>attributes</strong>...</p>
+    <p><span class="fragment"> ...with the additional constraint observations need to be <strong>spatial neighbors</strong></span></p>
+    </section>
+    <section id="regionalization-2" class="level2">
+    <h2>Regionalization</h2>
     <ul>
-    <li>Spatial machine learning</li>
+    <li class="fragment current-visible">
+    All the methods aggregate geographical areas into a predefined number of regions, while optimizing a particular aggregation criterion;
+    </li>
+    <li class="fragment current-visible">
+    The areas within a region must be geographically connected (the spatial contiguity constraint);
+    </li>
+    <li class="fragment current-visible">
+    The number of regions must be smaller than or equal to the number of areas;
+    </li>
+    <li class="fragment current-visible">
+    Each area must be assigned to one and only one region;
+    </li>
+    <li class="fragment current-visible">
+    Each region must contain at least one area.
+    </li>
     </ul>
+    <div style="text-align:right">
+    <p><a href="http://irx.sagepub.com/content/30/3/195">Duque et al. (2007)</a></p>
+    </div>
+    </section>
+    <section id="regionalization-3" class="level2">
+    <h2>Regionalization</h2>
+    <ul>
+    <li>All the methods aggregate geographical areas into a predefined number of regions, while optimizing a particular aggregation criterion;</li>
+    <li>The areas within a region must be geographically connected (the spatial contiguity constraint);</li>
+    <li>The number of regions must be smaller than or equal to the number of areas;</li>
+    <li>Each area must be assigned to one and only one region;</li>
+    <li>Each region must contain at least one area.</li>
+    </ul>
+    <div style="text-align:right">
+    <p><a href="http://irx.sagepub.com/content/30/3/195">Duque et al. (2007)</a></p>
+    </div>
+    </section>
+    <section id="section-12" class="level2">
+    <h2></h2>
+    <p>London example w/ AirBnb</p>
+    </section>
+    <section id="algorithms" class="level2">
+    <h2>Algorithms</h2>
+    <ul>
+    <li>Automated Zoning Procedure (AZP)</li>
+    <li>Arisel</li>
+    <li>Max-P</li>
+    <li>...</li>
+    </ul>
+    <p>See <a href="http://irx.sagepub.com/content/30/3/195">Duque et al. (2007)</a> for an excellent, though advanced, overview</p>
     </section>
     </section>
-    <section id="section-9" class="level1">
+    <section id="section-13" class="level1">
     <h1></h1>
     <section id="examples" class="level2">
     <h2>Examples</h2>
@@ -163,24 +265,23 @@
     <img src="../content/lectures/figs/l08_census.png" alt="Choropleth"
     style="width:800px;height:350px;"/>
     </center>
-    
     </section>
-    <section id="section-10" class="level2" data-background="../content/lectures/figs/l08_livehoods.png">
-    <h2></h2>
-    <p><a href="http://www.livehoods.org/">Livehoods</a></p>
-    </section>
-    <section id="section-11" class="level2" data-background="../content/lectures/figs/l01_airbnb.png">
+    <section id="section-14" class="level2" data-background="../content/lectures/figs/l01_airbnb.png">
     <h2></h2>
     <p><a href="https://www.airbnb.co.uk/locations">AirBnb neighborhoods</a></p>
     </section>
+    <section id="section-15" class="level2" data-background="../content/lectures/figs/l08_livehoods.png">
+    <h2></h2>
+    <p><a href="http://www.livehoods.org/">Livehoods</a></p>
     </section>
-    <section id="section-12" class="level1">
+    </section>
+    <section id="section-16" class="level1">
     <h1></h1>
     <section id="recapitulation" class="level2">
     <h2>Recapitulation</h2>
     </section>
     </section>
-    <section id="section-13" class="level1">
+    <section id="section-17" class="level1">
     <h1></h1>
     <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Geographic Data Science'15 - Lecture 6</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://darribas.org" property="cc:attributionName" rel="cc:attributionURL">Dani Arribas-Bel</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
     </section>
