@@ -1,6 +1,6 @@
 ---
-title: Week 9 - Spatial Interaction
+title: Week 9 - Points (I)
 ---
 
-** *Where do I put my coffee shop?* **
+**Exploring Twitter patterns**
 

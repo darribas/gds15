@@ -1,5 +1,5 @@
 ---
-title: Week 11 - Team work on projects
+title: Week 11 - Spatial Regression
 ---
 
 
