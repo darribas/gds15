@@ -99,15 +99,15 @@
               
               <li><a href="./labs/Lab_06.html">Week 6 - ESDA</a></li>
               
-              <li><a href="./labs/Lab_07.html">Week 7 - Clustering</a></li>
+              <li><a href="./labs/Lab_08.html">Week 8 - Clustering</a></li>
               
-              <li><a href="./labs/Lab_08.html">Week 8 - Points (I)</a></li>
+              <li><a href="./labs/Lab_09.html">Week 9 - Points (I)</a></li>
               
-              <li><a href="./labs/Lab_09.html">Week 9 - Spatial Interaction</a></li>
+              <li><a href="./labs/Lab_10.html">Week 10 - Spatial Interaction</a></li>
               
-              <li><a href="./labs/Lab_10.html">Week 10 - Spatial Regression</a></li>
+              <li><a href="./labs/Lab_11.html">Week 11 - Spatial Regression</a></li>
               
-              <li><a href="./labs/Lab_11.html">Week 11 - Team work on projects</a></li>
+              <li><a href="./labs/Lab_12.html">Week 12 - Team work on projects</a></li>
               
               <li><a href="./labs/QGIS_extra.html">QGIS Extra</a></li>
               
@@ -184,6 +184,63 @@ the companion text file <code>README.txt</code>.</p>
 <blockquote>
   <p><a href="content/labs/data/john_snow.zip">http://darribas.org/gds15/content/labs/data/john_snow.zip</a></p>
 </blockquote>
+
+<h4 id="airbnb-listing-for-inner-london---msoa-level">AirBnb listing for Inner London - MSOA level</h4>
+
+<p>This dataset contains information for <a href="http://www.airbnb.com">AirBnb</a> properties 
+for the area of Inner 
+London aggregated at the MSOA level. It has been prepared by Dani Arribas-Bel
+using as the original source the full listing of AirBnb locations for London
+provided by XXX. Same as the source, the dataset is released under a
+<a href="XXX">XXX</a> License.</p>
+
+<p>For every polygon, the following variables are provided:</p>
+
+<ul>
+  <li><code>id</code>: MSOA unique identifier.</li>
+  <li><code>accommodates</code>: average property capacity in the MSOA.</li>
+  <li><code>bathrooms</code>: average number of bathrooms in the properties within the MSOA.</li>
+  <li><code>bedrooms</code>: average number of bedrooms in the properties within the MSOA.</li>
+  <li><code>beds</code>: average number of beds in the properties within the MSOA.</li>
+  <li><code>number_of_reviews</code>: average number of reviews received by the properties within the MSOA.</li>
+  <li><code>reviews_per_month</code>: average number of reviews per month received by the properties within the MSOA.</li>
+  <li><code>review_scores_ratings</code>: average rating score received by the properties within the MSOA. </li>
+  <li><code>review_scores_accuracy</code>: average accuracy score received by the properties within the MSOA. </li>
+  <li><code>review_scores_cleanliness</code>: average cleanliness score received by the properties within the MSOA. </li>
+  <li><code>review_scores_checkin</code>: average checkin score received by the properties within the MSOA. </li>
+  <li><code>review_scores_communication</code>: average communication score received by the properties within the MSOA. </li>
+  <li><code>review_scores_location</code>: average location score received by the properties within the MSOA. </li>
+  <li><code>review_scores_value</code>: average value score received by the properties within the MSOA. </li>
+  <li><code>property_count</code>: total number of AirBnb properties listed withing the MSOA.</li>
+</ul>
+
+<p><strong>Source</strong>: <a href="placeHolder">XXX</a>’s extract of AirBnb locations in London (UK). Available at this
+<a href="placeHolder">link</a>.</p>
+
+<p><strong>Instructions</strong>: the data is provided as a <code>GeoJSON</code> file and is available
+for download in the following url:</p>
+
+<blockquote>
+  <p><a href="content/labs/data/ilm_abb.geojson">http://darribas.org/gds15/content/labs/data/ilm_abb.geojson</a></p>
+</blockquote>
+
+<p>The lab also uses an additional file that contains the boundary lines of the
+London boroughs, which has been obtained from:</p>
+
+<blockquote>
+  <p><a href="https://github.com/radoi90/housequest-data/blob/master/london_boroughs.geojson">https://github.com/radoi90/housequest-data/blob/master/london_boroughs.geojson</a></p>
+</blockquote>
+
+<p>But can also be downloaded from the course website:</p>
+
+<blockquote>
+  <p><a href="content/labs/data/london_boroughs.geojson">http://darribas.org/gds15/content/labs/data/london_boroughs.geojson</a></p>
+</blockquote>
+
+<p><strong>Additional files</strong>: A Jupyter notebook showing the process of cleaning and
+aggregation carried out from the original data to the file provided here can
+be accessed in <a href="content/labs/lab_08_airbnb_data_prep.ipynb"><code>.ipynb</code></a> and 
+<a href="content/labs/lab_08_airbnb_data_prep.html">html</a> format.</p>
 
 <h4 id="geo-referenced-tweets">Geo-referenced tweets</h4>
 

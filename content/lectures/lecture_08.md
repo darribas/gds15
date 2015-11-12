@@ -43,7 +43,6 @@ Albert Einstein
 
 * Define a given number of categories based on **many characteristics**
   (multi-dimensional)
-* Each observation in the category where it *fits best*
 * Find the **category** where each observation *fits best*
 * **Reduce complexity**, keep all the **relevant information**
 * Produce easier-to-understand outputs

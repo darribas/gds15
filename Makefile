@@ -19,7 +19,7 @@ le06:
 	decktape automatic -s 1280x960 slides/lecture_06.html slides/lecture_06.pdf
 le08:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_08.md -o slides/lecture_08.html
-	decktape automatic -s 1280x960 slides/lecture_08.html slides/lecture_08.pdf
+	#decktape automatic -s 1280x960 slides/lecture_08.html slides/lecture_08.pdf
 
 labs: qgis_extra la01 la02 la03 la04 la05 la06
 qgis_extra:
@@ -43,6 +43,10 @@ la05:
 la06:
 	cd content/labs && jupyter nbconvert --to html lab_06.ipynb --output lab_06.html
 	cd content/labs && jupyter nbconvert --to latex lab_06.ipynb --output lab_06.tex && texbuild lab_06.tex && rm lab_06.tex && rm -R lab_06_files/
+la08:
+	cd content/labs && jupyter nbconvert --to html lab_08.ipynb --output lab_08.html
+	cd content/labs && jupyter nbconvert --to html lab_08_airbnb_data_prep.ipynb --output lab_08_airbnb_data_prep.html
+	cd content/labs && jupyter nbconvert --to latex lab_08.ipynb --output lab_08.tex && texbuild lab_08.tex && rm lab_08.tex && rm -R lab_08_files/
 
 website:
 	jekyll build
