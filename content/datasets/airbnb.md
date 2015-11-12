@@ -4,8 +4,8 @@ This dataset contains information for [AirBnb](http://www.airbnb.com) properties
 for the area of Inner 
 London aggregated at the MSOA level. It has been prepared by Dani Arribas-Bel
 using as the original source the full listing of AirBnb locations for London
-provided by XXX. Same as the source, the dataset is released under a
-[XXX](XXX) License.
+provided by [Inside AirBnb](http://insideairbnb.com/). Same as the source, the
+dataset is released under a [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/) License.
 
 For every polygon, the following variables are provided:
 
@@ -25,7 +25,7 @@ For every polygon, the following variables are provided:
 * `review_scores_value`: average value score received by the properties within the MSOA. 
 * `property_count`: total number of AirBnb properties listed withing the MSOA.
 
-**Source**: [XXX](placeHolder)'s extract of AirBnb locations in London (UK). Available at this
+**Source**: [Inside AirBnb](http://insideairbnb.com/)'s extract of AirBnb locations in London (UK). Available at this
 [link](placeHolder).
 
 **Instructions**: the data is provided as a `GeoJSON` file and is available
