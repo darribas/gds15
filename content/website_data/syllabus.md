@@ -43,13 +43,13 @@ This week there will not be a lecture or a computer lab.
 
 [**ASSIGNMENT 1**](assignments/task_01.html) due on Wednesday, November 18th-2015.
 
-* Lecture: [Clustering](notes/Class_07.html).
-* Tutorial: [Geodemographic analysis](labs/Lab_07.html).
+* Lecture: [Clustering](notes/Class_08.html).
+* Tutorial: [Geodemographic analysis](labs/Lab_08.html).
 
 ##### Week 9: Point Data
 
-* Lecture: [Point Data](notes/Class_08.html).
-* Tutorial: [Exploring Twitter patterns](labs/Lab_08.html).
+* Lecture: [Point Data](notes/Class_09.html).
+* Tutorial: [Exploring Twitter patterns](labs/Lab_09.html).
 
 -----
 
@@ -63,12 +63,12 @@ This week there will not be a lecture or a computer lab.
 * Lecture: [Spatial causal inference](notes/Class_12.html).
 * Tutorial: [Assisted work on assignment](labs/Lab_12.html).
 
-##### Week 12: Spatial interaction models
+##### Week 12: Geographic Data Science in Action
 
 [**ASSIGNMENT 2**](assignments/task_02.html) due on Thursday, December
 17th-2015.
 
-* Lecture: [Spatial interaction models](notes/Class_10.html).
-* Tutorial: [Spatial interaction models](labs/Lab_10.html).
+* Lecture: [Geographic Data Science *in the wild*](notes/Class_10.html).
+* Tutorial: [TBA](labs/Lab_10.html).
 
 

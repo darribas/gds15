@@ -170,9 +170,7 @@ and **dissimilar between** groups, based on a series of
 [Duque et al. (2007)](http://irx.sagepub.com/content/30/3/195)
 </div>
 
-## 
-
-London example w/ AirBnb
+## {data-background=../content/lectures/figs/l08_abb_london.png}
 
 ## Algorithms
 
@@ -205,6 +203,13 @@ style="width:800px;height:350px;"/>
 #
 ## Recapitulation
 
+* Some problems are truly **highly dimensional** and univariate representations
+  are not appropriate
+* **Clustering** can help reduce complexity by creating **categories** that
+  retain statistical information but are easier to understand
+* Two main types of clustering in this context:
+    * Geo-demographic analysis
+    * Regionalization
 
 
 #
