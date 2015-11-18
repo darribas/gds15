@@ -1,13 +1,21 @@
 ---
-title: Week 9 - Points (I)
+title: Week 9 - Points
 ---
 
-**[Slides** - [html](../revealjs/intro_esda1.html)**]**
+### Slides
 
-* Why/When points are different from polygons
-* The point of points: patterns
-* Exploring point patterns: Kernel Density
+- [html](../slides/lecture_09.html)
+- [pdf](../slides/lecture_09.pdf)
+
+### To do before class
+
+* Blah
 
 ### Related readings
 
+* Blah
+
+### References
+
+{% bibliography --cited %}
 
