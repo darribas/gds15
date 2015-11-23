@@ -76,20 +76,32 @@ Examples:
 <li class="fragment"> Cities (in most cases) </li>
 <li class="fragment"> Buildings </li>
 <li class="fragment"> Polygons represented as their centroid </li>
-<li> ... </li>
+<li class="fragment"> ... </li>
 </ul>
 
 #
 ## Point patterns
 
+## Point patterns
+
 * What they are
-* Types:
-    * Unmarked
-    * Marked
 
-## Unmarked PP
+## Point patterns
 
-## Marked PP
+* Unmarked
+* Marked
+
+## *Unmarked* PP
+
+* Only **locations**, no values attached to them
+* Focus entirely on the shape and nature of the **spatial distribution**
+* Departures from randomness, distributional assumptions
+
+## *Marked* PP
+
+* **Locations** *and* **values** are
+* Focus is on modelling the **spatial distribution of values**
+* "Surface estimation"
 
 #
 ## Visualization of PPs
@@ -98,17 +110,27 @@ Examples:
 
 Points meet polygons: count points per area
 
+## Aggregation
+
+[Figure w/ points in polygons --> Choropleths of counts
+
+## Aggregation
+
 But... may introduce MAUP!!!
 
 Rates --> stress underlying population!!!
 
-## Kernel densities
+## Kernel Density Estimation
 
 In general
 
 * Portraying distributions
 * "Continuous histogram"
 * Estimation of underlying distribution
+
+## Kernel Density Estimation
+
+## Spatial KDE
 
 In space
 
@@ -119,6 +141,10 @@ In space
 [Visualization of kernels???]
 
 Effect of different bandwith
+
+## Surfaces of values
+
+Spatial prediction, interpolation, kriging
 
 #
 ## Recapitulation
