@@ -11,6 +11,28 @@
 
 #
 ## The *point* of points
+## Points like polygons
+
+Points *can* represent **"fixed" entities**
+
+<span class='fragment'>
+In this case, points are **qualitatively** similar to **polygons/lines**
+
+<span class='fragment'>
+The **goal** here is, taking location fixed, to model other aspects of the
+data
+
+## Points like polygons
+
+Examples:
+
+<ul>
+<li class="fragment"> Cities (in most cases) </li>
+<li class="fragment"> Buildings </li>
+<li class="fragment"> Polygons represented as their centroid </li>
+<li class="fragment"> ... </li>
+</ul>
+
 ## When points are not polygons
 
 Point data are not only a different geometry than polygons or lines...
@@ -56,70 +78,92 @@ that the points follow **over space**
 
 <iframe width="100%" height="500px" frameBorder="0" src="https://api.tiles.mapbox.com/v4/enf.c3a2de35/page.html?access_token=pk.eyJ1IjoiZW5mIiwiYSI6IkNJek92bnMifQ.xn2_Uj9RkYTGRuCGg4DXZQ#12/53.4155/-2.9680"></iframe>
 
-## Points like polygons
-
-Points can also represent **"fixed" entities**
-
-<span class='fragment'>
-In this case, points are **qualitatively** similar to **polygons/lines**
-
-<span class='fragment'>
-The **goal** here is not to model the process that generated the location, but to
-take it as fixed and model other aspects of the data <span class='fragment'> $\rightarrow$ The
-*pattern* is less relevant
-
-## Points like polygons
-
-Examples:
-
-<ul>
-<li class="fragment"> Cities (in most cases) </li>
-<li class="fragment"> Buildings </li>
-<li class="fragment"> Polygons represented as their centroid </li>
-<li class="fragment"> ... </li>
-</ul>
-
 #
 ## Point patterns
 
 ## Point patterns
 
-* What they are
+Distribution of **points over** a portion of **space**
 
-## Point patterns
+Assumption is a point can happen anywhere on that space, but only happens in
+specific locations
 
-* Unmarked
-* Marked
+<div class='fragment'>
+* **Unmarked**: locations only
+* **Marked**: values attached to each point
+</div>
 
-## *Unmarked* PP
+##
 
-* Only **locations**, no values attached to them
-* Focus entirely on the shape and nature of the **spatial distribution**
-* Departures from randomness, distributional assumptions
+**`Point Pattern Analysis`**
 
-## *Marked* PP
+Describe, characterize, and explain point patterns, focusing on their **generating process**
 
-* **Locations** *and* **values** are
-* Focus is on modelling the **spatial distribution of values**
-* "Surface estimation"
+* Visual exploration
+* Clustering properties
+* Statistical modeling of the underlying processes
 
 #
 ## Visualization of PPs
+## Visualization of PPs
+
+Two routes (today):
+
+* *Aggregate* <span class='fragment'> $\leftrightarrow$ "Histogram"
+* *Smooth* <span class='fragment'> $\leftrightarrow$ KDE
+
+## Aggregation
+##
+
+<center>
+*Points meet polygons*
+</center>
+
+<span class="fragment"> Use **polygon** boundaries and **count** points per area
+
+<span class="fragment"> [Insert your skills for **choropleth mapping** here!!!]
+
+<span class="fragment"> **But**, the polygons need to *"make sense"* (their
+delineation needs to relate to the point generating process)
 
 ## Aggregation
 
-Points meet polygons: count points per area
+[Figures w/ points in polygons --> Choropleths of counts]
 
-## Aggregation
+## Hex-binning
 
-[Figure w/ points in polygons --> Choropleths of counts
+If **no** polygon boundary seems like a **good candidate** for aggregation...
 
-## Aggregation
+<span class='fragment'> ...draw a **hexagonal** (or squared) **tesselation**!!!
 
-But... may introduce MAUP!!!
+<div class='fragment'>
+Hexagons...
 
-Rates --> stress underlying population!!!
+* Are **regular**
+* **Exhaust** the space (Unlike circles)
+* Have **many sides** (minimize boundary problems)
+</div>
 
+## Hex-binning
+
+[Figure]
+
+## But...
+
+<div class="fragment">
+(Arbitrary) aggregation may induce **M.A.U.P.** (see Lecture 4)
+</div>
+
+<center class="fragment">
+$+$
+</center>
+
+<div class="fragment">
+Points usually represent events that affect to only **part** of the population
+and hence are best considered as **rates** (see Lecture 4)
+</div>
+
+## Kernel Density Estimation
 ## Kernel Density Estimation
 
 In general
@@ -138,9 +182,11 @@ In space
 * Ratios of densities (derived surfaces, heat maps, etc.) --> comparing two
   patterns
 
-[Visualization of kernels???]
-
 Effect of different bandwith
+
+## Spatial KDE
+
+[Figure]
 
 ## Surfaces of values
 
