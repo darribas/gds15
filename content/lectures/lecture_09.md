@@ -123,7 +123,7 @@ Two routes (today):
 
 <span class="fragment"> [Insert your skills for **choropleth mapping** here!!!]
 
-<span class="fragment"> **But**, the polygons need to *"make sense"* (their
+<span class="fragment"> **But**, <span class="fragment"> the polygons need to *"make sense"* (their
 delineation needs to relate to the point generating process)
 
 ## Aggregation
@@ -151,7 +151,7 @@ Hexagons...
 ## But...
 
 <div class="fragment">
-(Arbitrary) aggregation may induce **M.A.U.P.** (see Lecture 4)
+(Arbitrary) aggregation may induce **MAUP** (see Lecture 4)
 </div>
 
 <center class="fragment">
@@ -166,35 +166,39 @@ and hence are best considered as **rates** (see Lecture 4)
 ## Kernel Density Estimation
 ## Kernel Density Estimation
 
-In general
+*Estimate the (**continuous**) observed **distribution** of a variable*
 
-* Portraying distributions
+<div class='fragment'>
+* Probability of finding an observation at a given point
 * "Continuous histogram"
-* Estimation of underlying distribution
+* Solves (much of) the MAUP problem, but not the underlying population issue
+</div>
 
-## Kernel Density Estimation
+## 
+
+[Figure explaining the intuition of a KDE]
+
+## Bivariate (spatial) KDE
+
+*Probability of finding observations at a given point in space*
+
+* **Bivariate** version: distribution of **pairs of values**
+* In **space**: values are coordinates (XY), locations
+* Continuous "version" of a choropleth
 
 ## Spatial KDE
 
-In space
-
-* Intensity surfaces
-* Ratios of densities (derived surfaces, heat maps, etc.) --> comparing two
-  patterns
-
-Effect of different bandwith
-
-## Spatial KDE
-
-[Figure]
-
-## Surfaces of values
-
-Spatial prediction, interpolation, kriging
+[Figure with points over the kernel]
 
 #
 ## Recapitulation
 
+* **Points** can be understood as a **fixed** or **random** process over space
+* If seen as a random, *where* points are located is part of the interest in
+  the (**point pattern**) analysis
+* **Visualization** of point patterns can be done through **aggregation** or
+  **smoothing** (but issues relating to the MAUP and underlying populations need
+  to be kept in mind!)
 
 
 #
