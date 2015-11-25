@@ -126,9 +126,15 @@ Two routes (today):
 <span class="fragment"> **But**, <span class="fragment"> the polygons need to *"make sense"* (their
 delineation needs to relate to the point generating process)
 
-## Aggregation
+## 
 
-[Figures w/ points in polygons --> Choropleths of counts]
+<center>
+<img src="../content/lectures/figs/l09_liv_pts.png" alt=""
+style="width:400px;height:500px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l09_liv_cho.png" alt=""
+style="width:400px;height:500px;"/>
+</center>
 
 ## Hex-binning
 
@@ -144,9 +150,19 @@ Hexagons...
 * Have **many sides** (minimize boundary problems)
 </div>
 
-## Hex-binning
+## 
 
-[Figure]
+<center>
+<img src="../content/lectures/figs/l09_liv_pts.png" alt=""
+style="width:300px;height:400px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l09_liv_hex_empty.png" alt=""
+style="width:300px;height:400px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l09_liv_hex_filled.png" alt=""
+style="width:300px;height:400px;"/>
+</center>
+
 
 ## But...
 
@@ -174,9 +190,9 @@ and hence are best considered as **rates** (see Lecture 4)
 * Solves (much of) the MAUP problem, but not the underlying population issue
 </div>
 
-## 
+## {data-background=../content/lectures/figs/l09_kde.png}
 
-[Figure explaining the intuition of a KDE]
+[[Source](https://en.wikipedia.org/wiki/Kernel_density_estimation#/media/File:Comparison_of_1D_histogram_and_KDE.png)]
 
 ## Bivariate (spatial) KDE
 
@@ -186,9 +202,17 @@ and hence are best considered as **rates** (see Lecture 4)
 * In **space**: values are coordinates (XY), locations
 * Continuous "version" of a choropleth
 
-## Spatial KDE
+## {data-background=../content/lectures/figs/l09_kde2d.png}
 
-[Figure with points over the kernel]
+## 
+
+<center>
+<img src="../content/lectures/figs/l09_liv_pts.png" alt=""
+style="width:400px;height:500px;"/>
+<span class="fragment"> 
+<img src="../content/lectures/figs/l09_liv_kde.png" alt=""
+style="width:400px;height:500px;"/>
+</center>
 
 #
 ## Recapitulation
