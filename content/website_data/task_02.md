@@ -10,7 +10,7 @@
 * 50% of the final mark
 * Chance to be reassessed
 * Final Assessment
-* Due on **Thursday, December 17th-2015** (Week 12).
+* Due on **Friday, December 18th-2015** (Week 12).
 * Submission channels will be specified in due course.
 
 In this assignment, you will take the role of a real-world data scientist
@@ -45,8 +45,6 @@ fashion, together with the code.
   activity to identify areas of high values at both.
 * Combine several relevant variables into a geodemographic analysis to obtain
   candidate areas and display the results in an aesthetically pleasant choropleth.
-* Fit a spatial interaction model of commuting flows and use the origin and 
-  destination effects in a geodemographic analysis. Present results in a choropleth.
 
 **Data**
 

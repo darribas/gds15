@@ -53,22 +53,22 @@ This week there will not be a lecture or a computer lab.
 
 -----
 
-##### Week 10: Spatial regression
+##### Week 10: (Spatial) causal inference
 
-* Lecture: [Spatial regression](notes/Class_11.html).
-* Tutorial: [Spatial regression](labs/Lab_11.html).
+* Lecture: [Spatial causal inference](notes/Class_11.html).
+* Tutorial: Assignment Clinic.
 
-##### Week 11: (Spatial) causal inference
+##### Week 11: GDS Applications
 
-* Lecture: [Spatial causal inference](notes/Class_12.html).
-* Tutorial: [Assisted work on assignment](labs/Lab_12.html).
+* Lecture: [Applications of Geographic Data Science](notes/Class_12.html).
+* Tutorial: Assignment Clinic.
 
 ##### Week 12: Geographic Data Science in Action
 
-[**ASSIGNMENT 2**](assignments/task_02.html) due on Thursday, December
-17th-2015.
+[**ASSIGNMENT 2**](assignments/task_02.html) due on Friday, December
+18th-2015.
 
 * Lecture: [Geographic Data Science *in the wild*](notes/Class_10.html).
-* Tutorial: [TBA](labs/Lab_10.html).
+* Tutorial: Assignment Clinic.
 
 
