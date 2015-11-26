@@ -9,11 +9,13 @@ title: Week 9 - Points
 
 ### To do before class
 
-* Blah
+* Lecture on  "Point Pattern Analysis Basics" by Luc Anselin
+  ([link](https://geodacenter.asu.edu/point-pattern-a) to 45min video).
 
 ### Related readings
 
-* Blah
+* This class was partially based on {% cite rey2015gis471l4 %}.
+* The slides for this lecture were also inspired by Part 6 in {% cite brunsdoncomber2015 %}. 
 
 ### References
 
