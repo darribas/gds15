@@ -238,20 +238,44 @@ be accessed in <a href="content/labs/lab_08_airbnb_data_prep.ipynb"><code>.ipynb
 
 <h4 id="geo-referenced-tweets">Geo-referenced tweets</h4>
 
-<p><em>What’s the word in the street?</em></p>
+<p>This dataset, provided as a shapefile, contains a collection of locations and
+time stamps relating to <a href="http://twitter.com">Twitter</a> postings within the 
+municipality of Liverpool. The data was originally provided by Guy Lansley
+from UCL and processed by Dani Arribas-Bel.</p>
+
+<p>Every row in the dataset contains an individual tweet, and is provided with the
+following information:</p>
 
 <ul>
-  <li>Points</li>
-  <li>Spatial Analysis of points</li>
-  <li>Clustering</li>
+  <li><code>LAT</code>: latitude of the location where the posting took place.</li>
+  <li><code>LON</code>: longitude of the location where the posting took place.</li>
+  <li><code>YEAR</code>: year of posting.</li>
+  <li><code>MONTH</code>: month of posting.</li>
+  <li><code>DAY</code>: day of the month (1-31) when the message was posted.</li>
+  <li><code>DOW</code>: day of the week (0-6) when the message was posted.</li>
+  <li><code>HOUR</code>: hour of the posting.</li>
+  <li><code>MINUTE</code>: minute of the posting.</li>
+  <li><code>X</code>: longitude projected to the British National Grid (<a href="http://epsg.io/27700">EPSG:
+27700</a>).</li>
+  <li><code>Y</code>: latitude projected to the British National Grid (<a href="http://epsg.io/27700">EPSG:
+27700</a>).</li>
+  <li><code>LSOA11CD</code>: unique identifier code of the LSOA where the tweet location falls
+into.</li>
 </ul>
 
-<h4 id="commuting-data">Commuting data</h4>
+<p><strong>Source</strong>: <a href="http://twitter.com">Twitter</a> via Guy Lansley (UCL).</p>
 
-<ul>
-  <li>Spatial interaction models</li>
-  <li>Spatial regression</li>
-</ul>
+<p><strong>Instructions</strong>: given the Twitter license that applies to the data, this
+dataset cannot be redistributed publicly online. For that reason, it has been
+uploaded to the VITAL page of the course. You can find it on the following
+location:</p>
+
+<blockquote>
+  <p>VITAL ENVS3/563 –&gt; Learning Resources –&gt; Twitter dataset</p>
+</blockquote>
+
+<p>The shapefile is provided as a compressed <code>.zip</code> file. Download it and extract
+it where you can access and set the path appropriately.</p>
 
 
   </div>
