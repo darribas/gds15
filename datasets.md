@@ -25,8 +25,3 @@ layout: default
 {{ tweets | markdownify }}
 
 
-#### Commuting data
-
-* Spatial interaction models
-* Spatial regression
-
