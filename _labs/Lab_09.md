@@ -10,10 +10,17 @@ title: Week 9 - Points
 
 ### Data
 
-Go to the
-[Datasets](../datasets.html) tab to find out more information as well as instructions to
-download it.
+This lab uses a sample of geo-referenced tweets for the city of Liverpool.
+Go to the [Datasets](../datasets.html) tab and check the "Geo-referenced 
+tweets" section to find out more information about the data as well as
+instructions to download it.
 
 ### Additional materials
 
+* A very good resource for kernel density estimation in Python is provided in
+  [this blog
+  post](https://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/)
+  by Jake Vanderplas.
+* The R package [`spatstat`](http://spatstat.github.io/) provides extensive
+  functionality to statistically describe and model point patterns.
 
