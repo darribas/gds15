@@ -24,7 +24,7 @@ le09:
 	pandoc -t html5 --template=slides/template.revealjs --standalone --section-divs --variable theme="journal"   --variable transition="linear" content/lectures/lecture_09.md -o slides/lecture_09.html
 	decktape automatic -s 1290x960 slides/lecture_09.html slides/lecture_09.pdf
 
-labs: qgis_extra la01 la02 la03 la04 la05 la06
+labs: qgis_extra la01 la02 la03 la04 la05 la06 la08 la09
 qgis_extra:
 	cd content/labs/qgis_extra && jupyter nbconvert --to html qgis_mapping.ipynb --output qgis_mapping.html
 	wkhtmltopdf file://$(shell pwd)/content/labs/qgis_extra/qgis_mapping.html $(shell pwd)/content/labs/qgis_extra/qgis_mapping.pdf
@@ -50,6 +50,11 @@ la08:
 	cd content/labs && jupyter nbconvert --to html lab_08.ipynb --output lab_08.html
 	cd content/labs && jupyter nbconvert --to html lab_08_airbnb_data_prep.ipynb --output lab_08_airbnb_data_prep.html
 	cd content/labs && jupyter nbconvert --to latex lab_08.ipynb --output lab_08.tex && texbuild lab_08.tex && rm lab_08.tex && rm -R lab_08_files/
+la09:
+	cd content/labs && jupyter nbconvert --to html lab_09.ipynb --output lab_09.html
+	cd content/labs && jupyter nbconvert --to html lab_09_data_prep.ipynb --output lab_09_data_prep.html
+	cd content/labs && jupyter nbconvert --to html lab_09-lecture_figures.ipynb --output lab_09-lecture_figures.html
+	cd content/labs && jupyter nbconvert --to latex lab_09.ipynb --output lab_09.tex && texbuild lab_09.tex && rm lab_09.tex && rm -R lab_09_files/
 
 website:
 	jekyll build
