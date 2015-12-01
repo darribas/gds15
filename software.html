@@ -134,17 +134,17 @@ install them in different platforms.</p>
 download by clicking:</p>
 
 <ul>
-  <li><code>install_gds_stack</code>(<a href="content/infrastructure/install_gds_stack_win.bat">Windows</a>, 
+  <li><code class="highlighter-rouge">install_gds_stack</code>(<a href="content/infrastructure/install_gds_stack_win.bat">Windows</a>, 
 <a href="content/infrastructure/install_gds_stack_unix.sh">Mac/Linux</a>)</li>
-  <li><a href="content/infrastructure/check_gds_stack.ipynb"><code>check_gds_stack.ipynb</code></a></li>
+  <li><a href="content/infrastructure/check_gds_stack.ipynb"><code class="highlighter-rouge">check_gds_stack.ipynb</code></a></li>
 </ul>
 
 <p>[Required for the Vagrant option only]</p>
 
 <ul>
-  <li><a href="content/infrastructure/Vagrantfile"><code>Vagrantfile</code></a></li>
-  <li><a href="content/infrastructure/bootstrap.sh"><code>bootstrap.sh</code></a></li>
-  <li><a href="content/infrastructure/launchenv.sh"><code>launchenv.sh</code></a></li>
+  <li><a href="content/infrastructure/Vagrantfile"><code class="highlighter-rouge">Vagrantfile</code></a></li>
+  <li><a href="content/infrastructure/bootstrap.sh"><code class="highlighter-rouge">bootstrap.sh</code></a></li>
+  <li><a href="content/infrastructure/launchenv.sh"><code class="highlighter-rouge">launchenv.sh</code></a></li>
 </ul>
 
 <h2 id="dependencies">Dependencies</h2>
@@ -186,8 +186,8 @@ instructions provided in the link for installation.</p>
 
 <p>Once you have a fully working Anaconda distribution installed in your
 computer, you can setup an isolated environment that contains all the required
-libraries by simply running the install script <code>install_gds_stack_X.sh</code> provided
-with this guide. These scripts vary depending on the platform you are on. </p>
+libraries by simply running the install script <code class="highlighter-rouge">install_gds_stack_X.sh</code> provided
+with this guide. These scripts vary depending on the platform you are on.</p>
 
 <h4 id="mac-osxlinux">Mac OSX/Linux</h4>
 
@@ -198,21 +198,21 @@ with this guide. These scripts vary depending on the platform you are on. </p>
   <li>
     <p>Navigate to the folder where this file is:</p>
 
-    <p><code>
+    <p><code class="highlighter-rouge">
   cd /path/to/folder/
  </code></p>
   </li>
   <li>
     <p>Make the script executable:</p>
 
-    <p><code>
+    <p><code class="highlighter-rouge">
   chmod +x install_gds_stack_unix.sh
  </code></p>
   </li>
   <li>
     <p>Execute the script:</p>
 
-    <p><code>
+    <p><code class="highlighter-rouge">
   ./install_gds_stack_unix.sh
  </code></p>
   </li>
@@ -222,14 +222,14 @@ with this guide. These scripts vary depending on the platform you are on. </p>
 
 <h4 id="windows">Windows</h4>
 
-<p>Simply double-click on the <code>install_gds_stack_win.bat</code> file, this will set in
+<p>Simply double-click on the <code class="highlighter-rouge">install_gds_stack_win.bat</code> file, this will set in
 motion the installation.</p>
 
 <p><strong>NOTE</strong>: this assumes your Anaconda installation is placed under
-<code>C:\Anaconda</code>. If this is not the case, you will have to open the file with a
+<code class="highlighter-rouge">C:\Anaconda</code>. If this is not the case, you will have to open the file with a
 text editor and replace the path in line 8, where it says:</p>
 
-<p><code>
+<p><code class="highlighter-rouge">
 set ANACONDA_DIR=C:\Anaconda
 </code></p>
 
@@ -255,7 +255,7 @@ native OS. To install a virtual machine, follow these steps:</p>
   <li>
     <p>Navigate to the folder where this file is:</p>
 
-    <p><code>
+    <p><code class="highlighter-rouge">
   cd /path/to/folder/
  </code></p>
   </li>
@@ -264,7 +264,7 @@ native OS. To install a virtual machine, follow these steps:</p>
 as it has to download a large amount of files (in fact, an entirely OS).
 Subsequent times, it is much faster:</p>
 
-    <p><code>
+    <p><code class="highlighter-rouge">
   vagrant up
  </code></p>
   </li>
@@ -272,25 +272,25 @@ Subsequent times, it is much faster:</p>
 
 <h2 id="check">Check</h2>
 
-<p>To check things have installed correctly, an additional file is included, <code>check_gds_stack.ipynb</code>. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type the following in Mac/Linux:</p>
+<p>To check things have installed correctly, an additional file is included, <code class="highlighter-rouge">check_gds_stack.ipynb</code>. To run it, open a terminal (PowerShell), navigate to the folder as showed above and type the following in Mac/Linux:</p>
 
-<p><code>
+<p><code class="highlighter-rouge">
 source activate gds
 </code></p>
 
 <p>Or the following for Windows:</p>
 
-<p><code>
+<p><code class="highlighter-rouge">
 activate gds
 </code></p>
 
 <p>And then:</p>
 
-<p><code>
+<p><code class="highlighter-rouge">
 jupyter notebook
 </code></p>
 
-<p>This will open up a browser window with a list of the files in the folder. Click on <code>check_gds_stack.ipynb</code>, which will open a new tab in the browser. Navigate to Cell –&gt; Run All and click on it. If you do not get any error and all the cells except for the first one return <code>True</code>, things went well.</p>
+<p>This will open up a browser window with a list of the files in the folder. Click on <code class="highlighter-rouge">check_gds_stack.ipynb</code>, which will open a new tab in the browser. Navigate to Cell –&gt; Run All and click on it. If you do not get any error and all the cells except for the first one return <code class="highlighter-rouge">True</code>, things went well.</p>
 
 
   </div>
