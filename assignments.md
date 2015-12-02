@@ -7,7 +7,7 @@ layout: default
 # Assignments 
 
 * [Assignment 1](#task_01)
-* [Assignment 2](#task_02)
+* [Assignment 2](#task_02) - [[Slides](slides/assignment02.html)]
 * [Marking criteria](#marking_criteria)
 
 {% capture task_01 %}{% include_relative content/website_data/task_01.md %}{% endcapture %}
