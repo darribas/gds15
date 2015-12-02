@@ -88,6 +88,7 @@
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11182,8 +11183,18 @@ O0RERFTQGHaIiIiooDHsEBERUUFj2CEiIqKCxrBDREREBe3/B9fvw3UQMExxAAAAAElFTkSuQmCC
 </ul>
 <p>As a suggestion, you can use the following additional datasets:</p>
 <ul>
-<li><strong>TO DO</strong>: as Michalis for house prices.</li>
-<li><strong>TO DO</strong>: find crime data.</li>
+<li><strong>House transactions</strong> originally provided by the Land Registry.<ul>
+<li>Download a sample for Liverpool from <a href="data/house_transactions.zip">this link</a>.</li>
+<li>Note that this is really a <em>marked</em> point pattern although you will be looking at it as if it was an <em>unmarked</em> point pattern. Think of the implications of this in terms of what you can learn about it.</li>
+</ul>
+</li>
+<li><strong>Crime data</strong> from <a href="https://data.police.uk/data/"><code>data.police.uk</code></a>.<ul>
+<li>Select the date range you want to download data for.</li>
+<li>Choose the Police force you want to analyze (for Liverpool, it will be Merseyside. Note this includes an area larger than the municipality).</li>
+<li>Note that this is a <code>csv</code> file, not a shapefile. Use skills learnt in Lab 2 to be able to read it. You can plot the points in the original Coordinate System (lon/lat).</li>
+<li>Bonus if you figure out how to covert the <code>DataFrame</code> into a <code>GeoDataFrame</code> and reproject it to the UK grid (<code>EPSG:27700</code>). Note this is fairly advanced, so do not despair if you do not get there. A alternative is to read the <code>csv</code> file in QGIS and save if as a shapefile there, to be read in Python later on.</li>
+</ul>
+</li>
 </ul>
 
 </div>
