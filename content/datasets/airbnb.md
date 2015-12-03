@@ -25,11 +25,10 @@ For every polygon, the following variables are provided:
 * `review_scores_value`: average value score received by the properties within the MSOA. 
 * `property_count`: total number of AirBnb properties listed withing the MSOA.
 
-**Source**: [Inside AirBnb](http://insideairbnb.com/)'s extract of AirBnb locations in London (UK). Available at this
-[link](placeHolder).
+**Source**: [Inside AirBnb](http://insideairbnb.com/)'s extract of AirBnb locations in London (UK).
 
 **Instructions**: the data is provided as a `GeoJSON` file and is available
-for download in the following url:
+for download in the following url (right-clik and "Save As" on the link):
 
 > [http://darribas.org/gds15/content/labs/data/ilm_abb.geojson](content/labs/data/ilm_abb.geojson)
 
