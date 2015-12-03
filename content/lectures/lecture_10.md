@@ -152,9 +152,9 @@ available nearby locations
 #
 ## Hurdles to causal inference
 ## Hurdles to causal inference
-Correlation *implies* Causation
+Causation *implies* Correlation
 
-Causation *does **not** imply* Correlation
+Correlation *does **not** imply* Causation
 
 *Why?*<img class='fragment' src="../content/lectures/figs/l05_moranplot_std.png" alt=""
 style="width:175px;height:175px;border:0px;" />
