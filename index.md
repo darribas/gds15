@@ -14,7 +14,7 @@ A pdf copy of the module handbook can be downloaded
 
 ### Citation
 
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.46300.svg)](http://dx.doi.org/10.5281/zenodo.46300)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.46313.svg)](http://dx.doi.org/10.5281/zenodo.46313)
 
 If you use material from this course, I would appreciate if you used the
 following citation:
@@ -26,7 +26,7 @@ following citation:
   year = 2016,
   url = {http://darribas.org/gds15},
   urldate = {2016-02-19}
-  doi = {10.5281/zenodo.46300}
+  doi = {10.5281/zenodo.46313}
 }
 </pre>
 
