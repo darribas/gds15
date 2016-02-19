@@ -1,6 +1,6 @@
 # Geographic Data Science
 
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.46300.svg)](http://dx.doi.org/10.5281/zenodo.46300)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.46313.svg)](http://dx.doi.org/10.5281/zenodo.46313)
 
 * [Dani Arribas-Bel](http://darribas.org) ([@darribas](http://darribas.org))
 
@@ -25,7 +25,7 @@ following citation:
   year = 2016,
   url = {http://darribas.org/gds15},
   urldate = {2016-02-19}
-  doi = {10.5281/zenodo.46300}
+  doi = {10.5281/zenodo.46313}
 }
 ```
 
