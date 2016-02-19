@@ -4,7 +4,7 @@
 
 * [Dani Arribas-Bel](http://darribas.org) ([@darribas](http://darribas.org))
 
-Material and website for the course Geographic Data Science'15 course, taught
+Material and website for the course Geographic Data Science'15, taught
 by Dani Arribas-Bel at the University of Liverpool. The course was open to
 last year undergraduate and master students.
 
